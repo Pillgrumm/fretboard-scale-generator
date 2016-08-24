@@ -195,7 +195,9 @@ $('#showNotesOnFretboard').on('click', function() {
             else {
                 // use regex to parse user tuning value into array
                 var customTuning = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
-                var outputTuning = customTuning;
+                // define output tuning by converting tuning array to sharps
+                var outputTuning = (arrayFlatToSharp(customTuning, matchingFlatToSharp));
+                //var outputTuning = customTuning;
                 // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
                 var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes);
                 // append HTML of notes to fretboard
