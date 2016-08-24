@@ -130,34 +130,62 @@ function toggleCustomTuning(tuningDropdownValue) {
 $('#showNotesOnFretboard').on('click', function() {
     // reset output to avoid build up of incorrect notes
     var allStringsOutput = '';
-    // harvest key, scale, and tuning values from user input
+    // harvest key, scale values from user input
     var selectedKey = $("#keySelect").val();
     var selectedScale = $("#scaleSelect").val();
-    // conditional check to see whether a predefined or custom user supplied tuning is being used
-    if ($("#tuningSelect").val() === 'custom') {
-        var customInputTuning = $("input[name='userTuningInputValue']").val();
-        // use regex to pares user tuning value into array
-        var customTuning = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
-        var outputTuning = customTuning;
-    } else {
-        var predefinedInputTuning = $("#tuningSelect").val();
-        var predefinedTuning = stringTuning[predefinedInputTuning];
-        var outputTuning = predefinedTuning;
-    }
-
-    // conditional check that all necessary pieces of information are supplied
+    // conditional check that key and scale are not supplied
     if ((selectedKey === 'select') || (selectedScale === 'select')) {
         alert('Please select both a key and scale.');
     }
+    // if key and scale are supplied
+    else {
+        // conditional check for whether a custom user supplied tuning is being used
+        if ($("#tuningSelect").val() === 'custom') {
+            var customInputTuning = $("input[name='userTuningInputValue']").val();
+            // regex validation of user supplied tuning string fails
+            if (/([A-G](b|#)?){6}/.test(customInputTuning) === false) {
+                alert('Please make sure the tuning follows these rules: 6 notes, no spaces. Uppercase A-G. b = flat. # = sharp.');
+            }
+            // regex validation of user supplied tuning succeeds
+            else {
+                // use regex to parse user tuning value into array
+                var customTuning = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
+                var outputTuning = customTuning;
+                // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
+                var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes);
+                // append HTML of notes to fretboard
+                $('.notes-display').html(allStringsOutput);
+                // fill tuning HTML template with values from selected tuning
+                var tuningOutput = displayCurrentTuning(outputTuning);
+                // append HTML of selected tuning to display current tuning
+                $('.tuning').html(tuningOutput);
+            }
+        }
+        // if predefined tuning is selected
+        else {
+            var predefinedInputTuning = $("#tuningSelect").val();
+            var predefinedTuning = stringTuning[predefinedInputTuning];
+            var outputTuning = predefinedTuning;
+            // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
+            var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes);
+            // append HTML of notes to fretboard
+            $('.notes-display').html(allStringsOutput);
+            // fill tuning HTML template with values from selected tuning
+            var tuningOutput = displayCurrentTuning(outputTuning);
+            // append HTML of selected tuning to display current tuning
+            $('.tuning').html(tuningOutput);
+        }
 
-    // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
-    var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes);
-    // append HTML of notes to fretboard
-    $('.notes-display').html(allStringsOutput);
-    // fill tuning HTML template with values from selected tuning
-    var tuningOutput = displayCurrentTuning(outputTuning);
-    // append HTML of selected tuning to display current tuning
-    $('.tuning').html(tuningOutput);
+        // // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
+        // var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes);
+        // // append HTML of notes to fretboard
+        // $('.notes-display').html(allStringsOutput);
+        // // fill tuning HTML template with values from selected tuning
+        // var tuningOutput = displayCurrentTuning(outputTuning);
+        // // append HTML of selected tuning to display current tuning
+        // $('.tuning').html(tuningOutput);
+    }
+
 });
 
 $(".custom-tuning-select").hide();

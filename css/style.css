@@ -22,7 +22,7 @@ body {
       width: 750px; } }
 
 .tuning {
-  width: 4.1666666667%;
+  width: 4.16667%;
   float: left;
   height: 175px;
   position: relative; }
@@ -61,13 +61,13 @@ body {
 .nut-position {
   width: 3.125%;
   float: left;
-  margin-left: 4.1666666667%;
+  margin-left: 4.16667%;
   height: 25px;
   text-align: center;
   font-size: 12px; }
   @media (max-width: 1050px) {
     .nut-position {
-      width: 5.2083333333%;
+      width: 5.20833%;
       float: left;
       margin-left: 6.25%; } }
   @media (min-width: 1500px) {
@@ -83,21 +83,21 @@ body {
   background: url("../images/fretboard-strings.svg") #fff repeat-x; }
   @media (max-width: 1050px) {
     .nut {
-      width: 5.2083333333%;
+      width: 5.20833%;
       float: left; } }
 
 .fretboard-container {
-  width: 92.7083333333%;
+  width: 92.70833%;
   float: right;
   margin-right: 0; }
   @media (max-width: 1050px) {
     .fretboard-container {
-      width: 88.5416666667%;
+      width: 88.54167%;
       float: right;
       margin-right: 0; } }
 
 .position-numbers {
-  width: 92.7083333333%;
+  width: 92.70833%;
   float: right;
   margin-right: 0;
   height: 25px;
@@ -105,7 +105,7 @@ body {
   font-size: 12px; }
   @media (max-width: 1050px) {
     .position-numbers {
-      width: 88.5416666667%;
+      width: 88.54167%;
       float: right;
       margin-right: 0; } }
   @media (min-width: 1500px) {
