@@ -15,12 +15,24 @@ var notes = [
     "B"
 ];
 
-var matchingArray = [{
+var matchingSharpToFlat = [{
     "C#": "Db",
     "D#": "Eb",
+    "E#": "F",
     "F#": "Gb",
     "G#": "Ab",
-    "A#": "Bb"
+    "A#": "Bb",
+    "B#": "C"
+}];
+
+var matchingFlatToSharp = [{
+    "B": "Cb",
+    "C#": "Db",
+    "D#": "Eb",
+    "E": "Fb",
+    "F#": "Gb",
+    "G#": "Ab",
+    "A#": "Bb",
 }];
 
 scales = Array();
@@ -39,20 +51,53 @@ scales['whole-tone'] = Array(0, 2, 4, 6, 8, 10);
 
 stringTuning = Array();
 stringTuning['standard'] = Array('E', 'B', 'G', 'D', 'A', 'E');
+stringTuning['half-step-down'] = Array('D#', 'A#', 'F#', 'C#', 'G#', 'D#');
 stringTuning['drop-d'] = Array('E', 'B', 'G', 'D', 'A', 'D');
 stringTuning['dadgad'] = Array('D', 'A', 'G', 'D', 'A', 'D');
 stringTuning['open-g'] = Array('D', 'B', 'G', 'D', 'G', 'D');
 stringTuning['perfect-fourths'] = Array('F', 'C', 'G', 'D', 'A', 'E');
 stringTuning['major-thirds'] = Array('C', 'G#', 'E', 'C', 'G#', 'E');
 
+// Tuning Arrays for Testing
+stringTuning['allflats'] = Array('Cb', 'Fb', 'Gb', 'Db', 'A', 'F');
+stringTuning['allsharps'] = Array('E#', 'B#', 'G#', 'D#', 'A', 'F');
+
+
+
 //-----------------FUNCTION DEFINITIONS-----------------//
 
-function flatToSharp(flatNote, matchingArray) {
-    return (Object.keys(matchingArray[0]).find(key => matchingArray[0][key] === flatNote));
+function flatToSharp(flatNote, matchingFlatToSharp) {
+    return Object.keys(matchingFlatToSharp[0]).find(function(key) {
+        return matchingFlatToSharp[0][key] === flatNote;
+    });
 }
 
-function sharpToFlat(sharpNote, matchingArray) {
-    return matchingArray[0][sharpNote];
+function sharpToFlat(sharpNote, matchingSharpToFlat) {
+    return matchingSharpToFlat[0][sharpNote];
+}
+
+function arrayFlatToSharp(flatNoteArray, matchingFlatToSharp) {
+    console.log(flatNoteArray);
+    convertedArray = flatNoteArray.slice(0);
+    for (var string = 0; string < flatNoteArray.length; string++) {
+        if (/([A-G])b/.test(flatNoteArray[string]) === true) {
+            convertedNote = flatToSharp(flatNoteArray[string], matchingFlatToSharp);
+            convertedArray[string] = convertedNote;
+        }
+    }
+    return convertedArray;
+}
+
+function arraySharpToFlat(sharpNoteArray, matchingSharpToFlat) {
+    console.log(sharpNoteArray);
+    convertedArray = sharpNoteArray.slice(0);
+    for (var string = 0; string < sharpNoteArray.length; string++) {
+        if (/([A-G])#/.test(sharpNoteArray[string]) === true) {
+            convertedNote = sharpToFlat(sharpNoteArray[string], matchingSharpToFlat);
+            convertedArray[string] = convertedNote;
+        }
+    }
+    return convertedArray;
 }
 
 function getStringNoteNames(stringRootNote, notes) {
@@ -128,7 +173,7 @@ function toggleCustomTuning(tuningDropdownValue) {
 //-----------------CALLING FUNCTIONS-----------------//
 
 $('#showNotesOnFretboard').on('click', function() {
-    // reset output to avoid build up of incorrect notes
+    // reset output to avoid cumulative build up of incorrect notes on fretboard
     var allStringsOutput = '';
     // harvest key, scale values from user input
     var selectedKey = $("#keySelect").val();
@@ -175,20 +220,13 @@ $('#showNotesOnFretboard').on('click', function() {
             // append HTML of selected tuning to display current tuning
             $('.tuning').html(tuningOutput);
         }
-
-        // // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
-        // var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes);
-        // // append HTML of notes to fretboard
-        // $('.notes-display').html(allStringsOutput);
-        // // fill tuning HTML template with values from selected tuning
-        // var tuningOutput = displayCurrentTuning(outputTuning);
-        // // append HTML of selected tuning to display current tuning
-        // $('.tuning').html(tuningOutput);
     }
 
 });
 
+// hides custom tuning select upon initial page load
 $(".custom-tuning-select").hide();
+// looks for changes in tuning selection dropdown and runs custom tuning toggle upon change
 $("#tuningSelect").change(function() {
     var tuningDropdownValue = $("#tuningSelect").val();
     toggleCustomTuning(tuningDropdownValue);
@@ -196,5 +234,5 @@ $("#tuningSelect").change(function() {
 
 
 
-// console.log(flatToSharp('Bb', matchingArray));
-// console.log(sharpToFlat('G#', matchingArray));
+console.log(arrayFlatToSharp(stringTuning['allflats'], matchingFlatToSharp));
+console.log(arraySharpToFlat(stringTuning['allsharps'], matchingSharpToFlat));
