@@ -52,6 +52,7 @@ scales['whole-tone'] = Array(0, 2, 4, 6, 8, 10);
 stringTuning = Array();
 stringTuning['standard'] = Array('E', 'B', 'G', 'D', 'A', 'E');
 stringTuning['half-step-down'] = Array('D#', 'A#', 'F#', 'C#', 'G#', 'D#');
+stringTuning['full-step-down'] = Array('D', 'A', 'F', 'C', 'G', 'D');
 stringTuning['drop-d'] = Array('E', 'B', 'G', 'D', 'A', 'D');
 stringTuning['dadgad'] = Array('D', 'A', 'G', 'D', 'A', 'D');
 stringTuning['open-g'] = Array('D', 'B', 'G', 'D', 'G', 'D');
@@ -66,41 +67,57 @@ stringTuning['allsharps'] = Array('E#', 'B#', 'G#', 'D#', 'A', 'F');
 
 //-----------------FUNCTION DEFINITIONS-----------------//
 
+// function to convert a single flat note to a sharp
 function flatToSharp(flatNote, matchingFlatToSharp) {
     return Object.keys(matchingFlatToSharp[0]).find(function(key) {
         return matchingFlatToSharp[0][key] === flatNote;
     });
 }
 
+// function to convert a single sharp note to a flat
 function sharpToFlat(sharpNote, matchingSharpToFlat) {
     return matchingSharpToFlat[0][sharpNote];
 }
 
+// function to convert an array of notes which may contain flats to sharps where applicable
 function arrayFlatToSharp(flatNoteArray, matchingFlatToSharp) {
-    console.log(flatNoteArray);
+    // copy supplied array of notes
     convertedArray = flatNoteArray.slice(0);
+    // loop through all notes
     for (var string = 0; string < flatNoteArray.length; string++) {
+        // regex test for flats is true
         if (/([A-G])b/.test(flatNoteArray[string]) === true) {
+            // convert note to sharp
             convertedNote = flatToSharp(flatNoteArray[string], matchingFlatToSharp);
+            // replace note in array with its converted equivalent
             convertedArray[string] = convertedNote;
         }
     }
+    // return complete array with all of the flat to sharp conversions in place
     return convertedArray;
 }
 
+// function to convert an array of notes which may contain sharps to flats where applicable
 function arraySharpToFlat(sharpNoteArray, matchingSharpToFlat) {
-    console.log(sharpNoteArray);
+    // copy supplied array of notes
     convertedArray = sharpNoteArray.slice(0);
+    // loop through all notes
     for (var string = 0; string < sharpNoteArray.length; string++) {
+        // regex test for sharps is true
         if (/([A-G])#/.test(sharpNoteArray[string]) === true) {
+            // convert note to flat
             convertedNote = sharpToFlat(sharpNoteArray[string], matchingSharpToFlat);
+            // replace note in array with its converted equivalent
             convertedArray[string] = convertedNote;
         }
     }
+    // return complete array with all of the sharp to flat conversions in place
     return convertedArray;
 }
 
+// function to get string note names in order given a certain string tuning
 function getStringNoteNames(stringRootNote, notes) {
+    // copy the notes array
     var notesRearrange = notes.slice(0);
     var noteIndex = notesRearrange.indexOf(stringRootNote.toString());
     var newNoteSet = (notesRearrange.splice(noteIndex, (notesRearrange.length - noteIndex))).concat(notesRearrange.splice(0, noteIndex))
@@ -111,23 +128,33 @@ function getStringNoteNames(stringRootNote, notes) {
 
 // Needs sharp to flat conversion
 function displayOnFretboard(scaleRootNote, stringRootNote, stringNumber, scalePattern, notes) {
+    // get note names for each fret given the tuning of the string
     var workingNoteSet = getStringNoteNames(stringRootNote, notes);
+    // copy scale pattern
     var workingScalePattern = scalePattern.slice(0);
+    // find fret number of key root note on string
     var noteAdd = workingNoteSet.indexOf(scaleRootNote.toString());
+    // for every note in the scale pattern add noteAdd so the pattern begins on the key root note
     for (var a = 0; a < workingScalePattern.length; a++) {
         workingScalePattern[a] += noteAdd;
+        // if scale pattern starting from key root goes over twelfth fret, subtract 12 frets
         if (workingScalePattern[a] >= 12) {
             workingScalePattern[a] -= 12;
         }
     }
+    // sorts working scale pattern in order from smallest fret numbers to largest
     workingScalePattern.sort(function(a, b) {
         return a - b;
     });
+    // copy workingScalePattern for frets above twelve
     var patternAboveTwelve = workingScalePattern.slice(0);
+    // for every fret add 12 frets to represent second octave
     for (var b = 0; b < patternAboveTwelve.length; b++) {
         patternAboveTwelve[b] += 12;
     }
+    // add the frets above 12 to get the full fret numbers up to fret 23
     var fullFretNumbers = workingScalePattern.concat(patternAboveTwelve);
+    // if we detect the 12th fret exists in the array push the 24th fret to the end of the array
     for (var c = 0; c < fullFretNumbers.length; c++) {
         if (fullFretNumbers[c] === 12) {
             fullFretNumbers.push(24);
@@ -162,7 +189,6 @@ function displayCurrentTuning(selectedTuning) {
 }
 
 function toggleCustomTuning(tuningDropdownValue) {
-    console.log('inside toggle function');
     if (tuningDropdownValue === "custom") {
         $(".custom-tuning-select").show();
     } else {
@@ -197,7 +223,7 @@ $('#showNotesOnFretboard').on('click', function() {
                 var customTuning = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
                 // define output tuning by converting tuning array to sharps
                 var outputTuning = (arrayFlatToSharp(customTuning, matchingFlatToSharp));
-                //var outputTuning = customTuning;
+                // var outputTuning = customTuning;
                 // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
                 var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes);
                 // append HTML of notes to fretboard
@@ -228,7 +254,7 @@ $('#showNotesOnFretboard').on('click', function() {
 
 // hides custom tuning select upon initial page load
 $(".custom-tuning-select").hide();
-// looks for changes in tuning selection dropdown and runs custom tuning toggle upon change
+// looks for changes in tuning selection dropdown and runs custom tuning toggle function with selection as parameter upon change
 $("#tuningSelect").change(function() {
     var tuningDropdownValue = $("#tuningSelect").val();
     toggleCustomTuning(tuningDropdownValue);
@@ -236,5 +262,5 @@ $("#tuningSelect").change(function() {
 
 
 
-console.log(arrayFlatToSharp(stringTuning['allflats'], matchingFlatToSharp));
-console.log(arraySharpToFlat(stringTuning['allsharps'], matchingSharpToFlat));
+// console.log(arrayFlatToSharp(stringTuning['allflats'], matchingFlatToSharp));
+// console.log(arraySharpToFlat(stringTuning['allsharps'], matchingSharpToFlat));
