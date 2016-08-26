@@ -66,8 +66,8 @@ stringTuning['perfect-fourths'] = Array('F', 'C', 'G', 'D', 'A', 'E');
 stringTuning['major-thirds'] = Array('C', 'G#', 'E', 'C', 'G#', 'E');
 
 // Tuning Arrays for Testing
-stringTuning['allflats'] = Array('Cb', 'Fb', 'Gb', 'Db', 'A', 'F');
-stringTuning['allsharps'] = Array('E#', 'B#', 'G#', 'D#', 'A', 'F');
+// stringTuning['allflats'] = Array('Cb', 'Fb', 'Gb', 'Db', 'A', 'E#');
+// stringTuning['allsharps'] = Array('E#', 'B#', 'G#', 'D#', 'A', 'F');
 
 
 
@@ -220,7 +220,7 @@ $('#showNotesOnFretboard').on('click', function() {
         if ($("#tuningSelect").val() === 'custom') {
             var customInputTuning = $("input[name='userTuningInputValue']").val();
             // regex validation of user supplied tuning string fails
-            if (/([A-G](b|#)?){6}/.test(customInputTuning) === false) {
+            if (/^([A-G](b|#)?){6}$/.test(customInputTuning) === false) {
                 alert('Please make sure the tuning follows these rules: 6 notes, no spaces. Uppercase A-G. b = flat. # = sharp.');
             }
             // regex validation of user supplied tuning succeeds
@@ -265,8 +265,3 @@ $("#tuningSelect").change(function() {
     var tuningDropdownValue = $("#tuningSelect").val();
     toggleCustomTuning(tuningDropdownValue);
 });
-
-
-
-// console.log(arrayFlatToSharp(stringTuning['allflats'], matchingFlatToSharp));
-// console.log(arraySharpToFlat(stringTuning['allsharps'], matchingSharpToFlat));
