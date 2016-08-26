@@ -34,6 +34,13 @@ var matchingFlatToSharp = [{
     "G#": "Ab",
     "A#": "Bb",
 }];
+var matchingAccidentals = [{
+    "Fb": "E",
+    "E#": "F",
+    "Cb": "B",
+    "B#": "C"
+}];
+
 
 scales = Array();
 scales['major'] = Array(0, 2, 4, 5, 7, 9, 11);
@@ -85,6 +92,11 @@ function sharpToFlat(sharpNote, matchingSharpToFlat) {
     return matchingSharpToFlat[0][sharpNote];
 }
 
+// function to correct enharmonic equivalents
+function correctEnharmonic(accidentalNote, matchingAccidentals) {
+    return matchingAccidentals[0][accidentalNote];
+}
+
 // function to convert an array of notes which may contain flats to sharps where applicable
 function arrayFlatToSharp(flatNoteArray, matchingFlatToSharp) {
     // copy supplied array of notes
@@ -118,6 +130,24 @@ function arraySharpToFlat(sharpNoteArray, matchingSharpToFlat) {
         }
     }
     // return complete array with all of the sharp to flat conversions in place
+    return convertedArray;
+}
+
+// function to convert an array of notes which may contain undesirable enharmonic equivalents where applicable
+function arrayCorrectEnharmonic(enharmonicArray, matchingAccidentals) {
+    // copy supplied array of notes
+    convertedArray = enharmonicArray.slice(0);
+    // loop through all notes
+    for (var string = 0; string < enharmonicArray.length; string++) {
+        // regex test for enharmonics is true
+        if (/(Fb|E#|B#|Cb)/.test(enharmonicArray[string]) === true) {
+            // convert note to proper enharmonic equivalent
+            convertedNote = correctEnharmonic(enharmonicArray[string], matchingAccidentals);
+            // replace note in array with its converted equivalent
+            convertedArray[string] = convertedNote;
+        }
+    }
+    // return complete array with all of enharmonic conversions in place
     return convertedArray;
 }
 
@@ -227,8 +257,10 @@ $('#showNotesOnFretboard').on('click', function() {
             else {
                 // use regex to parse user tuning value into array
                 var customTuning = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
+                // correct any user supplied enharmonic equivalents
+                var correctedTuning = arrayCorrectEnharmonic(customTuning, matchingAccidentals);
                 // define output tuning by converting tuning array to sharps
-                var outputTuning = (arrayFlatToSharp(customTuning, matchingFlatToSharp));
+                var outputTuning = (arrayFlatToSharp(correctedTuning, matchingFlatToSharp));
                 // var outputTuning = customTuning;
                 // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
                 var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes);
