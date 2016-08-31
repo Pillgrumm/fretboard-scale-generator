@@ -30,6 +30,7 @@ var matchingEnharmonic = [{
     "B#": "C"
 }];
 
+var accidentalState = '';
 
 scales = Array();
 scales['major'] = Array(0, 2, 4, 5, 7, 9, 11);
@@ -141,20 +142,33 @@ function arrayCorrectEnharmonic(enharmonicArray, matchingEnharmonic) {
 }
 
 // function to get string note names in order given a certain string tuning
-function getStringNoteNames(stringRootNote, notes) {
+function getStringNoteNames(stringRootNote, notes, accidentalState) {
     // copy the notes array
     var notesRearrange = notes.slice(0);
+    // find where the string root appears in the copied notes array
     var noteIndex = notesRearrange.indexOf(stringRootNote.toString());
-    var newNoteSet = (notesRearrange.splice(noteIndex, (notesRearrange.length - noteIndex))).concat(notesRearrange.splice(0, noteIndex))
+    // rearrange the note set by splicing from the index to the end and from the beginning to the index, and concatenate the two together
+    var newNoteSet = (notesRearrange.splice(noteIndex, (notesRearrange.length - noteIndex))).concat(notesRearrange.splice(0, noteIndex));
+    // double the note set by concatenating to itself
     var completeNoteSet = newNoteSet.concat(newNoteSet);
+    // push the first note to the end to represent the 24th fret
     completeNoteSet.push(completeNoteSet[0]);
-    return completeNoteSet;
+    // checks for flat accidental state
+    if (accidentalState === 'flat') {
+        // converts complete note set to flats where applicable, and returns the complete sequence of notes for the entire string
+        return arraySharpToFlat(completeNoteSet, matchingSharpAndFlat);
+    } else {
+        // return the completed sequence of notes for the entire string
+        return completeNoteSet;
+    }
 }
 
-// Needs sharp to flat conversion
-function displayOnFretboard(scaleRootNote, stringRootNote, stringNumber, scalePattern, notes) {
+function displayOnFretboard(scaleRootNote, stringRootNote, stringNumber, scalePattern, notes, accidentalState) {
     // get note names for each fret given the tuning of the string
-    var workingNoteSet = getStringNoteNames(stringRootNote, notes);
+    var workingNoteSet = getStringNoteNames(stringRootNote, notes, accidentalState);
+    // console.log(workingNoteSet);
+    // console.log(scaleRootNote, stringRootNote);
+    // console.log(accidentalState);
     // copy scale pattern
     var workingScalePattern = scalePattern.slice(0);
     // find fret number of key root note on string
@@ -196,15 +210,16 @@ function displayOnFretboard(scaleRootNote, stringRootNote, stringNumber, scalePa
     return fretDisplayHtml;
 }
 
-function displayLoopAllStrings(selectedKey, selectedScale, selectedTuning, notes) {
+function displayLoopAllStrings(selectedKey, selectedScale, selectedTuning, notes, accidentalState) {
     var allStringsResult = '';
     for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
         var stringName = ((selectedTuning[stringCounter]).toString());
-        allStringsResult += displayOnFretboard(selectedKey, stringName, (stringCounter + 1), selectedScale, notes);
+        allStringsResult += displayOnFretboard(selectedKey, stringName, (stringCounter + 1), selectedScale, notes, accidentalState);
     }
     return allStringsResult;
 }
 
+// To Do: NEEDS TO ACCOMODATE ACCIDENTAL STATE AS WELL
 function displayCurrentTuning(selectedTuning) {
     var tuningDisplayHtml = '';
     for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
@@ -235,6 +250,12 @@ $('#showNotesOnFretboard').on('click', function() {
     }
     // if key and scale are supplied
     else {
+        // harvest current state of accidental switch
+        if ($("#accidentalSwitch").is(':checked')) {
+            var accidentalState = 'flat';
+        } else {
+            var accidentalState = 'sharp';
+        }
         // conditional check for whether a custom user supplied tuning is being used
         if ($("#tuningSelect").val() === 'custom') {
             var customInputTuning = $("input[name='userTuningInputValue']").val();
@@ -244,15 +265,14 @@ $('#showNotesOnFretboard').on('click', function() {
             }
             // regex validation of user supplied tuning succeeds
             else {
-                // use regex to parse user tuning value into array
+                // use regex to parse user tuning value into array and reverse for proper order
                 var customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
                 // correct any user supplied enharmonic equivalents
                 var correctedTuning = arrayCorrectEnharmonic(customTuningArray, matchingEnharmonic);
                 // define output tuning by converting tuning array to sharps
                 var outputTuning = (arrayFlatToSharp(correctedTuning, matchingSharpAndFlat));
-                // var outputTuning = customTuning;
                 // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
-                var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes);
+                var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes, accidentalState);
                 // append HTML of notes to fretboard
                 $('.notes-display').html(allStringsOutput);
                 // fill tuning HTML template with values from selected tuning
@@ -263,11 +283,14 @@ $('#showNotesOnFretboard').on('click', function() {
         }
         // if predefined tuning is selected
         else {
+            // harvest the user selected predefined tuning value
             var predefinedInputTuning = $("#tuningSelect").val();
+            // match to existing tuning array
             var predefinedTuning = stringTuning[predefinedInputTuning];
+            // define output tuning
             var outputTuning = predefinedTuning;
             // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
-            var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes);
+            var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes, accidentalState);
             // append HTML of notes to fretboard
             $('.notes-display').html(allStringsOutput);
             // fill tuning HTML template with values from selected tuning

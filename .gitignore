@@ -10,3 +10,5 @@ images/fretboard-strings.ai
 scripts/min/main-min.js
 
 config.rb
+
+.DS_Store
