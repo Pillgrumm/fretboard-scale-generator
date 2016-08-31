@@ -164,11 +164,16 @@ function getStringNoteNames(stringRootNote, notes, accidentalState) {
 }
 
 function displayOnFretboard(scaleRootNote, stringRootNote, stringNumber, scalePattern, notes, accidentalState) {
+    // checks for flat accidental state
+    if (accidentalState === 'flat') {
+        // converts scale root from sharp to flat
+        scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
+    }
     // get note names for each fret given the tuning of the string
     var workingNoteSet = getStringNoteNames(stringRootNote, notes, accidentalState);
-    // console.log(workingNoteSet);
-    // console.log(scaleRootNote, stringRootNote);
-    // console.log(accidentalState);
+    console.log(workingNoteSet);
+    console.log(scaleRootNote, stringRootNote);
+    console.log(accidentalState);
     // copy scale pattern
     var workingScalePattern = scalePattern.slice(0);
     // find fret number of key root note on string
