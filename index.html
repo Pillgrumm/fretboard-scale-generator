@@ -187,11 +187,20 @@ http://jsfiddle.net/thirtydot/dQR9T/2637/ -->
                 <div class="custom-tuning-select">
                     <input type="text" placeholder="Low to High ex. EADGBE" pattern="^([A-G](b|#)?){6}$" title="6 notes, no spaces. Uppercase A-G. b = flat. # = sharp." name="userTuningInputValue" class="custom-tuning-input">
                 </div>
+                <div class="switch">
+                    <p>&#9839;</p>
+                    <label class="accidental-switch">
+                        <input type="checkbox" id="accidentalSwitch">
+                        <div class="slider round"></div>
+                    </label>
+                    <p>&#9837;</p>
+                </div>
             </form>
         </section>
         <div class="submit-button">
             <button id="showNotesOnFretboard" class="button button-show">SHOW SCALE</button>
         </div>
+
     </div>
 
 
