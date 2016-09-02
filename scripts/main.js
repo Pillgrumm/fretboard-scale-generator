@@ -166,11 +166,7 @@ function getStringNoteNames(stringRootNote, notes, accidentalState) {
 function displayOnFretboard(scaleRootNote, stringRootNote, stringNumber, scalePattern, notes, accidentalState) {
     // checks for flat accidental state
     if (accidentalState === 'flat') {
-        // regex test to see if scale root note itself is a flat
-        if (/([A-G])b/.test(scaleRootNote) === true) {
-            // converts scale root from sharp to flat
             scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
-        }
     }
     // get note names for each fret given the tuning of the string
     var workingNoteSet = getStringNoteNames(stringRootNote, notes, accidentalState);
@@ -243,6 +239,7 @@ function toggleCustomTuning(tuningDropdownValue) {
 
 //-----------------CALLING FUNCTIONS-----------------//
 
+// On click of "Show Scale" button
 $('#showNotesOnFretboard').on('click', function() {
     // reset output to avoid cumulative build up of incorrect notes on fretboard
     var allStringsOutput = '';
