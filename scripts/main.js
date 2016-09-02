@@ -166,10 +166,10 @@ function getStringNoteNames(stringRootNote, notes, accidentalState) {
 function displayOnFretboard(scaleRootNote, stringRootNote, stringNumber, scalePattern, notes, accidentalState) {
     // checks for flat accidental state
     if (accidentalState === 'flat') {
-      if (/([A-G])(b|#)/.test(scaleRootNote) === true) {
-        // converts scale root note to flat
-        scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
-      }
+        if (/([A-G])(b|#)/.test(scaleRootNote) === true) {
+            // converts scale root note to flat
+            scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
+        }
     }
     // get note names for each fret given the tuning of the string
     var workingNoteSet = getStringNoteNames(stringRootNote, notes, accidentalState);
@@ -223,10 +223,9 @@ function displayLoopAllStrings(selectedKey, selectedScale, selectedTuning, notes
     return allStringsResult;
 }
 
-// To Do: NEEDS TO ACCOMODATE ACCIDENTAL STATE AS WELL
 function displayCurrentTuning(selectedTuning, accidentalState) {
     if (accidentalState === 'flat') {
-      selectedTuning = arraySharpToFlat(selectedTuning, matchingSharpAndFlat);
+        selectedTuning = arraySharpToFlat(selectedTuning, matchingSharpAndFlat);
     }
     var tuningDisplayHtml = '';
     for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
@@ -243,10 +242,8 @@ function toggleCustomTuning(tuningDropdownValue) {
     }
 }
 
-//-----------------CALLING FUNCTIONS-----------------//
-
-// On click of "Show Scale" button
-$('#showNotesOnFretboard').on('click', function() {
+// function to be triggered upon user click or enter keypress, processes final fretboard output
+function eventListenerTrigger() {
     // reset output to avoid cumulative build up of incorrect notes on fretboard
     var allStringsOutput = '';
     // harvest key, scale values from user input
@@ -266,6 +263,7 @@ $('#showNotesOnFretboard').on('click', function() {
         }
         // conditional check for whether a custom user supplied tuning is being used
         if ($("#tuningSelect").val() === 'custom') {
+            // harvest custom user supplied tuning
             var customInputTuning = $("input[name='userTuningInputValue']").val();
             // regex validation of user supplied tuning string fails
             if (/^([A-G](b|#)?){6}$/.test(customInputTuning) === false) {
@@ -307,7 +305,27 @@ $('#showNotesOnFretboard').on('click', function() {
             $('.tuning').html(tuningOutput);
         }
     }
+}
 
+
+//-----------------CALLING FUNCTIONS-----------------//
+
+
+// On click of "Show Scale" button
+$('#showNotesOnFretboard').on('click', function() {
+    // trigger final display output function
+    eventListenerTrigger();
+});
+
+// On keypress of enter key
+$(document).on('keypress', function(key) {
+    //keyCode == 13 is the ENTER key
+    if (key.keyCode == 13) {
+        // if enter key is struck, do not submit form
+        key.preventDefault();
+        // trigger final display output function
+        eventListenerTrigger();
+    }
 });
 
 // hides custom tuning select upon initial page load
