@@ -166,7 +166,10 @@ function getStringNoteNames(stringRootNote, notes, accidentalState) {
 function displayOnFretboard(scaleRootNote, stringRootNote, stringNumber, scalePattern, notes, accidentalState) {
     // checks for flat accidental state
     if (accidentalState === 'flat') {
-            scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
+      if (/([A-G])(b|#)/.test(scaleRootNote) === true) {
+        // converts scale root note to flat
+        scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
+      }
     }
     // get note names for each fret given the tuning of the string
     var workingNoteSet = getStringNoteNames(stringRootNote, notes, accidentalState);
@@ -221,7 +224,10 @@ function displayLoopAllStrings(selectedKey, selectedScale, selectedTuning, notes
 }
 
 // To Do: NEEDS TO ACCOMODATE ACCIDENTAL STATE AS WELL
-function displayCurrentTuning(selectedTuning) {
+function displayCurrentTuning(selectedTuning, accidentalState) {
+    if (accidentalState === 'flat') {
+      selectedTuning = arraySharpToFlat(selectedTuning, matchingSharpAndFlat);
+    }
     var tuningDisplayHtml = '';
     for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
         tuningDisplayHtml += '<div class="tuning-note-marker string-' + (stringCounter + 1) + '"><span>' + ((stringCounter + 1) + (selectedTuning[stringCounter])) + '</span></div>';
@@ -278,7 +284,7 @@ $('#showNotesOnFretboard').on('click', function() {
                 // append HTML of notes to fretboard
                 $('.notes-display').html(allStringsOutput);
                 // fill tuning HTML template with values from selected tuning
-                var tuningOutput = displayCurrentTuning(outputTuning);
+                var tuningOutput = displayCurrentTuning(outputTuning, accidentalState);
                 // append HTML of selected tuning to display current tuning
                 $('.tuning').html(tuningOutput);
             }
@@ -296,7 +302,7 @@ $('#showNotesOnFretboard').on('click', function() {
             // append HTML of notes to fretboard
             $('.notes-display').html(allStringsOutput);
             // fill tuning HTML template with values from selected tuning
-            var tuningOutput = displayCurrentTuning(outputTuning);
+            var tuningOutput = displayCurrentTuning(outputTuning, accidentalState);
             // append HTML of selected tuning to display current tuning
             $('.tuning').html(tuningOutput);
         }
