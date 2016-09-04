@@ -134,6 +134,7 @@ http://jsfiddle.net/thirtydot/dQR9T/2637/ -->
                         <option value="A#">A&#9839;/ B&#9837;</option>
                         <option value="B">B</option>
                     </select>
+                    <div class="error keySelectError"><p></p></div>
                 </div>
                 <div class="tuning-select">
                     <h3>Select a Tuning</h3>
@@ -153,9 +154,8 @@ http://jsfiddle.net/thirtydot/dQR9T/2637/ -->
                             <option value="perfect-fourths">Perfect Fourths</option>
                             <option value="major-thirds">Major Thirds</option>
                         </optgroup>
-
                     </select>
-
+                    <div class="error tuningSelectError"><p></p></div>
                 </div>
                 <div class="scale-select">
                     <h3>Select a Scale</h3>
@@ -183,6 +183,7 @@ http://jsfiddle.net/thirtydot/dQR9T/2637/ -->
                         <option value="half-whole-diminished">Half Whole Diminished</option>
                         <option value="chromatic">Chromatic</option>
                     </select>
+                    <div class="error scaleSelectError"><p></p></div>
                 </div>
                 <div class="custom-tuning-select">
                     <input type="text" placeholder="Low to High ex. EADGBE" pattern="^([A-G](b|#)?){6}$" title="6 notes, no spaces. Uppercase A-G. b = flat. # = sharp." name="userTuningInputValue" class="custom-tuning-input">

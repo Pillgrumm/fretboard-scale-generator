@@ -242,6 +242,14 @@ function toggleCustomTuning(tuningDropdownValue) {
     }
 }
 
+function displayError(message, fadeTime, classTarget) {
+    fadeTime = fadeTime || 2000;
+    $('.' + classTarget + ' p').html(message).fadeIn(fadeTime, function () {
+        setTimeout(function () {
+            $('.' + classTarget + ' p').fadeOut(fadeTime);
+        }, fadeTime);
+    });
+}
 // function to be triggered upon user click or enter keypress, processes final fretboard output
 function eventListenerTrigger() {
     // reset output to avoid cumulative build up of incorrect notes on fretboard
@@ -249,9 +257,13 @@ function eventListenerTrigger() {
     // harvest key, scale values from user input
     var selectedKey = $("#keySelect").val();
     var selectedScale = $("#scaleSelect").val();
-    // conditional check that key and scale are not supplied
-    if ((selectedKey === 'select') || (selectedScale === 'select')) {
-        alert('Please select both a key and scale.');
+    // conditional check that key is not supplied
+    if (selectedKey === 'select') {
+      displayError('Please select a key', 2000, 'keySelectError');
+    }
+    // conditional check that scale is not supplied
+    if (selectedScale === 'select') {
+      displayError('Please select a scale', 2000, 'scaleSelectError');
     }
     // if key and scale are supplied
     else {
@@ -267,7 +279,7 @@ function eventListenerTrigger() {
             var customInputTuning = $("input[name='userTuningInputValue']").val();
             // regex validation of user supplied tuning string fails
             if (/^([A-G](b|#)?){6}$/.test(customInputTuning) === false) {
-                alert('Please make sure the tuning follows these rules: 6 notes, no spaces. Uppercase A-G. b = flat. # = sharp.');
+              displayError('Please make sure the tuning follows these rules:<br>6 notes, no spaces.<br>Uppercase A-G.<br>b = flat.<br># = sharp.', 4000, 'tuningSelectError');
             }
             // regex validation of user supplied tuning succeeds
             else {
