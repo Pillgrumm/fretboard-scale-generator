@@ -268,7 +268,7 @@ function eventListenerTrigger() {
     // if key and scale are supplied
     else {
         // harvest current state of accidental switch
-        if ($("#accidentalSwitch").is(':checked')) {
+        if ($("#accidentalSwitch").val() === 'flat') {
             var accidentalState = 'flat';
         } else {
             var accidentalState = 'sharp';
