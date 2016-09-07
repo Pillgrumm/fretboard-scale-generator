@@ -515,21 +515,75 @@ body {
 
 .key-select,
 .scale-select,
-.tuning-select,
-.switch-wrapper {
+.switch-wrapper,
+.tuning-select {
   width: 20%;
   float: left;
   text-align: center;
   margin-top: 1rem; }
+  .key-select select, .key-select input,
+  .scale-select select,
+  .scale-select input,
+  .switch-wrapper select,
+  .switch-wrapper input,
+  .tuning-select select,
+  .tuning-select input {
+    width: 80%; }
+  .key-select select,
+  .scale-select select,
+  .switch-wrapper select,
+  .tuning-select select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0.5rem;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px; }
+  @media (max-width: 1000px) {
+    .key-select,
+    .scale-select,
+    .switch-wrapper,
+    .tuning-select {
+      width: 33.33333%;
+      float: left;
+      margin-left: 33.33333%;
+      margin-top: 1.5rem; } }
+  @media (max-width: 700px) {
+    .key-select,
+    .scale-select,
+    .switch-wrapper,
+    .tuning-select {
+      width: 66.66667%;
+      float: left;
+      margin-left: 16.66667%;
+      margin-top: 1.5rem; } }
+  @media (max-width: 1000px) {
+    .key-select select, .key-select input,
+    .scale-select select,
+    .scale-select input,
+    .switch-wrapper select,
+    .switch-wrapper input,
+    .tuning-select select,
+    .tuning-select input {
+      width: 100%; } }
 
 .submit-button {
   width: 20%;
   float: right;
-  margin-right: 0; }
+  margin-right: 0;
+  margin-top: 10px; }
+  @media (max-width: 1000px) {
+    .submit-button {
+      width: 100%;
+      float: left;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 32px; } }
 
 .custom-tuning-select {
   text-align: center;
-  margin-top: 25px; }
+  margin-top: 1rem; }
 
 .custom-tuning-input {
   width: 200px;
