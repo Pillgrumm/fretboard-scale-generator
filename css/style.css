@@ -435,6 +435,8 @@ body {
 .position-marker {
   background-color: #E6E2BE;
   border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
   height: 12px;
   width: 12px;
   margin-left: auto;
@@ -458,6 +460,8 @@ body {
 .note-marker {
   position: absolute;
   border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
   width: 20px;
   height: 20px;
   font-size: 12px;
@@ -510,22 +514,22 @@ body {
   margin: 0 auto; }
 
 .key-select,
-.scale-select {
-  width: 50%;
+.scale-select,
+.tuning-select,
+.switch-wrapper {
+  width: 20%;
   float: left;
-  text-align: center; }
+  text-align: center;
+  margin-top: 1rem; }
 
-.tuning-select {
-  width: 50%;
+.submit-button {
+  width: 20%;
   float: right;
-  margin-right: 0;
-  text-align: center; }
+  margin-right: 0; }
 
 .custom-tuning-select {
-  width: 50%;
-  float: right;
-  margin-right: 0;
-  text-align: center; }
+  text-align: center;
+  margin-top: 25px; }
 
 .custom-tuning-input {
   width: 200px;
@@ -536,6 +540,8 @@ body {
 
 .button {
   border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block; }
@@ -547,70 +553,13 @@ body {
   font-size: 20px;
   padding: 15px 32px; }
 
-.button-load {
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #000;
-  font-size: 14px;
-  padding: 10px 24px;
-  margin-left: 10px; }
-
-/* ------ACCIDENTAL SWITCH STYLES ------------*/
-.switch p, .switch label {
-  display: inline-block;
-  vertical-align: middle; }
-
-.switch p {
-  font-size: 24px; }
-
-/* The switch - the box around the slider */
-.accidental-switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px; }
-
-/* Hide default HTML checkbox */
-.accidental-switch input {
-  display: none; }
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s; }
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s; }
-
-input:checked + .slider {
-  background-color: #2196F3; }
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3; }
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px); }
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px; }
-
-.slider.round:before {
-  border-radius: 50%; }
+.error p {
+  display: none;
+  background: #ffe6e6;
+  border: 1px solid #ff3333;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  padding: 10px;
+  width: 65%;
+  margin: 1rem auto; }
