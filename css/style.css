@@ -9,6 +9,9 @@ body {
 .container {
   width: 85%;
   margin: 0 auto; }
+  @media (max-width: 1275px) {
+    .container {
+      width: 95%; } }
 
 .neck-container {
   height: 225px;
@@ -513,6 +516,21 @@ body {
   margin-right: 0;
   margin: 0 auto; }
 
+select, input {
+  width: 90%; }
+  @media (max-width: 1000px) {
+    select, input {
+      width: 100%; } }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0.5rem;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px; }
+
 .key-select,
 .scale-select,
 .switch-wrapper,
@@ -521,25 +539,6 @@ body {
   float: left;
   text-align: center;
   margin-top: 1rem; }
-  .key-select select, .key-select input,
-  .scale-select select,
-  .scale-select input,
-  .switch-wrapper select,
-  .switch-wrapper input,
-  .tuning-select select,
-  .tuning-select input {
-    width: 80%; }
-  .key-select select,
-  .scale-select select,
-  .switch-wrapper select,
-  .tuning-select select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding: 0.5rem;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px; }
   @media (max-width: 1000px) {
     .key-select,
     .scale-select,
@@ -548,7 +547,7 @@ body {
       width: 33.33333%;
       float: left;
       margin-left: 33.33333%;
-      margin-top: 1.5rem; } }
+      margin-top: 1.75rem; } }
   @media (max-width: 700px) {
     .key-select,
     .scale-select,
@@ -557,16 +556,7 @@ body {
       width: 66.66667%;
       float: left;
       margin-left: 16.66667%;
-      margin-top: 1.5rem; } }
-  @media (max-width: 1000px) {
-    .key-select select, .key-select input,
-    .scale-select select,
-    .scale-select input,
-    .switch-wrapper select,
-    .switch-wrapper input,
-    .tuning-select select,
-    .tuning-select input {
-      width: 100%; } }
+      margin-top: 1.75rem; } }
 
 .submit-button {
   width: 20%;
@@ -591,7 +581,6 @@ body {
   margin-top: 1rem; }
 
 .custom-tuning-input {
-  width: 200px;
   padding: 5px; }
 
 .submit-button {
@@ -623,5 +612,5 @@ body {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   padding: 10px;
-  width: 65%;
+  width: 85%;
   margin: 1rem auto; }
