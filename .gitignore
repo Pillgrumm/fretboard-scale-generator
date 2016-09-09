@@ -3,8 +3,6 @@
 
 *.scssc
 
-css/style.scss
-
 images/fretboard-strings.ai
 
 scripts/min/main-min.js

@@ -1,0 +1,322 @@
+@media (max-width: 750px) {
+  body {
+    background-color: lightyellow; }
+
+  .container {
+    width: 85%;
+    margin: 0 auto; }
+
+  .neck-container {
+    height: 225px;
+    width: 97%;
+    margin: 0 auto; }
+
+  .tuning {
+    width: 4.16667%;
+    float: left;
+    height: 175px;
+    position: relative; }
+
+  .tuning-note-marker {
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    font-size: 18px;
+    padding: 2px;
+    color: #262626;
+    box-sizing: content-box;
+    left: 50%;
+    margin-left: -25%; }
+
+  .tuning-note-marker span {
+    display: table-cell;
+    vertical-align: middle;
+    height: 23px;
+    width: 23px;
+    text-align: center; }
+
+  .nut-position {
+    width: 3.125%;
+    float: left;
+    margin-left: 4.16667%;
+    height: 25px;
+    text-align: center;
+    font-size: 12px; }
+
+  .nut {
+    width: 3.125%;
+    float: left;
+    height: 175px;
+    border: 1px solid #999999;
+    position: relative;
+    background: url("../images/fretboard-strings.svg") #fff repeat-x; }
+
+  .fretboard-container {
+    width: 92.70833%; }
+
+  .position-numbers {
+    width: 92.70833%;
+    height: 25px;
+    text-align: center;
+    font-size: 12px; }
+
+  /* ----------- FRETBOARD SPACING ----------- */
+  .one {
+    width: 7.483%;
+    float: left; }
+
+  .two {
+    width: 7.063%;
+    float: left; }
+
+  .three {
+    width: 6.667%;
+    float: left; }
+
+  .four {
+    width: 6.293%;
+    float: left; }
+
+  .five {
+    width: 5.94%;
+    float: left; }
+
+  .six {
+    width: 5.606%;
+    float: left; }
+
+  .seven {
+    width: 5.292%;
+    float: left; }
+
+  .eight {
+    width: 4.995%;
+    float: left; }
+
+  .nine {
+    width: 4.714%;
+    float: left; }
+
+  .ten {
+    width: 4.45%;
+    float: left; }
+
+  .eleven {
+    width: 4.2%;
+    float: left; }
+
+  .twelve {
+    width: 3.964%;
+    float: left; }
+
+  .thirteen {
+    width: 3.742%;
+    float: left; }
+
+  .fourteen {
+    width: 3.532%;
+    float: left; }
+
+  .fifteen {
+    width: 3.333%;
+    float: left; }
+
+  .sixteen {
+    width: 3.146%;
+    float: left; }
+
+  .seventeen {
+    width: 2.97%;
+    float: left; }
+
+  .eighteen {
+    width: 2.803%;
+    float: left; }
+
+  .nineteen {
+    width: 2.646%;
+    float: left; }
+
+  .twenty {
+    width: 2.497%;
+    float: left; }
+
+  .twenty-one {
+    width: 2.357%;
+    float: left; }
+
+  .twenty-two {
+    width: 2.225%;
+    float: left; }
+
+  .twenty-three {
+    width: 2.1%;
+    float: left; }
+
+  .twenty-four {
+    width: 1.982%; }
+
+  /* ----------- NOTE POSITION STYLES ----------- */
+  .fret-1 {
+    left: 7.483%; }
+
+  .fret-2 {
+    left: 14.547%; }
+
+  .fret-3 {
+    left: 21.214%; }
+
+  .fret-4 {
+    left: 27.507%; }
+
+  .fret-5 {
+    left: 33.446%; }
+
+  .fret-6 {
+    left: 39.052%; }
+
+  .fret-7 {
+    left: 44.344%; }
+
+  .fret-8 {
+    left: 49.338%; }
+
+  .fret-9 {
+    left: 54.053%; }
+
+  .fret-10 {
+    left: 58.502%; }
+
+  .fret-11 {
+    left: 62.702%; }
+
+  .fret-12 {
+    left: 66.666%; }
+
+  .fret-13 {
+    left: 70.408%; }
+
+  .fret-14 {
+    left: 73.940%; }
+
+  .fret-15 {
+    left: 77.273%; }
+
+  .fret-16 {
+    left: 80.420%; }
+
+  .fret-17 {
+    left: 83.390%; }
+
+  .fret-18 {
+    left: 86.193%; }
+
+  .fret-19 {
+    left: 88.838%; }
+
+  .fret-20 {
+    left: 91.336%; }
+
+  .fret-21 {
+    left: 93.693%; }
+
+  .fret-22 {
+    left: 95.918%; }
+
+  .fret-23 {
+    left: 98.018%; }
+
+  .fret-24 {
+    left: 100%; }
+
+  /* ----------- STRING POSITION VERTICAL STYLES ----------- */
+  .string-1 {
+    top: 1%; }
+
+  .string-2 {
+    top: 18%; }
+
+  .string-3 {
+    top: 35%; }
+
+  .string-4 {
+    top: 52%; }
+
+  .string-5 {
+    top: 69%; }
+
+  .string-6 {
+    top: 86%; }
+
+  /* ----------- FRETBOARD STYLES ----------- */
+  .fretboard {
+    position: relative;
+    height: 175px;
+    padding: 0;
+    border-top: 1px solid #331a00;
+    border-bottom: 1px solid #331a00;
+    background-color: #331a00;
+    background: url("../images/fretboard-strings.svg") #331a00 repeat-x; }
+
+  .fretboard .fret {
+    border-left: 2px solid #D0D0D0;
+    border-right: 1px solid #fff;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 175px; }
+
+  .position-marker {
+    background-color: #E6E2BE;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%); }
+
+  .double-one {
+    top: 32%; }
+
+  .double-two {
+    top: 59%; }
+
+  .fretboard > .first {
+    border-left: none; }
+
+  /* ----------- NOTE MARKER STYLES ----------- */
+  .note-marker {
+    position: absolute;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    padding: 3px;
+    background: #fff;
+    border: 1px solid #595959;
+    color: #000;
+    transform: translateX(-105%);
+    -webkit-transform: translateX(-105%);
+    -ms-transform: translateX(-105%);
+    box-sizing: content-box;
+    -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
+    z-index: 9999; }
+
+  .scale-root-note {
+    background: #b3e6ff; }
+
+  .note-marker span {
+    display: table-cell;
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+    text-align: center; } }
