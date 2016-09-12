@@ -4,6 +4,9 @@ $susy: ( columns: 24, gutters: 0, );
 body {
     font-family: 'Lato', sans-serif;
 }
+$large-screen-break: 1500px;
+$twelve-fret-break: 1200px;
+$vert-break: 750px;
 .container {
     width: 85%;
     margin: 0 auto;
@@ -13,21 +16,24 @@ body {
 }
 .neck-container {
     height: 225px;
-    width: 97%;
+    width: 100%;
     margin: 0 auto;
-    @media (max-width: 1050px) {
-        width: 100%;
-    }
-    @media (max-width: 750px) {
-        width: 750px;
+}
+.strings {
+    @include span(0.75 of 24);
+    @include push(0.5 of 24);
+    height: 175px;
+    position: relative;
+    @media (max-width: $twelve-fret-break) {
+         @include span(1 of 24)
     }
 }
 .tuning {
-    @include span(1 of 24);
+    @include span(0.75 of 24);
     height: 175px;
     position: relative;
-    @media (max-width: 1050px) {
-         @include span(1.5 of 24)
+    @media (max-width: $twelve-fret-break) {
+         @include span(1 of 24)
     }
 }
 .tuning-note-marker {
@@ -38,9 +44,7 @@ body {
     padding: 2px;
     color: #262626;
     box-sizing: content-box;
-    left: 50%;
-    margin-left: -25%;
-    @media (max-width: 1050px) {
+    @media (max-width: $twelve-fret-break) {
         width: 20px;
         height: 20px;
         font-size: 16px;
@@ -52,51 +56,49 @@ body {
     height: 23px;
     width: 23px;
     text-align: center;
-    @media (max-width: 1050px) {
+    @media (max-width: $twelve-fret-break) {
         width: 20px;
         height: 20px;
     }
 }
 .nut-position {
-    @include span(0.75 of 24);
-    @include push(1 of 24);
+    @include span(1 of 24);
+    @include push(2 of 24);
     height: 25px;
     text-align: center;
     font-size: 12px;
-    @media (max-width: 1050px) {
-         @include span(1.25 of 24);
-        @include push(1.5 of 24);
+    @media (max-width: $twelve-fret-break) {
+         @include push(2.5 of 24);
+    }
+    @media (min-width: 1500px) {
+        font-size: 14px;
+    }
+}
+.position-numbers {
+    @include span(20.5 of 24 last);
+    @include post(0.5 of 24);
+    height: 25px;
+    text-align: center;
+    font-size: 12px;
+    @media (max-width: $twelve-fret-break) {
+         @include span(20.5 of 24 last);
     }
     @media (min-width: 1500px) {
         font-size: 14px;
     }
 }
 .nut {
-    @include span(0.75 of 24);
+    @include span(1 of 24);
     height: 175px;
     border: 1px solid #999999;
     position: relative;
     background: url('../images/fretboard-strings.svg') #fff repeat-x;
-    @media (max-width: 1050px) {
-         @include span(1.25 of 24);
-    }
 }
 .fretboard-container {
-    @include span(22.25 of 24 last);
-    @media (max-width: 1050px) {
-         @include span(21.25 of 24 last);
-    }
-}
-.position-numbers {
-    @include span(22.25 of 24 last);
-    height: 25px;
-    text-align: center;
-    font-size: 12px;
-    @media (max-width: 1050px) {
-         @include span(21.25 of 24 last);
-    }
-    @media (min-width: 1500px) {
-        font-size: 14px;
+    @include span(20.5 of 24 last);
+    @include post(0.5 of 24);
+    @media (max-width: $twelve-fret-break) {
+         @include span(20.5 of 24 last);
     }
 }
 /* ----------- FRETBOARD SPACING ----------- */
@@ -172,7 +174,7 @@ body {
 .twenty-four {
     @include span(1.982% last);
 }
-@media (max-width: 1050px) {
+@media (min-width: $vert-break) and (max-width: $twelve-fret-break) {
     .one {
         @include span(11.225%);
     }
@@ -225,6 +227,9 @@ body {
     }
 }
 /* ----------- NOTE POSITION STYLES ----------- */
+.fret-0 {
+    left: 0;
+}
 .fret-1 {
     left: 7.483%;
 }
@@ -297,7 +302,7 @@ body {
 .fret-24 {
     left: 100%;
 }
-@media (max-width: 1050px) {
+@media (min-width: $vert-break) and (max-width: $twelve-fret-break) {
     .fret-1 {
         left: 11.225%;
     }
@@ -383,7 +388,9 @@ body {
     border-right: 1px solid #fff;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+    @media (min-width: $vert-break) {
     height: 175px;
+  }
 }
 .position-marker {
     background-color: #E6E2BE;
@@ -430,14 +437,9 @@ body {
     -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,0.35);
     box-shadow: 0 3px 4px 0 rgba(0,0,0,0.35);
     z-index: 9999;
-    @media (min-width: 1200px) and (max-width: 1400px) {
+    @media (min-width: $twelve-fret-break) and (max-width: $large-screen-break) {
         width: 16px;
         height: 16px;
-        font-size: 12px;
-    }
-    @media (min-width: 1050px) and (max-width: 1199px) {
-        width: 13px;
-        height: 13px;
         font-size: 11px;
     }
 }
@@ -450,36 +452,32 @@ body {
     height: 20px;
     width: 20px;
     text-align: center;
-    @media (min-width: 1200px) and (max-width: 1400px) {
+    @media (min-width: $twelve-fret-break) and (max-width: $large-screen-break) {
         width: 16px;
         height: 16px;
-    }
-    @media (min-width: 1050px) and (max-width: 1199px) {
-        width: 13px;
-        height: 13px;
     }
 }
 /* ----------- USER INPUT STYLES ----------- */
 .user-input {
     @include span(12 of 12 last);
-    margin: 0 auto 2.5rem auto;
+    margin: 0 auto 2.5rem;
 }
-select, input {
+input,
+select {
     width: 90%;
     @media (max-width: 1000px) {
-      width: 100%;
+        width: 100%;
     }
 }
-select{
--webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
-padding: 0.5rem;
-border-radius: 10px;
--moz-border-radius: 10px;
--webkit-border-radius: 10px;
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0.5rem;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 }
-
 .key-select,
 .scale-select,
 .switch-wrapper,
@@ -487,30 +485,28 @@ border-radius: 10px;
     @include span(1 of 5);
     text-align: center;
     margin-top: 1rem;
-
     @media (max-width: 1000px) {
          @include span(4 of 12);
         @include push(4 of 12);
         margin-top: 1.75rem;
     }
-    @media (max-width: 700px) {
+    @media (max-width: $vert-break) {
          @include span(8 of 12);
         @include push(2 of 12);
         margin-top: 1.75rem;
     }
-
 }
 .submit-button {
     @include span(1 of 5 last);
     margin-top: 10px;
     @media (max-width: 1000px) {
-        @include span(12 of 12);
+         @include span(12 of 12);
         margin-top: 32px;
     }
-    @media (max-width: 700px) {
+    @media (max-width: $vert-break) {
          @include span(8 of 12);
         @include push(2 of 12);
-      }
+    }
 }
 .custom-tuning-select {
     text-align: center;
@@ -536,9 +532,9 @@ border-radius: 10px;
     border: none;
     font-size: 20px;
     padding: 15px 32px;
-    @media (max-width: 700px) {
-      width: 100%;
-      }
+    @media (max-width: $vert-break) {
+        width: 100%;
+    }
 }
 // user input error styles //
 .error p {

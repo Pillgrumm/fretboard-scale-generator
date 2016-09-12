@@ -1,32 +1,37 @@
 @media (max-width: 750px) {
-  body {
-    background-color: lightyellow; }
-
-  .container {
-    width: 85%;
-    margin: 0 auto; }
-
   .neck-container {
-    height: 225px;
-    width: 97%;
-    margin: 0 auto; }
+    height: 1500px;
+    width: 240px;
+    position: relative;
+    clear: both;
+    margin: 0 auto;
+    left: -20px; }
+
+  .strings {
+    width: 200px;
+    height: 40px;
+    margin: 0;
+    position: absolute;
+    left: 40px;
+    top: 0; }
 
   .tuning {
-    width: 4.16667%;
-    float: left;
-    height: 175px;
-    position: relative; }
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    left: 40px;
+    top: 40px; }
 
   .tuning-note-marker {
     position: absolute;
-    width: 23px;
+    width: auto;
     height: 23px;
-    font-size: 18px;
+    font-size: 16px;
     padding: 2px;
     color: #262626;
     box-sizing: content-box;
-    left: 50%;
-    margin-left: -25%; }
+    margin: 0;
+    top: 0; }
 
   .tuning-note-marker span {
     display: table-cell;
@@ -36,242 +41,237 @@
     text-align: center; }
 
   .nut-position {
-    width: 3.125%;
-    float: left;
-    margin-left: 4.16667%;
+    position: absolute;
     height: 25px;
+    width: 30px;
+    margin: 0;
     text-align: center;
-    font-size: 12px; }
-
-  .nut {
-    width: 3.125%;
-    float: left;
-    height: 175px;
-    border: 1px solid #999999;
-    position: relative;
-    background: url("../images/fretboard-strings.svg") #fff repeat-x; }
-
-  .fretboard-container {
-    width: 92.70833%; }
+    font-size: 12px;
+    top: 80px; }
 
   .position-numbers {
-    width: 92.70833%;
-    height: 25px;
+    position: absolute;
+    top: 130px;
     text-align: center;
-    font-size: 12px; }
+    font-size: 12px;
+    display: inline-block;
+    width: 30px; }
+
+  .nut {
+    width: 200px;
+    height: 50px;
+    left: 40px;
+    top: 80px;
+    border: 1px solid #999999;
+    position: absolute;
+    background-color: #fff;
+    background-image: none; }
+
+  .fretboard-container {
+    left: 40px;
+    top: 130px;
+    height: 1500px;
+    position: absolute;
+    width: 200px;
+    display: inline-block; }
+
+  .position-numbers > div {
+    display: block;
+    width: 100%; }
 
   /* ----------- FRETBOARD SPACING ----------- */
   .one {
-    width: 7.483%;
-    float: left; }
+    height: 112.245px; }
 
   .two {
-    width: 7.063%;
-    float: left; }
+    height: 105.945px; }
 
   .three {
-    width: 6.667%;
-    float: left; }
+    height: 100.005px; }
 
   .four {
-    width: 6.293%;
-    float: left; }
+    height: 94.395px; }
 
   .five {
-    width: 5.94%;
-    float: left; }
+    height: 89.1px; }
 
   .six {
-    width: 5.606%;
-    float: left; }
+    height: 84.09px; }
 
   .seven {
-    width: 5.292%;
-    float: left; }
+    height: 79.38px; }
 
   .eight {
-    width: 4.995%;
-    float: left; }
+    height: 74.925px; }
 
   .nine {
-    width: 4.714%;
-    float: left; }
+    height: 70.71px; }
 
   .ten {
-    width: 4.45%;
-    float: left; }
+    height: 66.75px; }
 
   .eleven {
-    width: 4.2%;
-    float: left; }
+    height: 63px; }
 
   .twelve {
-    width: 3.964%;
-    float: left; }
+    height: 59.46px; }
 
   .thirteen {
-    width: 3.742%;
-    float: left; }
+    height: 56.13px; }
 
   .fourteen {
-    width: 3.532%;
-    float: left; }
+    height: 52.98px; }
 
   .fifteen {
-    width: 3.333%;
-    float: left; }
+    height: 49.995px; }
 
   .sixteen {
-    width: 3.146%;
-    float: left; }
+    height: 47.19px; }
 
   .seventeen {
-    width: 2.97%;
-    float: left; }
+    height: 44.55px; }
 
   .eighteen {
-    width: 2.803%;
-    float: left; }
+    height: 42.045px; }
 
   .nineteen {
-    width: 2.646%;
-    float: left; }
+    height: 39.69px; }
 
   .twenty {
-    width: 2.497%;
-    float: left; }
+    height: 37.455px; }
 
   .twenty-one {
-    width: 2.357%;
-    float: left; }
+    height: 35.355px; }
 
   .twenty-two {
-    width: 2.225%;
-    float: left; }
+    height: 33.375px; }
 
   .twenty-three {
-    width: 2.1%;
-    float: left; }
+    height: 31.5px; }
 
   .twenty-four {
-    width: 1.982%; }
+    height: 29.73px; }
 
   /* ----------- NOTE POSITION STYLES ----------- */
+  .fret-0 {
+    top: 0; }
+
   .fret-1 {
-    left: 7.483%; }
+    top: 112.245px; }
 
   .fret-2 {
-    left: 14.547%; }
+    top: 218.205px; }
 
   .fret-3 {
-    left: 21.214%; }
+    top: 318.21px; }
 
   .fret-4 {
-    left: 27.507%; }
+    top: 412.605px; }
 
   .fret-5 {
-    left: 33.446%; }
+    top: 501.69px; }
 
   .fret-6 {
-    left: 39.052%; }
+    top: 585.78px; }
 
   .fret-7 {
-    left: 44.344%; }
+    top: 665.16px; }
 
   .fret-8 {
-    left: 49.338%; }
+    top: 740.07px; }
 
   .fret-9 {
-    left: 54.053%; }
+    top: 810.795px; }
 
   .fret-10 {
-    left: 58.502%; }
+    top: 877.53px; }
 
   .fret-11 {
-    left: 62.702%; }
+    top: 940.53px; }
 
   .fret-12 {
-    left: 66.666%; }
+    top: 999.99px; }
 
   .fret-13 {
-    left: 70.408%; }
+    top: 1056.12px; }
 
   .fret-14 {
-    left: 73.940%; }
+    top: 1109.1px; }
 
   .fret-15 {
-    left: 77.273%; }
+    top: 1159.095px; }
 
   .fret-16 {
-    left: 80.420%; }
+    top: 1206.3px; }
 
   .fret-17 {
-    left: 83.390%; }
+    top: 1250.85px; }
 
   .fret-18 {
-    left: 86.193%; }
+    top: 1292.895px; }
 
   .fret-19 {
-    left: 88.838%; }
+    top: 1332.57px; }
 
   .fret-20 {
-    left: 91.336%; }
+    top: 1370.04px; }
 
   .fret-21 {
-    left: 93.693%; }
+    top: 1405.395px; }
 
   .fret-22 {
-    left: 95.918%; }
+    top: 1438.77px; }
 
   .fret-23 {
-    left: 98.018%; }
+    top: 1470.27px; }
 
   .fret-24 {
-    left: 100%; }
+    top: 1500px; }
 
   /* ----------- STRING POSITION VERTICAL STYLES ----------- */
-  .string-1 {
-    top: 1%; }
-
-  .string-2 {
-    top: 18%; }
-
-  .string-3 {
-    top: 35%; }
-
-  .string-4 {
-    top: 52%; }
+  .string-6 {
+    left: 1%; }
 
   .string-5 {
-    top: 69%; }
+    left: 18%; }
 
-  .string-6 {
-    top: 86%; }
+  .string-4 {
+    left: 35%; }
+
+  .string-3 {
+    left: 52%; }
+
+  .string-2 {
+    left: 69%; }
+
+  .string-1 {
+    left: 86%; }
 
   /* ----------- FRETBOARD STYLES ----------- */
   .fretboard {
-    position: relative;
-    height: 175px;
+    position: absolute;
+    height: 1500px;
+    width: 200px;
     padding: 0;
-    border-top: 1px solid #331a00;
-    border-bottom: 1px solid #331a00;
+    border-left: 1px solid #331a00;
+    border-right: 1px solid #331a00;
     background-color: #331a00;
-    background: url("../images/fretboard-strings.svg") #331a00 repeat-x; }
+    background-image: none; }
 
   .fretboard .fret {
-    border-left: 2px solid #D0D0D0;
-    border-right: 1px solid #fff;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    height: 175px; }
+    border-bottom: 2px solid #D0D0D0;
+    border-top: 1px solid #fff;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    width: 200px; }
 
   .position-marker {
     background-color: #E6E2BE;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    height: 12px;
-    width: 12px;
+    height: 14px;
+    width: 14px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -281,13 +281,15 @@
     -ms-transform: translateY(-50%); }
 
   .double-one {
-    top: 32%; }
+    display: inline-block;
+    left: 58px; }
 
   .double-two {
-    top: 59%; }
+    display: inline-block;
+    margin-left: 108px; }
 
   .fretboard > .first {
-    border-left: none; }
+    border-top: none; }
 
   /* ----------- NOTE MARKER STYLES ----------- */
   .note-marker {
@@ -302,9 +304,9 @@
     background: #fff;
     border: 1px solid #595959;
     color: #000;
-    transform: translateX(-105%);
-    -webkit-transform: translateX(-105%);
-    -ms-transform: translateX(-105%);
+    transform: translateY(-105%);
+    -webkit-transform: translateY(-105%);
+    -ms-transform: translateY(-105%);
     box-sizing: content-box;
     -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
     -moz-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
@@ -319,4 +321,8 @@
     vertical-align: middle;
     height: 20px;
     width: 20px;
-    text-align: center; } }
+    text-align: center; }
+
+  /* ----------- USER INPUT STYLES ----------- */
+  .user-input {
+    position: relative; } }

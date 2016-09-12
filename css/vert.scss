@@ -1,33 +1,44 @@
 @media (max-width: 750px) {
-  @import 'susy';
-  $susy: ( columns: 24, gutters: 0, );
-    body {
-        background-color: lightyellow;
-    }
-    .container {
-        width: 85%;
-        margin: 0 auto;
+     @import 'susy';
+    $susy: ( columns: 24, gutters: 0, );
+    $fretboard-height: 1500px;
+    $fretboard-width: 200px;
+    @function fret-height($percentage) {
+         @return (($fretboard-height*$percentage)/100);
     }
     .neck-container {
-        height: 225px;
-        width: 97%;
-        margin: 0 auto;
-    }
-    .tuning {
-        @include span(1 of 24);
-        height: 175px;
+        height: $fretboard-height;
+        width: 240px;
         position: relative;
+        clear: both;
+        margin: 0 auto;
+        left: -20px;
+    }
+    .strings {
+            width: $fretboard-width;
+            height: 40px;
+            margin: 0;
+            position: absolute;
+            left: 40px;
+            top: 0;
+        }
+    .tuning {
+        width: $fretboard-width;
+        height: 40px;
+        position: absolute;
+        left: 40px;
+        top: 40px;
     }
     .tuning-note-marker {
         position: absolute;
-        width: 23px;
+        width: auto;
         height: 23px;
-        font-size: 18px;
+        font-size: 16px;
         padding: 2px;
         color: #262626;
         box-sizing: content-box;
-        left: 50%;
-        margin-left: -25%;
+        margin: 0;
+        top: 0;
     }
     .tuning-note-marker span {
         display: table-cell;
@@ -37,100 +48,116 @@
         text-align: center;
     }
     .nut-position {
-        @include span(0.75 of 24);
-        @include push(1 of 24);
+        position: absolute;
         height: 25px;
+        width: 30px;
+        margin: 0;
         text-align: center;
         font-size: 12px;
-    }
-    .nut {
-        @include span(0.75 of 24);
-        height: 175px;
-        border: 1px solid #999999;
-        position: relative;
-        background: url('../images/fretboard-strings.svg') #fff repeat-x;
-    }
-    .fretboard-container {
-        @include span(22.25 of 24 last);
+        top: 80px;
     }
     .position-numbers {
-        @include span(22.25 of 24 last);
-        height: 25px;
+        position: absolute;
+        top: 130px;
         text-align: center;
         font-size: 12px;
+        display: inline-block;
+        width: 30px;
+    }
+    .nut {
+        width: $fretboard-width;
+        height: 50px;
+        left: 40px;
+        top: 80px;
+        border: 1px solid #999999;
+        position: absolute;
+        background-color: #fff;
+        background-image: none;
+    }
+    .fretboard-container {
+        left: 40px;
+        top: 130px;
+        height: $fretboard-height;
+        position: absolute;
+        width: $fretboard-width;
+        display: inline-block;
+    }
+    .position-numbers > div {
+        display: block;
+        width: 100%;
     }
     /* ----------- FRETBOARD SPACING ----------- */
     .one {
-        @include span(7.483%);
+        height: fret-height(7.483);
     }
     .two {
-        @include span(7.063%);
+        height: fret-height(7.063);
     }
     .three {
-        @include span(6.667%);
+        height: fret-height(6.667);
     }
     .four {
-        @include span(6.293%);
+        height: fret-height(6.293);
     }
     .five {
-        @include span(5.940%);
+        height: fret-height(5.940);
     }
     .six {
-        @include span(5.606%);
+        height: fret-height(5.606);
     }
     .seven {
-        @include span(5.292%);
+        height: fret-height(5.292);
     }
     .eight {
-        @include span(4.995%);
+        height: fret-height(4.995);
     }
     .nine {
-        @include span(4.714%);
+        height: fret-height(4.714);
     }
     .ten {
-        @include span(4.450%);
+        height: fret-height(4.450);
     }
     .eleven {
-        @include span(4.200%);
+        height: fret-height(4.200);
     }
     .twelve {
-        @include span(3.964%);
+        height: fret-height(3.964);
     }
     .thirteen {
-        @include span(3.742%);
+        height: fret-height(3.742);
     }
     .fourteen {
-        @include span(3.532%);
+        height: fret-height(3.532);
     }
     .fifteen {
-        @include span(3.333%);
+        height: fret-height(3.333);
     }
     .sixteen {
-        @include span(3.146%);
+        height: fret-height(3.146);
     }
     .seventeen {
-        @include span(2.970%);
+        height: fret-height(2.970);
     }
     .eighteen {
-        @include span(2.803%);
+        height: fret-height(2.803);
     }
     .nineteen {
-        @include span(2.646%);
+        height: fret-height(2.646);
     }
     .twenty {
-        @include span(2.497%);
+        height: fret-height(2.497);
     }
     .twenty-one {
-        @include span(2.357%);
+        height: fret-height(2.357);
     }
     .twenty-two {
-        @include span(2.225%);
+        height: fret-height(2.225);
     }
     .twenty-three {
-        @include span(2.100%);
+        height: fret-height(2.100);
     }
     .twenty-four {
-        @include span(1.982% last);
+        height: fret-height(1.982);
     }
     // @media (max-width: 1050px) {
     //     .one {
@@ -185,77 +212,80 @@
     //     }
     // }
     /* ----------- NOTE POSITION STYLES ----------- */
+    .fret-0 {
+        top: 0;
+    }
     .fret-1 {
-        left: 7.483%;
+        top: fret-height(7.483);
     }
     .fret-2 {
-        left: 14.547%;
+        top: fret-height(14.547);
     }
     .fret-3 {
-        left: 21.214%;
+        top: fret-height(21.214);
     }
     .fret-4 {
-        left: 27.507%;
+        top: fret-height(27.507);
     }
     .fret-5 {
-        left: 33.446%;
+        top: fret-height(33.446);
     }
     .fret-6 {
-        left: 39.052%;
+        top: fret-height(39.052);
     }
     .fret-7 {
-        left: 44.344%;
+        top: fret-height(44.344);
     }
     .fret-8 {
-        left: 49.338%;
+        top: fret-height(49.338);
     }
     .fret-9 {
-        left: 54.053%;
+        top: fret-height(54.053);
     }
     .fret-10 {
-        left: 58.502%;
+        top: fret-height(58.502);
     }
     .fret-11 {
-        left: 62.702%;
+        top: fret-height(62.702);
     }
     .fret-12 {
-        left: 66.666%;
+        top: fret-height(66.666);
     }
     .fret-13 {
-        left: 70.408%;
+        top: fret-height(70.408);
     }
     .fret-14 {
-        left: 73.940%;
+        top: fret-height(73.940);
     }
     .fret-15 {
-        left: 77.273%;
+        top: fret-height(77.273);
     }
     .fret-16 {
-        left: 80.420%;
+        top: fret-height(80.420);
     }
     .fret-17 {
-        left: 83.390%;
+        top: fret-height(83.390);
     }
     .fret-18 {
-        left: 86.193%;
+        top: fret-height(86.193);
     }
     .fret-19 {
-        left: 88.838%;
+        top: fret-height(88.838);
     }
     .fret-20 {
-        left: 91.336%;
+        top: fret-height(91.336);
     }
     .fret-21 {
-        left: 93.693%;
+        top: fret-height(93.693);
     }
     .fret-22 {
-        left: 95.918%;
+        top: fret-height(95.918);
     }
     .fret-23 {
-        left: 98.018%;
+        top: fret-height(98.018);
     }
     .fret-24 {
-        left: 100%;
+        top: fret-height(100);
     }
     // @media (max-width: 1050px) {
     //     .fret-1 {
@@ -310,48 +340,49 @@
     //     }
     // }
     /* ----------- STRING POSITION VERTICAL STYLES ----------- */
-    .string-1 {
-        top: 1%;
-    }
-    .string-2 {
-        top: 18%;
-    }
-    .string-3 {
-        top: 35%;
-    }
-    .string-4 {
-        top: 52%;
+    .string-6 {
+        left: 1%;
     }
     .string-5 {
-        top: 69%;
+        left: 18%;
     }
-    .string-6 {
-        top: 86%;
+    .string-4 {
+        left: 35%;
+    }
+    .string-3 {
+        left: 52%;
+    }
+    .string-2 {
+        left: 69%;
+    }
+    .string-1 {
+        left: 86%;
     }
     /* ----------- FRETBOARD STYLES ----------- */
     .fretboard {
-        position: relative;
-        height: 175px;
+        position: absolute;
+        height: $fretboard-height;
+        width: $fretboard-width;
         padding: 0;
-        border-top: 1px solid #331a00;
-        border-bottom: 1px solid #331a00;
+        border-left: 1px solid #331a00;
+        border-right: 1px solid #331a00;
         background-color: #331a00;
-        background: url('../images/fretboard-strings.svg') #331a00 repeat-x;
+        background-image: none;
     }
     .fretboard .fret {
-        border-left: 2px solid #D0D0D0;
-        border-right: 1px solid #fff;
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
-        height: 175px;
+        border-bottom: 2px solid #D0D0D0;
+        border-top: 1px solid #fff;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        width: $fretboard-width;
     }
     .position-marker {
         background-color: #E6E2BE;
         border-radius: 50%;
         -moz-border-radius: 50%;
         -webkit-border-radius: 50%;
-        height: 12px;
-        width: 12px;
+        height: 14px;
+        width: 14px;
         margin-left: auto;
         margin-right: auto;
         position: relative;
@@ -361,13 +392,15 @@
         -ms-transform: translateY(-50%);
     }
     .double-one {
-        top: 32%;
+        display: inline-block;
+        left: 58px;
     }
     .double-two {
-        top: 59%;
+        display: inline-block;
+        margin-left: 108px;
     }
     .fretboard > .first {
-        border-left: none;
+        border-top: none;
     }
     /* ----------- NOTE MARKER STYLES ----------- */
     .note-marker {
@@ -382,9 +415,9 @@
         background: #fff;
         border: 1px solid #595959;
         color: #000;
-        transform: translateX(-105%);
-        -webkit-transform: translateX(-105%);
-        -ms-transform: translateX(-105%);
+        transform: translateY(-105%);
+        -webkit-transform: translateY(-105%);
+        -ms-transform: translateY(-105%);
         box-sizing: content-box;
         -webkit-box-shadow: 0 3px 4px 0 rgba(0,0,0,0.35);
         -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,0.35);
@@ -400,5 +433,9 @@
         height: 20px;
         width: 20px;
         text-align: center;
+    }
+    /* ----------- USER INPUT STYLES ----------- */
+    .user-input {
+        position: relative;
     }
 }
