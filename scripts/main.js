@@ -229,7 +229,7 @@ function displayCurrentTuning(selectedTuning, accidentalState) {
     }
     var tuningDisplayHtml = '';
     for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
-        tuningDisplayHtml += '<div class="tuning-note-marker string-' + (stringCounter + 1) + '"><span>' + ((stringCounter + 1) + (selectedTuning[stringCounter])) + '</span></div>';
+        tuningDisplayHtml += '<div class="tuning-note-marker string-' + (stringCounter + 1) + '"><span>' + (selectedTuning[stringCounter]) + '</span></div>';
     }
     return tuningDisplayHtml;
 }

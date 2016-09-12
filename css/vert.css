@@ -1,0 +1,328 @@
+@media (max-width: 750px) {
+  .neck-container {
+    height: 1500px;
+    width: 240px;
+    position: relative;
+    clear: both;
+    margin: 0 auto;
+    left: -20px; }
+
+  .strings {
+    width: 200px;
+    height: 40px;
+    margin: 0;
+    position: absolute;
+    left: 40px;
+    top: 0; }
+
+  .tuning {
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    left: 40px;
+    top: 40px; }
+
+  .tuning-note-marker {
+    position: absolute;
+    width: auto;
+    height: 23px;
+    font-size: 16px;
+    padding: 2px;
+    color: #262626;
+    box-sizing: content-box;
+    margin: 0;
+    top: 0; }
+
+  .tuning-note-marker span {
+    display: table-cell;
+    vertical-align: middle;
+    height: 23px;
+    width: 23px;
+    text-align: center; }
+
+  .nut-position {
+    position: absolute;
+    height: 25px;
+    width: 30px;
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    top: 80px; }
+
+  .position-numbers {
+    position: absolute;
+    top: 130px;
+    text-align: center;
+    font-size: 12px;
+    display: inline-block;
+    width: 30px; }
+
+  .nut {
+    width: 200px;
+    height: 50px;
+    left: 40px;
+    top: 80px;
+    border: 1px solid #999999;
+    position: absolute;
+    background-color: #fff;
+    background-image: none; }
+
+  .fretboard-container {
+    left: 40px;
+    top: 130px;
+    height: 1500px;
+    position: absolute;
+    width: 200px;
+    display: inline-block; }
+
+  .position-numbers > div {
+    display: block;
+    width: 100%; }
+
+  /* ----------- FRETBOARD SPACING ----------- */
+  .one {
+    height: 112.245px; }
+
+  .two {
+    height: 105.945px; }
+
+  .three {
+    height: 100.005px; }
+
+  .four {
+    height: 94.395px; }
+
+  .five {
+    height: 89.1px; }
+
+  .six {
+    height: 84.09px; }
+
+  .seven {
+    height: 79.38px; }
+
+  .eight {
+    height: 74.925px; }
+
+  .nine {
+    height: 70.71px; }
+
+  .ten {
+    height: 66.75px; }
+
+  .eleven {
+    height: 63px; }
+
+  .twelve {
+    height: 59.46px; }
+
+  .thirteen {
+    height: 56.13px; }
+
+  .fourteen {
+    height: 52.98px; }
+
+  .fifteen {
+    height: 49.995px; }
+
+  .sixteen {
+    height: 47.19px; }
+
+  .seventeen {
+    height: 44.55px; }
+
+  .eighteen {
+    height: 42.045px; }
+
+  .nineteen {
+    height: 39.69px; }
+
+  .twenty {
+    height: 37.455px; }
+
+  .twenty-one {
+    height: 35.355px; }
+
+  .twenty-two {
+    height: 33.375px; }
+
+  .twenty-three {
+    height: 31.5px; }
+
+  .twenty-four {
+    height: 29.73px; }
+
+  /* ----------- NOTE POSITION STYLES ----------- */
+  .fret-0 {
+    top: 0; }
+
+  .fret-1 {
+    top: 112.245px; }
+
+  .fret-2 {
+    top: 218.205px; }
+
+  .fret-3 {
+    top: 318.21px; }
+
+  .fret-4 {
+    top: 412.605px; }
+
+  .fret-5 {
+    top: 501.69px; }
+
+  .fret-6 {
+    top: 585.78px; }
+
+  .fret-7 {
+    top: 665.16px; }
+
+  .fret-8 {
+    top: 740.07px; }
+
+  .fret-9 {
+    top: 810.795px; }
+
+  .fret-10 {
+    top: 877.53px; }
+
+  .fret-11 {
+    top: 940.53px; }
+
+  .fret-12 {
+    top: 999.99px; }
+
+  .fret-13 {
+    top: 1056.12px; }
+
+  .fret-14 {
+    top: 1109.1px; }
+
+  .fret-15 {
+    top: 1159.095px; }
+
+  .fret-16 {
+    top: 1206.3px; }
+
+  .fret-17 {
+    top: 1250.85px; }
+
+  .fret-18 {
+    top: 1292.895px; }
+
+  .fret-19 {
+    top: 1332.57px; }
+
+  .fret-20 {
+    top: 1370.04px; }
+
+  .fret-21 {
+    top: 1405.395px; }
+
+  .fret-22 {
+    top: 1438.77px; }
+
+  .fret-23 {
+    top: 1470.27px; }
+
+  .fret-24 {
+    top: 1500px; }
+
+  /* ----------- STRING POSITION VERTICAL STYLES ----------- */
+  .string-6 {
+    left: 1%; }
+
+  .string-5 {
+    left: 18%; }
+
+  .string-4 {
+    left: 35%; }
+
+  .string-3 {
+    left: 52%; }
+
+  .string-2 {
+    left: 69%; }
+
+  .string-1 {
+    left: 86%; }
+
+  /* ----------- FRETBOARD STYLES ----------- */
+  .fretboard {
+    position: absolute;
+    height: 1500px;
+    width: 200px;
+    padding: 0;
+    border-left: 1px solid #331a00;
+    border-right: 1px solid #331a00;
+    background-color: #331a00;
+    background-image: none; }
+
+  .fretboard .fret {
+    border-bottom: 2px solid #D0D0D0;
+    border-top: 1px solid #fff;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    width: 200px; }
+
+  .position-marker {
+    background-color: #E6E2BE;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    height: 14px;
+    width: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%); }
+
+  .double-one {
+    display: inline-block;
+    left: 58px; }
+
+  .double-two {
+    display: inline-block;
+    margin-left: 108px; }
+
+  .fretboard > .first {
+    border-top: none; }
+
+  /* ----------- NOTE MARKER STYLES ----------- */
+  .note-marker {
+    position: absolute;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    padding: 3px;
+    background: #fff;
+    border: 1px solid #595959;
+    color: #000;
+    transform: translateY(-105%);
+    -webkit-transform: translateY(-105%);
+    -ms-transform: translateY(-105%);
+    box-sizing: content-box;
+    -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
+    z-index: 9999; }
+
+  .scale-root-note {
+    background: #b3e6ff; }
+
+  .note-marker span {
+    display: table-cell;
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+    text-align: center; }
+
+  /* ----------- USER INPUT STYLES ----------- */
+  .user-input {
+    position: relative; } }
