@@ -1,8 +1,8 @@
 @media (max-width: 750px) {
      @import 'susy';
     $susy: ( columns: 24, gutters: 0, );
-    $fretboard-height: 1300px;
-    $fretboard-width: 250px;
+    $fretboard-height: 1350px;
+    $fretboard-width: 240px;
     @function fret-height($percentage) {
          @return (($fretboard-height*$percentage)/100);
     }
@@ -12,7 +12,7 @@
     }
     .neck-container {
         height: $fretboard-height;
-        width: 290px;
+        width: 280px;
         position: relative;
         clear: both;
         margin: 0 auto;
@@ -253,16 +253,16 @@
         left: 18%;
     }
     .string-4 {
-        left: 35%;
+        left: 36%;
     }
     .string-3 {
-        left: 52%;
+        left: 54%;
     }
     .string-2 {
-        left: 69%;
+        left: 71%;
     }
     .string-1 {
-        left: 86%;
+        left: 88%;
     }
     /* ----------- FRETBOARD STYLES ----------- */
     .fretboard {
@@ -287,8 +287,8 @@
         border-radius: 50%;
         -moz-border-radius: 50%;
         -webkit-border-radius: 50%;
-        height: 14px;
-        width: 14px;
+        height: 16px;
+        width: 16px;
         margin-left: auto;
         margin-right: auto;
         position: relative;
@@ -303,7 +303,7 @@
     }
     .double-two {
         display: inline-block;
-        margin-left: 138px;
+        margin-left: 135px;
     }
     .fretboard > .first {
         border-top: none;
@@ -325,9 +325,9 @@
         -webkit-transform: translateY(-105%);
         -ms-transform: translateY(-105%);
         box-sizing: content-box;
-        -webkit-box-shadow: 0 3px 4px 0 rgba(0,0,0,0.35);
-        -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,0.35);
-        box-shadow: 0 3px 4px 0 rgba(0,0,0,0.35);
+        -webkit-box-shadow: 0 3px 4px 0 rgba(0,0,0,0.45);
+        -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,0.45);
+        box-shadow: 0 3px 4px 0 rgba(0,0,0,0.45);
         z-index: 9999;
     }
     .scale-root-note {

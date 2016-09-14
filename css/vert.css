@@ -4,15 +4,15 @@
     margin: 30px 0 0 0; }
 
   .neck-container {
-    height: 1300px;
-    width: 290px;
+    height: 1350px;
+    width: 280px;
     position: relative;
     clear: both;
     margin: 0 auto;
     left: -20px; }
 
   .strings {
-    width: 250px;
+    width: 240px;
     height: 40px;
     margin: 0;
     position: absolute;
@@ -20,7 +20,7 @@
     top: 0; }
 
   .tuning {
-    width: 250px;
+    width: 240px;
     height: 40px;
     position: absolute;
     left: 40px;
@@ -71,7 +71,7 @@
     font-size: 14px; }
 
   .nut {
-    width: 250px;
+    width: 240px;
     height: 50px;
     left: 40px;
     top: 80px;
@@ -83,159 +83,159 @@
   .fretboard-container {
     left: 40px;
     top: 130px;
-    height: 1300px;
+    height: 1350px;
     position: absolute;
-    width: 250px;
+    width: 240px;
     display: inline-block; }
 
   /* ----------- FRETBOARD SPACING ----------- */
   .one {
-    height: 97.279px; }
+    height: 101.0205px; }
 
   .two {
-    height: 91.819px; }
+    height: 95.3505px; }
 
   .three {
-    height: 86.671px; }
+    height: 90.0045px; }
 
   .four {
-    height: 81.809px; }
+    height: 84.9555px; }
 
   .five {
-    height: 77.22px; }
+    height: 80.19px; }
 
   .six {
-    height: 72.878px; }
+    height: 75.681px; }
 
   .seven {
-    height: 68.796px; }
+    height: 71.442px; }
 
   .eight {
-    height: 64.935px; }
+    height: 67.4325px; }
 
   .nine {
-    height: 61.282px; }
+    height: 63.639px; }
 
   .ten {
-    height: 57.85px; }
+    height: 60.075px; }
 
   .eleven {
-    height: 54.6px; }
+    height: 56.7px; }
 
   .twelve {
-    height: 51.532px; }
+    height: 53.514px; }
 
   .thirteen {
-    height: 48.646px; }
+    height: 50.517px; }
 
   .fourteen {
-    height: 45.916px; }
+    height: 47.682px; }
 
   .fifteen {
-    height: 43.329px; }
+    height: 44.9955px; }
 
   .sixteen {
-    height: 40.898px; }
+    height: 42.471px; }
 
   .seventeen {
-    height: 38.61px; }
+    height: 40.095px; }
 
   .eighteen {
-    height: 36.439px; }
+    height: 37.8405px; }
 
   .nineteen {
-    height: 34.398px; }
+    height: 35.721px; }
 
   .twenty {
-    height: 32.461px; }
+    height: 33.7095px; }
 
   .twenty-one {
-    height: 30.641px; }
+    height: 31.8195px; }
 
   .twenty-two {
-    height: 28.925px; }
+    height: 30.0375px; }
 
   .twenty-three {
-    height: 27.3px; }
+    height: 28.35px; }
 
   .twenty-four {
-    height: 25.766px; }
+    height: 26.757px; }
 
   /* ----------- NOTE POSITION STYLES ----------- */
   .fret-0 {
     top: 0; }
 
   .fret-1 {
-    top: 97.279px; }
+    top: 101.0205px; }
 
   .fret-2 {
-    top: 189.111px; }
+    top: 196.3845px; }
 
   .fret-3 {
-    top: 275.782px; }
+    top: 286.389px; }
 
   .fret-4 {
-    top: 357.591px; }
+    top: 371.3445px; }
 
   .fret-5 {
-    top: 434.798px; }
+    top: 451.521px; }
 
   .fret-6 {
-    top: 507.676px; }
+    top: 527.202px; }
 
   .fret-7 {
-    top: 576.472px; }
+    top: 598.644px; }
 
   .fret-8 {
-    top: 641.394px; }
+    top: 666.063px; }
 
   .fret-9 {
-    top: 702.689px; }
+    top: 729.7155px; }
 
   .fret-10 {
-    top: 760.526px; }
+    top: 789.777px; }
 
   .fret-11 {
-    top: 815.126px; }
+    top: 846.477px; }
 
   .fret-12 {
-    top: 866.658px; }
+    top: 899.991px; }
 
   .fret-13 {
-    top: 915.304px; }
+    top: 950.508px; }
 
   .fret-14 {
-    top: 961.22px; }
+    top: 998.19px; }
 
   .fret-15 {
-    top: 1004.549px; }
+    top: 1043.1855px; }
 
   .fret-16 {
-    top: 1045.46px; }
+    top: 1085.67px; }
 
   .fret-17 {
-    top: 1084.07px; }
+    top: 1125.765px; }
 
   .fret-18 {
-    top: 1120.509px; }
+    top: 1163.6055px; }
 
   .fret-19 {
-    top: 1154.894px; }
+    top: 1199.313px; }
 
   .fret-20 {
-    top: 1187.368px; }
+    top: 1233.036px; }
 
   .fret-21 {
-    top: 1218.009px; }
+    top: 1264.8555px; }
 
   .fret-22 {
-    top: 1246.934px; }
+    top: 1294.893px; }
 
   .fret-23 {
-    top: 1274.234px; }
+    top: 1323.243px; }
 
   .fret-24 {
-    top: 1300px; }
+    top: 1350px; }
 
   /* ----------- STRING POSITION VERTICAL STYLES ----------- */
   .string-6 {
@@ -245,22 +245,22 @@
     left: 18%; }
 
   .string-4 {
-    left: 35%; }
+    left: 36%; }
 
   .string-3 {
-    left: 52%; }
+    left: 54%; }
 
   .string-2 {
-    left: 69%; }
+    left: 71%; }
 
   .string-1 {
-    left: 86%; }
+    left: 88%; }
 
   /* ----------- FRETBOARD STYLES ----------- */
   .fretboard {
     position: absolute;
-    height: 1300px;
-    width: 250px;
+    height: 1350px;
+    width: 240px;
     padding: 0;
     border-left: 1px solid #331a00;
     border-right: 1px solid #331a00;
@@ -272,15 +272,15 @@
     border-top: 1px solid #fff;
     border-left: 1px solid black;
     border-right: 1px solid black;
-    width: 250px; }
+    width: 240px; }
 
   .position-marker {
     background-color: #E6E2BE;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    height: 14px;
-    width: 14px;
+    height: 16px;
+    width: 16px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -295,7 +295,7 @@
 
   .double-two {
     display: inline-block;
-    margin-left: 138px; }
+    margin-left: 135px; }
 
   .fretboard > .first {
     border-top: none; }
@@ -317,9 +317,9 @@
     -webkit-transform: translateY(-105%);
     -ms-transform: translateY(-105%);
     box-sizing: content-box;
-    -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
-    -moz-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.45);
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.45);
     z-index: 9999; }
 
   .scale-root-note {
