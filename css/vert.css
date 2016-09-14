@@ -1,14 +1,14 @@
 @media (max-width: 750px) {
   .neck-container {
-    height: 1500px;
-    width: 240px;
+    height: 1300px;
+    width: 290px;
     position: relative;
     clear: both;
     margin: 0 auto;
     left: -20px; }
 
   .strings {
-    width: 200px;
+    width: 250px;
     height: 40px;
     margin: 0;
     position: absolute;
@@ -16,7 +16,7 @@
     top: 0; }
 
   .tuning {
-    width: 200px;
+    width: 250px;
     height: 40px;
     position: absolute;
     left: 40px;
@@ -42,7 +42,7 @@
 
   .nut-position {
     position: absolute;
-    height: 25px;
+    height: 50px;
     width: 30px;
     margin: 0;
     text-align: center;
@@ -53,12 +53,21 @@
     position: absolute;
     top: 130px;
     text-align: center;
-    font-size: 12px;
     display: inline-block;
     width: 30px; }
 
+  .position-numbers > div {
+    display: block;
+    width: 100%; }
+
+  .fret-number {
+    position: relative;
+    top: 50%;
+    margin-top: -25%;
+    font-size: 14px; }
+
   .nut {
-    width: 200px;
+    width: 250px;
     height: 50px;
     left: 40px;
     top: 80px;
@@ -70,163 +79,159 @@
   .fretboard-container {
     left: 40px;
     top: 130px;
-    height: 1500px;
+    height: 1300px;
     position: absolute;
-    width: 200px;
+    width: 250px;
     display: inline-block; }
-
-  .position-numbers > div {
-    display: block;
-    width: 100%; }
 
   /* ----------- FRETBOARD SPACING ----------- */
   .one {
-    height: 112.245px; }
+    height: 97.279px; }
 
   .two {
-    height: 105.945px; }
+    height: 91.819px; }
 
   .three {
-    height: 100.005px; }
+    height: 86.671px; }
 
   .four {
-    height: 94.395px; }
+    height: 81.809px; }
 
   .five {
-    height: 89.1px; }
+    height: 77.22px; }
 
   .six {
-    height: 84.09px; }
+    height: 72.878px; }
 
   .seven {
-    height: 79.38px; }
+    height: 68.796px; }
 
   .eight {
-    height: 74.925px; }
+    height: 64.935px; }
 
   .nine {
-    height: 70.71px; }
+    height: 61.282px; }
 
   .ten {
-    height: 66.75px; }
+    height: 57.85px; }
 
   .eleven {
-    height: 63px; }
+    height: 54.6px; }
 
   .twelve {
-    height: 59.46px; }
+    height: 51.532px; }
 
   .thirteen {
-    height: 56.13px; }
+    height: 48.646px; }
 
   .fourteen {
-    height: 52.98px; }
+    height: 45.916px; }
 
   .fifteen {
-    height: 49.995px; }
+    height: 43.329px; }
 
   .sixteen {
-    height: 47.19px; }
+    height: 40.898px; }
 
   .seventeen {
-    height: 44.55px; }
+    height: 38.61px; }
 
   .eighteen {
-    height: 42.045px; }
+    height: 36.439px; }
 
   .nineteen {
-    height: 39.69px; }
+    height: 34.398px; }
 
   .twenty {
-    height: 37.455px; }
+    height: 32.461px; }
 
   .twenty-one {
-    height: 35.355px; }
+    height: 30.641px; }
 
   .twenty-two {
-    height: 33.375px; }
+    height: 28.925px; }
 
   .twenty-three {
-    height: 31.5px; }
+    height: 27.3px; }
 
   .twenty-four {
-    height: 29.73px; }
+    height: 25.766px; }
 
   /* ----------- NOTE POSITION STYLES ----------- */
   .fret-0 {
     top: 0; }
 
   .fret-1 {
-    top: 112.245px; }
+    top: 97.279px; }
 
   .fret-2 {
-    top: 218.205px; }
+    top: 189.111px; }
 
   .fret-3 {
-    top: 318.21px; }
+    top: 275.782px; }
 
   .fret-4 {
-    top: 412.605px; }
+    top: 357.591px; }
 
   .fret-5 {
-    top: 501.69px; }
+    top: 434.798px; }
 
   .fret-6 {
-    top: 585.78px; }
+    top: 507.676px; }
 
   .fret-7 {
-    top: 665.16px; }
+    top: 576.472px; }
 
   .fret-8 {
-    top: 740.07px; }
+    top: 641.394px; }
 
   .fret-9 {
-    top: 810.795px; }
+    top: 702.689px; }
 
   .fret-10 {
-    top: 877.53px; }
+    top: 760.526px; }
 
   .fret-11 {
-    top: 940.53px; }
+    top: 815.126px; }
 
   .fret-12 {
-    top: 999.99px; }
+    top: 866.658px; }
 
   .fret-13 {
-    top: 1056.12px; }
+    top: 915.304px; }
 
   .fret-14 {
-    top: 1109.1px; }
+    top: 961.22px; }
 
   .fret-15 {
-    top: 1159.095px; }
+    top: 1004.549px; }
 
   .fret-16 {
-    top: 1206.3px; }
+    top: 1045.46px; }
 
   .fret-17 {
-    top: 1250.85px; }
+    top: 1084.07px; }
 
   .fret-18 {
-    top: 1292.895px; }
+    top: 1120.509px; }
 
   .fret-19 {
-    top: 1332.57px; }
+    top: 1154.894px; }
 
   .fret-20 {
-    top: 1370.04px; }
+    top: 1187.368px; }
 
   .fret-21 {
-    top: 1405.395px; }
+    top: 1218.009px; }
 
   .fret-22 {
-    top: 1438.77px; }
+    top: 1246.934px; }
 
   .fret-23 {
-    top: 1470.27px; }
+    top: 1274.234px; }
 
   .fret-24 {
-    top: 1500px; }
+    top: 1300px; }
 
   /* ----------- STRING POSITION VERTICAL STYLES ----------- */
   .string-6 {
@@ -250,8 +255,8 @@
   /* ----------- FRETBOARD STYLES ----------- */
   .fretboard {
     position: absolute;
-    height: 1500px;
-    width: 200px;
+    height: 1300px;
+    width: 250px;
     padding: 0;
     border-left: 1px solid #331a00;
     border-right: 1px solid #331a00;
@@ -263,7 +268,7 @@
     border-top: 1px solid #fff;
     border-left: 1px solid black;
     border-right: 1px solid black;
-    width: 200px; }
+    width: 250px; }
 
   .position-marker {
     background-color: #E6E2BE;
@@ -282,11 +287,11 @@
 
   .double-one {
     display: inline-block;
-    left: 58px; }
+    left: 70px; }
 
   .double-two {
     display: inline-block;
-    margin-left: 108px; }
+    margin-left: 138px; }
 
   .fretboard > .first {
     border-top: none; }
