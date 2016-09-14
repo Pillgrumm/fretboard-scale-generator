@@ -6,6 +6,10 @@
     @function fret-height($percentage) {
          @return (($fretboard-height*$percentage)/100);
     }
+    h1 {
+      text-align: center;
+      margin: 30px 0 0 0;
+    }
     .neck-container {
         height: $fretboard-height;
         width: 290px;
