@@ -1,14 +1,14 @@
 @media (max-width: 750px) {
      @import 'susy';
     $susy: ( columns: 24, gutters: 0, );
-    $fretboard-height: 1500px;
-    $fretboard-width: 200px;
+    $fretboard-height: 1300px;
+    $fretboard-width: 250px;
     @function fret-height($percentage) {
          @return (($fretboard-height*$percentage)/100);
     }
     .neck-container {
         height: $fretboard-height;
-        width: 240px;
+        width: 290px;
         position: relative;
         clear: both;
         margin: 0 auto;
@@ -49,7 +49,7 @@
     }
     .nut-position {
         position: absolute;
-        height: 25px;
+        height: 50px;
         width: 30px;
         margin: 0;
         text-align: center;
@@ -60,9 +60,18 @@
         position: absolute;
         top: 130px;
         text-align: center;
-        font-size: 12px;
         display: inline-block;
         width: 30px;
+    }
+    .position-numbers > div {
+        display: block;
+        width: 100%;
+    }
+    .fret-number {
+      position: relative;
+      top: 50%;
+      margin-top: -25%;
+      font-size: 14px;
     }
     .nut {
         width: $fretboard-width;
@@ -82,10 +91,7 @@
         width: $fretboard-width;
         display: inline-block;
     }
-    .position-numbers > div {
-        display: block;
-        width: 100%;
-    }
+
     /* ----------- FRETBOARD SPACING ----------- */
     .one {
         height: fret-height(7.483);
@@ -159,58 +165,6 @@
     .twenty-four {
         height: fret-height(1.982);
     }
-    // @media (max-width: 1050px) {
-    //     .one {
-    //         @include span(11.225%);
-    //     }
-    //     .two {
-    //         @include span(10.595%);
-    //     }
-    //     .three {
-    //         @include span(10.000%);
-    //     }
-    //     .four {
-    //         @include span(9.439%);
-    //     }
-    //     .five {
-    //         @include span(8.909%);
-    //     }
-    //     .six {
-    //         @include span(8.409%);
-    //     }
-    //     .seven {
-    //         @include span(7.937%);
-    //     }
-    //     .eight {
-    //         @include span(7.492%);
-    //     }
-    //     .nine {
-    //         @include span(7.071%);
-    //     }
-    //     .ten {
-    //         @include span(6.675%);
-    //     }
-    //     .eleven {
-    //         @include span(6.300%);
-    //     }
-    //     .twelve {
-    //         @include span(5.946% last);
-    //     }
-    //     .eighteen,
-    //     .fifteen,
-    //     .fourteen,
-    //     .nineteen,
-    //     .seventeen,
-    //     .sixteen,
-    //     .thirteen,
-    //     .twenty,
-    //     .twenty-four,
-    //     .twenty-one,
-    //     .twenty-three,
-    //     .twenty-two {
-    //         display: none;
-    //     }
-    // }
     /* ----------- NOTE POSITION STYLES ----------- */
     .fret-0 {
         top: 0;
@@ -287,58 +241,6 @@
     .fret-24 {
         top: fret-height(100);
     }
-    // @media (max-width: 1050px) {
-    //     .fret-1 {
-    //         left: 11.225%;
-    //     }
-    //     .fret-2 {
-    //         left: 21.820%;
-    //     }
-    //     .fret-3 {
-    //         left: 31.821%;
-    //     }
-    //     .fret-4 {
-    //         left: 41.260%;
-    //     }
-    //     .fret-5 {
-    //         left: 50.169%;
-    //     }
-    //     .fret-6 {
-    //         left: 58.579%;
-    //     }
-    //     .fret-7 {
-    //         left: 66.516%;
-    //     }
-    //     .fret-8 {
-    //         left: 74.008%;
-    //     }
-    //     .fret-9 {
-    //         left: 81.079%;
-    //     }
-    //     .fret-10 {
-    //         left: 87.754%;
-    //     }
-    //     .fret-11 {
-    //         left: 94.054%;
-    //     }
-    //     .fret-12 {
-    //         left: 100%;
-    //     }
-    //     .fret-13,
-    //     .fret-14,
-    //     .fret-15,
-    //     .fret-16,
-    //     .fret-17,
-    //     .fret-18,
-    //     .fret-19,
-    //     .fret-20,
-    //     .fret-21,
-    //     .fret-22,
-    //     .fret-23,
-    //     .fret-24 {
-    //         display: none;
-    //     }
-    // }
     /* ----------- STRING POSITION VERTICAL STYLES ----------- */
     .string-6 {
         left: 1%;
@@ -393,11 +295,11 @@
     }
     .double-one {
         display: inline-block;
-        left: 58px;
+        left: 70px;
     }
     .double-two {
         display: inline-block;
-        margin-left: 108px;
+        margin-left: 138px;
     }
     .fretboard > .first {
         border-top: none;
