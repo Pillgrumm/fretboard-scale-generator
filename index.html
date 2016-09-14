@@ -24,129 +24,179 @@ http://jsfiddle.net/thirtydot/dQR9T/2637/ -->
         <h1>Fretsetter</h1>
     </header>
     <div class="container">
-    <section class="user-input">
-        <form>
-            <div class="key-select">
-                <select name="keys" id="keySelect">
-                    <option value="select" selected>Select a Key</option>
-                    <option value="C">C</option>
-                    <option value="C#">C&#9839;/ D&#9837;</option>
-                    <option value="D">D</option>
-                    <option value="D#">D&#9839;/ E&#9837;</option>
-                    <option value="E">E</option>
-                    <option value="F">F</option>
-                    <option value="F#">F&#9839;/ G&#9837;</option>
-                    <option value="G">G</option>
-                    <option value="G#">G&#9839;/ A&#9837;</option>
-                    <option value="A">A</option>
-                    <option value="A#">A&#9839;/ B&#9837;</option>
-                    <option value="B">B</option>
-                </select>
-                <div class="error keySelectError">
-                    <p></p>
+        <section class="user-input">
+            <form>
+                <div class="key-select">
+                    <select name="keys" id="keySelect">
+                        <option value="select" selected>Select a Key</option>
+                        <option value="C">C</option>
+                        <option value="C#">C&#9839;/ D&#9837;</option>
+                        <option value="D">D</option>
+                        <option value="D#">D&#9839;/ E&#9837;</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                        <option value="F#">F&#9839;/ G&#9837;</option>
+                        <option value="G">G</option>
+                        <option value="G#">G&#9839;/ A&#9837;</option>
+                        <option value="A">A</option>
+                        <option value="A#">A&#9839;/ B&#9837;</option>
+                        <option value="B">B</option>
+                    </select>
+                    <div class="error keySelectError">
+                        <p></p>
+                    </div>
                 </div>
-            </div>
-            <div class="scale-select">
-                <select name="scales" id="scaleSelect">
-                    <option value="select" selected>Select a Scale</option>
-                    <option value="major">Major</option>
-                    <option value="minor">Minor</option>
-                    <optgroup label="Pentatonics">
-                        <option value="major-pentatonic">Major Pentatonic</option>
-                        <option value="minor-pentatonic">Minor Pentatonic</option>
-                    </optgroup>
-                    <optgroup label="Modes">
-                        <option value="ionian">Ionian</option>
-                        <option value="dorian">Dorian</option>
-                        <option value="phrygian">Phrygian</option>
-                        <option value="lydian">Lydian</option>
-                        <option value="mixolydian">Mixolydian</option>
-                        <option value="aeolian">Aeolian</option>
-                        <option value="locrian">Locrian</option>
-                    </optgroup>
-                    <option value="harmonic-minor">Harmonic Minor</option>
-                    <option value="melodic-minor">Melodic Minor</option>
-                    <option value="whole-tone">Whole Tone</option>
-                    <option value="whole-half-diminished">Whole Half Diminished</option>
-                    <option value="half-whole-diminished">Half Whole Diminished</option>
-                    <option value="chromatic">Chromatic</option>
-                </select>
-                <div class="error scaleSelectError">
-                    <p></p>
+                <div class="scale-select">
+                    <select name="scales" id="scaleSelect">
+                        <option value="select" selected>Select a Scale</option>
+                        <option value="major">Major</option>
+                        <option value="minor">Minor</option>
+                        <optgroup label="Pentatonics">
+                            <option value="major-pentatonic">Major Pentatonic</option>
+                            <option value="minor-pentatonic">Minor Pentatonic</option>
+                        </optgroup>
+                        <optgroup label="Modes">
+                            <option value="ionian">Ionian</option>
+                            <option value="dorian">Dorian</option>
+                            <option value="phrygian">Phrygian</option>
+                            <option value="lydian">Lydian</option>
+                            <option value="mixolydian">Mixolydian</option>
+                            <option value="aeolian">Aeolian</option>
+                            <option value="locrian">Locrian</option>
+                        </optgroup>
+                        <option value="harmonic-minor">Harmonic Minor</option>
+                        <option value="melodic-minor">Melodic Minor</option>
+                        <option value="whole-tone">Whole Tone</option>
+                        <option value="whole-half-diminished">Whole Half Diminished</option>
+                        <option value="half-whole-diminished">Half Whole Diminished</option>
+                        <option value="chromatic">Chromatic</option>
+                    </select>
+                    <div class="error scaleSelectError">
+                        <p></p>
+                    </div>
                 </div>
-            </div>
-            <div class="tuning-select">
-                <select name="tunings" id="tuningSelect">
-                    <optgroup label="Standard">
-                        <option value="standard" selected>Standard Tuning</option>
-                    </optgroup>
-                    <optgroup label="Custom">
-                        <option value="custom">Load a Custom Tuning</option>
-                    </optgroup>
-                    <optgroup label="Predefined">
-                        <option value="drop-d">Dropped D</option>
-                        <option value="half-step-down">Half Step Down</option>
-                        <option value="full-step-down">Full Step Down</option>
-                        <option value="dadgad">DADGAD</option>
-                        <option value="open-g">Open G</option>
-                        <option value="perfect-fourths">Perfect Fourths</option>
-                        <option value="major-thirds">Major Thirds</option>
-                    </optgroup>
-                </select>
-                <div class="custom-tuning-select">
-                    <input type="text" placeholder="Low to High ex. EADGBE" pattern="^([A-G](b|#)?){6}$" title="6 notes, no spaces. Uppercase A-G. b = flat. # = sharp." name="userTuningInputValue" class="custom-tuning-input">
+                <div class="tuning-select">
+                    <select name="tunings" id="tuningSelect">
+                        <optgroup label="Standard">
+                            <option value="standard" selected>Standard Tuning</option>
+                        </optgroup>
+                        <optgroup label="Custom">
+                            <option value="custom">Load a Custom Tuning</option>
+                        </optgroup>
+                        <optgroup label="Predefined">
+                            <option value="drop-d">Dropped D</option>
+                            <option value="half-step-down">Half Step Down</option>
+                            <option value="full-step-down">Full Step Down</option>
+                            <option value="dadgad">DADGAD</option>
+                            <option value="open-g">Open G</option>
+                            <option value="perfect-fourths">Perfect Fourths</option>
+                            <option value="major-thirds">Major Thirds</option>
+                        </optgroup>
+                    </select>
+                    <div class="custom-tuning-select">
+                        <input type="text" placeholder="Low to High ex. EADGBE" pattern="^([A-G](b|#)?){6}$" title="6 notes, no spaces. Uppercase A-G. b = flat. # = sharp." name="userTuningInputValue" class="custom-tuning-input">
+                    </div>
+                    <div class="error tuningSelectError">
+                        <p></p>
+                    </div>
                 </div>
-                <div class="error tuningSelectError">
-                    <p></p>
+                <div class="switch-wrapper">
+                    <select name="accidental" id="accidentalSwitch">
+                        <option value="sharp" selected>Use sharps &#9839;</option>
+                        <option value="flat">Use flats &#9837;</option>
+                    </select>
                 </div>
+            </form>
+            <div class="submit-button">
+                <button id="showNotesOnFretboard" class="button button-show">Show Scale</button>
             </div>
-            <div class="switch-wrapper">
-                <select name="accidental" id="accidentalSwitch">
-                    <option value="sharp" selected>Use sharps &#9839;</option>
-                    <option value="flat">Use flats &#9837;</option>
-                </select>
-            </div>
-        </form>
-        <div class="submit-button">
-            <button id="showNotesOnFretboard" class="button button-show">Show Scale</button>
-        </div>
-    </section>
-  </div>
+        </section>
+    </div>
     <div class="neck-container">
-        <div class="nut-position"><div class="fret-number">0</div></div>
+        <div class="nut-position">
+            <div class="fret-number">0</div>
+        </div>
         <div class="position-numbers">
-            <div class="one"><div class="fret-number">1</div></div>
-            <div class="two"><div class="fret-number">2</div></div>
-            <div class="three"><div class="fret-number">3</div></div>
-            <div class="four"><div class="fret-number">4</div></div>
-            <div class="five"><div class="fret-number">5</div></div>
-            <div class="six"><div class="fret-number">6</div></div>
-            <div class="seven"><div class="fret-number">7</div></div>
-            <div class="eight"><div class="fret-number">8</div></div>
-            <div class="nine"><div class="fret-number">9</div></div>
-            <div class="ten"><div class="fret-number">10</div></div>
-            <div class="eleven"><div class="fret-number">11</div></div>
-            <div class="twelve"><div class="fret-number">12</div></div>
-            <div class="thirteen"><div class="fret-number">13</div></div>
-            <div class="fourteen"><div class="fret-number">14</div></div>
-            <div class="fifteen"><div class="fret-number">15</div></div>
-            <div class="sixteen"><div class="fret-number">16</div></div>
-            <div class="seventeen"><div class="fret-number">17</div></div>
-            <div class="eighteen"><div class="fret-number">18</div></div>
-            <div class="nineteen"><div class="fret-number">19</div></div>
-            <div class="twenty"><div class="fret-number">20</div></div>
-            <div class="twenty-one"><div class="fret-number">21</div></div>
-            <div class="twenty-two"><div class="fret-number">22</div></div>
-            <div class="twenty-three"><div class="fret-number">23</div></div>
-            <div class="twenty-four"><div class="fret-number">24</div></div>
+            <div class="one">
+                <div class="fret-number">1</div>
+            </div>
+            <div class="two">
+                <div class="fret-number">2</div>
+            </div>
+            <div class="three">
+                <div class="fret-number">3</div>
+            </div>
+            <div class="four">
+                <div class="fret-number">4</div>
+            </div>
+            <div class="five">
+                <div class="fret-number">5</div>
+            </div>
+            <div class="six">
+                <div class="fret-number">6</div>
+            </div>
+            <div class="seven">
+                <div class="fret-number">7</div>
+            </div>
+            <div class="eight">
+                <div class="fret-number">8</div>
+            </div>
+            <div class="nine">
+                <div class="fret-number">9</div>
+            </div>
+            <div class="ten">
+                <div class="fret-number">10</div>
+            </div>
+            <div class="eleven">
+                <div class="fret-number">11</div>
+            </div>
+            <div class="twelve">
+                <div class="fret-number">12</div>
+            </div>
+            <div class="thirteen">
+                <div class="fret-number">13</div>
+            </div>
+            <div class="fourteen">
+                <div class="fret-number">14</div>
+            </div>
+            <div class="fifteen">
+                <div class="fret-number">15</div>
+            </div>
+            <div class="sixteen">
+                <div class="fret-number">16</div>
+            </div>
+            <div class="seventeen">
+                <div class="fret-number">17</div>
+            </div>
+            <div class="eighteen">
+                <div class="fret-number">18</div>
+            </div>
+            <div class="nineteen">
+                <div class="fret-number">19</div>
+            </div>
+            <div class="twenty">
+                <div class="fret-number">20</div>
+            </div>
+            <div class="twenty-one">
+                <div class="fret-number">21</div>
+            </div>
+            <div class="twenty-two">
+                <div class="fret-number">22</div>
+            </div>
+            <div class="twenty-three">
+                <div class="fret-number">23</div>
+            </div>
+            <div class="twenty-four">
+                <div class="fret-number">24</div>
+            </div>
         </div>
         <div class="strings">
-              <div class="tuning-note-marker string-1"><span>1</span></div>
-              <div class="tuning-note-marker string-2"><span>2</span></div>
-              <div class="tuning-note-marker string-3"><span>3</span></div>
-              <div class="tuning-note-marker string-4"><span>4</span></div>
-              <div class="tuning-note-marker string-5"><span>5</span></div>
-              <div class="tuning-note-marker string-6"><span>6</span></div>
+            <div class="tuning-note-marker string-1"><span>1</span></div>
+            <div class="tuning-note-marker string-2"><span>2</span></div>
+            <div class="tuning-note-marker string-3"><span>3</span></div>
+            <div class="tuning-note-marker string-4"><span>4</span></div>
+            <div class="tuning-note-marker string-5"><span>5</span></div>
+            <div class="tuning-note-marker string-6"><span>6</span></div>
         </div>
         <div class="tuning">
             <div class="tuning-note-marker string-1"><span>E</span></div>
