@@ -468,6 +468,11 @@ h1 {
 input,
 select {
     width: 90%;
+    height: 45px;
+    padding: 0.5rem;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
     @media (max-width: 1000px) {
         width: 100%;
     }
@@ -476,10 +481,8 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    padding: 0.5rem;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
+
+
 }
 .key-select,
 .scale-select,
@@ -488,16 +491,30 @@ select {
     @include span(1 of 5);
     text-align: center;
     margin-top: 1rem;
+}
+.key-select, .switch-wrapper {
     @media (max-width: 1000px) {
-         @include span(4 of 12);
-        @include push(4 of 12);
-        margin-top: 1.75rem;
+         @include span(4.75 of 12);
+         @include post(0.25 of 12);
+         @include push(1 of 12);
+         margin-top: 1.75rem;
     }
     @media (max-width: $vert-break) {
          @include span(8 of 12);
         @include push(2 of 12);
-        margin-top: 1.75rem;
     }
+  }
+.scale-select, .tuning-select {
+  @media (max-width: 1000px) {
+       @include span(4.75 of 12 last);
+       @include post(1 of 12);
+       @include push(0.25 of 12);
+      margin-top: 1.75rem;
+  }
+  @media (max-width: $vert-break) {
+       @include span(8 of 12);
+      @include push(2 of 12);
+  }
 }
 .submit-button {
     @include span(1 of 5 last);
@@ -522,9 +539,9 @@ select {
     text-align: center;
 }
 .button {
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -535,6 +552,9 @@ select {
     border: none;
     font-size: 20px;
     padding: 15px 32px;
+    @media (max-width: 1000px) {
+      width: 40%;
+    }
     @media (max-width: $vert-break) {
         width: 100%;
     }

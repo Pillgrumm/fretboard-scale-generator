@@ -516,7 +516,12 @@ h1 {
 
 input,
 select {
-  width: 90%; }
+  width: 90%;
+  height: 45px;
+  padding: 0.5rem;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px; }
   @media (max-width: 1000px) {
     input,
     select {
@@ -525,11 +530,7 @@ select {
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
-  padding: 0.5rem;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px; }
+  appearance: none; }
 
 .key-select,
 .scale-select,
@@ -539,24 +540,33 @@ select {
   float: left;
   text-align: center;
   margin-top: 1rem; }
-  @media (max-width: 1000px) {
-    .key-select,
-    .scale-select,
-    .switch-wrapper,
-    .tuning-select {
-      width: 33.33333%;
-      float: left;
-      margin-left: 33.33333%;
-      margin-top: 1.75rem; } }
-  @media (max-width: 750px) {
-    .key-select,
-    .scale-select,
-    .switch-wrapper,
-    .tuning-select {
-      width: 66.66667%;
-      float: left;
-      margin-left: 16.66667%;
-      margin-top: 1.75rem; } }
+
+@media (max-width: 1000px) {
+  .key-select, .switch-wrapper {
+    width: 39.58333%;
+    float: left;
+    margin-right: 2.08333%;
+    margin-left: 8.33333%;
+    margin-top: 1.75rem; } }
+@media (max-width: 750px) {
+  .key-select, .switch-wrapper {
+    width: 66.66667%;
+    float: left;
+    margin-left: 16.66667%; } }
+
+@media (max-width: 1000px) {
+  .scale-select, .tuning-select {
+    width: 39.58333%;
+    float: right;
+    margin-right: 0;
+    margin-right: 8.33333%;
+    margin-left: 2.08333%;
+    margin-top: 1.75rem; } }
+@media (max-width: 750px) {
+  .scale-select, .tuning-select {
+    width: 66.66667%;
+    float: left;
+    margin-left: 16.66667%; } }
 
 .submit-button {
   width: 20%;
@@ -587,9 +597,9 @@ select {
   text-align: center; }
 
 .button {
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
   text-align: center;
   text-decoration: none;
   display: inline-block; }
@@ -600,6 +610,9 @@ select {
   border: none;
   font-size: 20px;
   padding: 15px 32px; }
+  @media (max-width: 1000px) {
+    .button-show {
+      width: 40%; } }
   @media (max-width: 750px) {
     .button-show {
       width: 100%; } }
