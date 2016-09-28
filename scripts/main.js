@@ -309,16 +309,9 @@ function createSingleStringHtml(scaleRootNote, stringRootNote, stringNumber, sca
 
 function createAllStringsHtml(selectedKey, selectedScale, selectedTuning, notes, accidentalState, boardOrientation, isVertical) {
     var allStringsResult = '';
-    if ((boardOrientation === 'leftHand') && (isVertical === 'true')) {
-        for (var stringCounter = selectedTuning.length; stringCounter > 0; stringCounter--) {
-            var stringName = ((selectedTuning[stringCounter]).toString());
-            allStringsResult += createSingleStringHtml(selectedKey, stringName, (stringCounter - 1), selectedScale, notes, accidentalState, boardOrientation);
-        }
-    } else {
-        for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
-            var stringName = ((selectedTuning[stringCounter]).toString());
-            allStringsResult += createSingleStringHtml(selectedKey, stringName, (stringCounter + 1), selectedScale, notes, accidentalState, boardOrientation);
-        }
+    for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
+        var stringName = ((selectedTuning[stringCounter]).toString());
+        allStringsResult += createSingleStringHtml(selectedKey, stringName, (stringCounter + 1), selectedScale, notes, accidentalState, boardOrientation);
     }
     return allStringsResult;
 }
