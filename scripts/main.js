@@ -1,3 +1,5 @@
+// "use strict";
+
 //-----------------GLOBAL VARIABLES-----------------//
 
 var notes = [
@@ -32,6 +34,10 @@ var matchingEnharmonic = [{
 
 var accidentalState = '';
 
+var boardOrientation = 'rightHand';
+
+var isVertical = '';
+
 scales = Array();
 scales['major'] = Array(0, 2, 4, 5, 7, 9, 11);
 scales['minor'] = Array(0, 2, 3, 5, 7, 8, 10);
@@ -51,7 +57,6 @@ scales['whole-half-diminished'] = Array(0, 2, 3, 5, 6, 8, 9, 11);
 scales['half-whole-diminished'] = Array(0, 1, 3, 4, 6, 7, 9, 10);
 scales['chromatic'] = Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
 
-
 stringTuning = Array();
 stringTuning['standard'] = Array('E', 'B', 'G', 'D', 'A', 'E');
 stringTuning['half-step-down'] = Array('D#', 'A#', 'F#', 'C#', 'G#', 'D#');
@@ -62,13 +67,25 @@ stringTuning['open-g'] = Array('D', 'B', 'G', 'D', 'G', 'D');
 stringTuning['perfect-fourths'] = Array('F', 'C', 'G', 'D', 'A', 'E');
 stringTuning['major-thirds'] = Array('C', 'G#', 'E', 'C', 'G#', 'E');
 
-// Tuning Arrays for Testing
-// stringTuning['allflats'] = Array('Cb', 'Fb', 'Gb', 'Db', 'A', 'E#');
-// stringTuning['allsharps'] = Array('E#', 'B#', 'G#', 'D#', 'A', 'F');
-
-
-
 //-----------------FUNCTION DEFINITIONS-----------------//
+
+function checkSize() {
+    if ($(".fretboard-rh").css("height") === "1350px") {
+        isVertical = true;
+    } else {
+        isVertical = false;
+    }
+    //console.log(isVertical);
+}
+
+function switchToLeftHand() {
+    boardOrientation = 'leftHand';
+}
+
+function switchToRightHand() {
+    boardOrientation = 'rightHand';
+}
+
 
 // function to convert a single flat note to a sharp
 function flatToSharp(flatNote, matchingSharpAndFlat) {
@@ -85,6 +102,51 @@ function sharpToFlat(sharpNote, matchingSharpAndFlat) {
 // function to correct enharmonic equivalents
 function correctEnharmonic(accidentalNote, matchingEnharmonic) {
     return matchingEnharmonic[0][accidentalNote];
+}
+
+// function to harvest key and scale inputs
+function getKeyAndScale() {
+    // harvest key, scale values from user input
+    var selectedKey = $("#keySelect").val();
+    var selectedScale = $("#scaleSelect").val();
+    return {
+        selectedKey: selectedKey,
+        selectedScale: selectedScale,
+    };
+}
+
+function validateKeyAndScale(selectedKey, selectedScale) {
+    // conditional check that key and scale are not supplied
+    if ((selectedKey === 'select') || (selectedScale === 'select')) {
+        // conditional check that key is not supplied
+        if (selectedKey === 'select') {
+            displayError('Please select a key', 2000, 'keySelectError');
+        }
+        // conditional check that scale is not supplied
+        if (selectedScale === 'select') {
+            displayError('Please select a scale', 2000, 'scaleSelectError');
+        }
+        var missingKeyOrScale = true;
+    } else {
+        var missingKeyOrScale = false;
+    }
+    return missingKeyOrScale;
+}
+
+function getTuning() {
+    // harvest the user selected predefined tuning value
+    var tuningValue = $("#tuningSelect").val();
+    return tuningValue;
+}
+
+// function to harvest current state of accidental switch
+function getAccidentalState() {
+    if ($("#accidentalSwitch").val() === 'flat') {
+        var accidentalState = 'flat';
+    } else {
+        var accidentalState = 'sharp';
+    }
+    return accidentalState;
 }
 
 // function to convert an array of notes which may contain flats to sharps where applicable
@@ -141,6 +203,32 @@ function arrayCorrectEnharmonic(enharmonicArray, matchingEnharmonic) {
     return convertedArray;
 }
 
+function validateUserTuning() {
+    // harvest custom user supplied tuning
+    var customInputTuning = $("input[name='userTuningInputValue']").val();
+    // regex validation of user supplied tuning string fails
+    if (/^([A-G](b|#)?){6}$/.test(customInputTuning) === false) {
+        displayError('Please make sure the tuning follows these rules:<br>6 notes, no spaces.<br>Uppercase A-G.<br>b = flat.<br># = sharp.', 4000, 'tuningSelectError');
+    }
+    // regex validation of user supplied tuning succeeds
+    else {
+        if ((boardOrientation === 'leftHand') && (isVertical === true)) {
+            // use regex to parse user tuning value into array and do not reverse for left hand
+            var customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g);
+        } else {
+            // use regex to parse user tuning value into array and reverse for proper order
+            var customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
+        }
+        console.log(customTuningArray);
+        // correct any user supplied enharmonic equivalents
+        var correctedTuning = arrayCorrectEnharmonic(customTuningArray, matchingEnharmonic);
+        // define output tuning by converting tuning array to sharps
+        var outputTuning = (arrayFlatToSharp(correctedTuning, matchingSharpAndFlat));
+        // return output tuning
+        return outputTuning;
+    }
+}
+
 // function to get string note names in order given a certain string tuning
 function getStringNoteNames(stringRootNote, notes, accidentalState) {
     // copy the notes array
@@ -163,7 +251,7 @@ function getStringNoteNames(stringRootNote, notes, accidentalState) {
     }
 }
 
-function displayOnFretboard(scaleRootNote, stringRootNote, stringNumber, scalePattern, notes, accidentalState) {
+function createSingleStringHtml(scaleRootNote, stringRootNote, stringNumber, scalePattern, notes, accidentalState, boardOrientation) {
     // checks for flat accidental state
     if (accidentalState === 'flat') {
         if (/([A-G])(b|#)/.test(scaleRootNote) === true) {
@@ -203,39 +291,70 @@ function displayOnFretboard(scaleRootNote, stringRootNote, stringNumber, scalePa
             fullFretNumbers.push(24);
         }
     }
-    var fretDisplayHtml = '';
+    var singleStringHtml = '';
     for (var fretCounter = 0; fretCounter < fullFretNumbers.length; fretCounter++) {
         var highlightRoot = '';
         if ((fullFretNumbers[fretCounter] === noteAdd) || (fullFretNumbers[fretCounter] === noteAdd + 12) || (fullFretNumbers[fretCounter] === noteAdd + 24)) {
             highlightRoot = 'scale-root-note';
         }
-        fretDisplayHtml += '<div class="note-marker string-' + stringNumber + ' fret-' + fullFretNumbers[fretCounter] + ' ' + highlightRoot + '"><span>' + workingNoteSet[fullFretNumbers[fretCounter]] + '</span></div>';
+        if (boardOrientation === 'rightHand') {
+            singleStringHtml += '<div class="note-marker string-' + stringNumber + ' fret-' + fullFretNumbers[fretCounter] + ' ' + highlightRoot + '"><span>' + workingNoteSet[fullFretNumbers[fretCounter]] + '</span></div>';
+        }
+        if (boardOrientation === 'leftHand') {
+            singleStringHtml += '<div class="note-marker-lh string-' + stringNumber + ' fret-lh-' + fullFretNumbers[fretCounter] + ' ' + highlightRoot + '"><span>' + workingNoteSet[fullFretNumbers[fretCounter]] + '</span></div>';
+        }
     }
-    return fretDisplayHtml;
+    return singleStringHtml;
 }
 
-function displayLoopAllStrings(selectedKey, selectedScale, selectedTuning, notes, accidentalState) {
+function createAllStringsHtml(selectedKey, selectedScale, selectedTuning, notes, accidentalState, boardOrientation, isVertical) {
     var allStringsResult = '';
-    for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
-        var stringName = ((selectedTuning[stringCounter]).toString());
-        allStringsResult += displayOnFretboard(selectedKey, stringName, (stringCounter + 1), selectedScale, notes, accidentalState);
+    if ((boardOrientation === 'leftHand') && (isVertical === 'true')) {
+        for (var stringCounter = selectedTuning.length; stringCounter > 0; stringCounter--) {
+            var stringName = ((selectedTuning[stringCounter]).toString());
+            allStringsResult += createSingleStringHtml(selectedKey, stringName, (stringCounter - 1), selectedScale, notes, accidentalState, boardOrientation);
+        }
+    } else {
+        for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
+            var stringName = ((selectedTuning[stringCounter]).toString());
+            allStringsResult += createSingleStringHtml(selectedKey, stringName, (stringCounter + 1), selectedScale, notes, accidentalState, boardOrientation);
+        }
     }
     return allStringsResult;
 }
 
-function displayCurrentTuning(selectedTuning, accidentalState) {
+function displayCurrentTuning(selectedTuning, accidentalState, boardOrientation, isVertical) {
     if (accidentalState === 'flat') {
         selectedTuning = arraySharpToFlat(selectedTuning, matchingSharpAndFlat);
     }
-    var tuningDisplayHtml = '';
+    var tuningHtml = '';
     for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
-        tuningDisplayHtml += '<div class="tuning-note-marker string-' + (stringCounter + 1) + '"><span>' + (selectedTuning[stringCounter]) + '</span></div>';
+        tuningHtml += '<div class="tuning-note-marker string-' + (stringCounter + 1) + '"><span>' + (selectedTuning[stringCounter]) + '</span></div>';
     }
-    return tuningDisplayHtml;
+    return tuningHtml;
 }
 
-function toggleCustomTuning(tuningDropdownValue) {
-    if (tuningDropdownValue === "custom") {
+function appendBoardHtml(outputTuning, accidentalState, boardOrientation, isVertical, allStringsOutput) {
+    if (boardOrientation === 'rightHand') {
+        // fill tuning HTML template with values from selected tuning
+        var tuningOutput = displayCurrentTuning(outputTuning, accidentalState, boardOrientation, isVertical);
+        // append HTML of selected tuning to display current tuning
+        $('.tuning-rh').html(tuningOutput);
+        $('.notes-display-rh').html(allStringsOutput);
+    }
+    if (boardOrientation === 'leftHand') {
+        // fill tuning HTML template with values from selected tuning
+        var tuningOutput = displayCurrentTuning(outputTuning, accidentalState, boardOrientation, isVertical);
+        // append HTML of selected tuning to display current tuning
+        // CHANGED TO TUNING-LH
+        $('.tuning-lh').html(tuningOutput);
+        $('.notes-display-lh').html(allStringsOutput);
+
+    }
+}
+
+function toggleCustomTuning(tuningValue) {
+    if (tuningValue === "custom") {
         $(".custom-tuning-select").show();
     } else {
         $(".custom-tuning-select").hide();
@@ -250,91 +369,49 @@ function displayError(message, fadeTime, classTarget) {
         }, fadeTime);
     });
 }
+
 // function to be triggered upon user click or enter keypress, processes final fretboard output
 function eventListenerTrigger() {
     // reset output to avoid cumulative build up of incorrect notes on fretboard
     var allStringsOutput = '';
-    // harvest key, scale values from user input
-    var selectedKey = $("#keySelect").val();
-    var selectedScale = $("#scaleSelect").val();
-    // conditional check that key is not supplied
-    if ((selectedKey === 'select') || (selectedScale === 'select')) {
-        if (selectedKey === 'select') {
-            displayError('Please select a key', 2000, 'keySelectError');
-        }
-        // conditional check that scale is not supplied
-        if (selectedScale === 'select') {
-            displayError('Please select a scale', 2000, 'scaleSelectError');
-        }
-    }
-    // if key and scale are supplied
-    else {
-        // harvest current state of accidental switch
-        if ($("#accidentalSwitch").val() === 'flat') {
-            var accidentalState = 'flat';
-        } else {
-            var accidentalState = 'sharp';
-        }
+    var accidentalState = getAccidentalState();
+    var selectedTuning = getTuning();
+    var keyAndScale = getKeyAndScale();
+    var selectedKey = keyAndScale.selectedKey;
+    var selectedScale = keyAndScale.selectedScale;
+    if (validateKeyAndScale(selectedKey, selectedScale) === false) {
         // conditional check for whether a custom user supplied tuning is being used
-        if ($("#tuningSelect").val() === 'custom') {
-            // harvest custom user supplied tuning
-            var customInputTuning = $("input[name='userTuningInputValue']").val();
-            // regex validation of user supplied tuning string fails
-            if (/^([A-G](b|#)?){6}$/.test(customInputTuning) === false) {
-                displayError('Please make sure the tuning follows these rules:<br>6 notes, no spaces.<br>Uppercase A-G.<br>b = flat.<br># = sharp.', 4000, 'tuningSelectError');
-            }
-            // regex validation of user supplied tuning succeeds
-            else {
-                // use regex to parse user tuning value into array and reverse for proper order
-                var customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
-                // correct any user supplied enharmonic equivalents
-                var correctedTuning = arrayCorrectEnharmonic(customTuningArray, matchingEnharmonic);
-                // define output tuning by converting tuning array to sharps
-                var outputTuning = (arrayFlatToSharp(correctedTuning, matchingSharpAndFlat));
-                // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
-                var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes, accidentalState);
-                // append HTML of notes to fretboard
-                $('.notes-display').html(allStringsOutput);
-                // fill tuning HTML template with values from selected tuning
-                var tuningOutput = displayCurrentTuning(outputTuning, accidentalState);
-                // append HTML of selected tuning to display current tuning
-                $('.tuning').html(tuningOutput);
-            }
+        if (selectedTuning === 'custom') {
+            var outputTuning = validateUserTuning();
         }
         // if predefined tuning is selected
         else {
-            // harvest the user selected predefined tuning value
-            var predefinedInputTuning = $("#tuningSelect").val();
-            // match to existing tuning array
-            var predefinedTuning = stringTuning[predefinedInputTuning];
-            // define output tuning
-            var outputTuning = predefinedTuning;
-            // Run displayOnFretboard for all 6 strings given user selected tuning, scale, and key
-            var allStringsOutput = displayLoopAllStrings(selectedKey, scales[selectedScale], outputTuning, notes, accidentalState);
-            // append HTML of notes to fretboard
-            $('.notes-display').html(allStringsOutput);
-            // fill tuning HTML template with values from selected tuning
-            var tuningOutput = displayCurrentTuning(outputTuning, accidentalState);
-            // append HTML of selected tuning to display current tuning
-            $('.tuning').html(tuningOutput);
+            var predefinedTuning = selectedTuning;
+            // define output tuning by matching to existing tuning array
+            var outputTuning = stringTuning[predefinedTuning];
         }
+        // Run createSingleStringHtml for all 6 strings given user selected tuning, scale, and key
+        var allStringsOutput = createAllStringsHtml(selectedKey, scales[selectedScale], outputTuning, notes, accidentalState, boardOrientation, isVertical);
+        appendBoardHtml(outputTuning, accidentalState, boardOrientation, isVertical, allStringsOutput);
     }
 }
 
 
+
 //-----------------CALLING FUNCTIONS-----------------//
 
-
-// On click of "Show Scale" button
-$('#showNotesOnFretboard').on('click', function() {
-    // trigger final display output function
-    eventListenerTrigger();
+// When document is ready
+$(document).ready(function() {
+    // run window size check on initial page load
+    checkSize();
+    // run window size check on resize of the window
+    $(window).resize(checkSize);
 });
 
 // On keypress of enter key
 $(document).on('keypress', function(key) {
     //keyCode == 13 is the ENTER key
-    if (key.keyCode == 13) {
+    if (key.keyCode === 13) {
         // if enter key is struck, do not submit form
         key.preventDefault();
         // trigger final display output function
@@ -342,10 +419,36 @@ $(document).on('keypress', function(key) {
     }
 });
 
+// On click of "Show Scale" button
+$('#showNotesOnFretboard').on('click', function() {
+    // trigger final display output function
+    eventListenerTrigger();
+});
+
+// On click of "Left Hand" button
+$('#switchToLeft').on('click', function() {
+    $('.neck-container-rh').hide();
+    $('.neck-container-lh').show();
+    switchToLeftHand();
+    eventListenerTrigger();
+});
+
+// On click of "Right Hand" button
+$('#switchToRight').on('click', function() {
+    $('.neck-container-lh').hide();
+    $('.neck-container-rh').show();
+    switchToRightHand();
+    eventListenerTrigger();
+});
+
+// hide the left hand neck container
+$('.neck-container-lh').hide();
+
 // hides custom tuning select upon initial page load
 $(".custom-tuning-select").hide();
+
 // looks for changes in tuning selection dropdown and runs custom tuning toggle function with selection as parameter upon change
 $("#tuningSelect").change(function() {
-    var tuningDropdownValue = $("#tuningSelect").val();
-    toggleCustomTuning(tuningDropdownValue);
+    var tuningValue = getTuning();
+    toggleCustomTuning(tuningValue);
 });

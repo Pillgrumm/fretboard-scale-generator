@@ -16,29 +16,52 @@ h1 {
     .container {
       width: 95%; } }
 
-.neck-container {
+.neck-container-rh, .neck-container-lh {
   height: 225px;
   width: 100%;
   margin: 0 auto; }
 
-.strings {
+.strings-rh {
   width: 3.125%;
   float: left;
   margin-left: 2.08333%;
   height: 175px;
   position: relative; }
   @media (max-width: 1200px) {
-    .strings {
+    .strings-rh {
       width: 4.16667%;
       float: left; } }
 
-.tuning {
+.strings-lh {
+  width: 3.125%;
+  float: left;
+  margin-right: 1.04167%;
+  height: 175px;
+  position: relative; }
+  @media (max-width: 1200px) {
+    .strings-lh {
+      width: 4.16667%;
+      float: left;
+      margin-right: 0%; } }
+
+.tuning-rh {
   width: 3.125%;
   float: left;
   height: 175px;
   position: relative; }
   @media (max-width: 1200px) {
-    .tuning {
+    .tuning-rh {
+      width: 4.16667%;
+      float: left; } }
+
+.tuning-lh {
+  width: 3.125%;
+  float: left;
+  margin-left: 1.04167%;
+  height: 175px;
+  position: relative; }
+  @media (max-width: 1200px) {
+    .tuning-lh {
       width: 4.16667%;
       float: left; } }
 
@@ -67,7 +90,7 @@ h1 {
       width: 20px;
       height: 20px; } }
 
-.nut-position {
+.nut-position-rh {
   width: 4.16667%;
   float: left;
   margin-left: 8.33333%;
@@ -75,13 +98,23 @@ h1 {
   text-align: center;
   font-size: 12px; }
   @media (max-width: 1200px) {
-    .nut-position {
+    .nut-position-rh {
       margin-left: 10.41667%; } }
   @media (min-width: 1500px) {
-    .nut-position {
+    .nut-position-rh {
       font-size: 14px; } }
 
-.position-numbers {
+.nut-position-lh {
+  width: 4.16667%;
+  float: left;
+  height: 25px;
+  text-align: center;
+  font-size: 12px; }
+  @media (min-width: 1500px) {
+    .nut-position-lh {
+      font-size: 14px; } }
+
+.position-numbers-rh {
   width: 85.41667%;
   float: right;
   margin-right: 0;
@@ -90,15 +123,31 @@ h1 {
   text-align: center;
   font-size: 12px; }
   @media (max-width: 1200px) {
-    .position-numbers {
+    .position-numbers-rh {
       width: 85.41667%;
       float: right;
       margin-right: 0; } }
   @media (min-width: 1500px) {
-    .position-numbers {
+    .position-numbers-rh {
       font-size: 14px; } }
 
-.nut {
+.position-numbers-lh {
+  width: 85.41667%;
+  float: left;
+  margin-left: 2.08333%;
+  height: 25px;
+  text-align: center;
+  font-size: 12px; }
+  @media (max-width: 1200px) {
+    .position-numbers-lh {
+      width: 85.41667%;
+      float: left;
+      margin-left: 0%; } }
+  @media (min-width: 1500px) {
+    .position-numbers-lh {
+      font-size: 14px; } }
+
+.nut-rh {
   width: 4.16667%;
   float: left;
   height: 175px;
@@ -106,16 +155,34 @@ h1 {
   position: relative;
   background: url("../images/fretboard-strings.svg") #fff repeat-x; }
 
-.fretboard-container {
+.nut-lh {
+  width: 4.16667%;
+  float: left;
+  height: 175px;
+  border: 1px solid #999999;
+  position: relative;
+  background: url("../images/fretboard-strings.svg") #fff repeat-x; }
+
+.fretboard-container-rh {
   width: 85.41667%;
   float: right;
   margin-right: 0;
   margin-right: 2.08333%; }
   @media (max-width: 1200px) {
-    .fretboard-container {
+    .fretboard-container-rh {
       width: 85.41667%;
       float: right;
       margin-right: 0; } }
+
+.fretboard-container-lh {
+  width: 85.41667%;
+  float: left;
+  margin-left: 2.08333%; }
+  @media (max-width: 1200px) {
+    .fretboard-container-lh {
+      width: 85.41667%;
+      float: left;
+      margin-left: 0%; } }
 
 /* ----------- FRETBOARD SPACING ----------- */
 .one {
@@ -163,6 +230,10 @@ h1 {
   float: left; }
 
 .twelve {
+  width: 3.964%;
+  float: left; }
+
+.twelve-lh {
   width: 3.964%;
   float: left; }
 
@@ -215,6 +286,10 @@ h1 {
   float: right;
   margin-right: 0; }
 
+.twenty-four-lh {
+  width: 1.982%;
+  float: left; }
+
 @media (min-width: 750px) and (max-width: 1200px) {
   .one {
     width: 11.225%;
@@ -265,6 +340,10 @@ h1 {
     float: right;
     margin-right: 0; }
 
+  .twelve-lh {
+    width: 5.946%;
+    float: left; }
+
   .eighteen,
   .fifteen,
   .fourteen,
@@ -274,6 +353,7 @@ h1 {
   .thirteen,
   .twenty,
   .twenty-four,
+  .twenty-four-lh,
   .twenty-one,
   .twenty-three,
   .twenty-two {
@@ -404,6 +484,132 @@ h1 {
   .fret-23,
   .fret-24 {
     display: none; } }
+/* ----------- LEFT HANDED NOTE POSITION STYLES ----------- */
+.fret-lh-0 {
+  right: 0; }
+
+.fret-lh-1 {
+  right: 7.483%; }
+
+.fret-lh-2 {
+  right: 14.547%; }
+
+.fret-lh-3 {
+  right: 21.214%; }
+
+.fret-lh-4 {
+  right: 27.507%; }
+
+.fret-lh-5 {
+  right: 33.446%; }
+
+.fret-lh-6 {
+  right: 39.052%; }
+
+.fret-lh-7 {
+  right: 44.344%; }
+
+.fret-lh-8 {
+  right: 49.338%; }
+
+.fret-lh-9 {
+  right: 54.053%; }
+
+.fret-lh-10 {
+  right: 58.502%; }
+
+.fret-lh-11 {
+  right: 62.702%; }
+
+.fret-lh-12 {
+  right: 66.666%; }
+
+.fret-lh-13 {
+  right: 70.408%; }
+
+.fret-lh-14 {
+  right: 73.940%; }
+
+.fret-lh-15 {
+  right: 77.273%; }
+
+.fret-lh-16 {
+  right: 80.420%; }
+
+.fret-lh-17 {
+  right: 83.390%; }
+
+.fret-lh-18 {
+  right: 86.193%; }
+
+.fret-lh-19 {
+  right: 88.838%; }
+
+.fret-lh-20 {
+  right: 91.336%; }
+
+.fret-lh-21 {
+  right: 93.693%; }
+
+.fret-lh-22 {
+  right: 95.918%; }
+
+.fret-lh-23 {
+  right: 98.018%; }
+
+.fret-lh-24 {
+  right: 100%; }
+
+@media (min-width: 750px) and (max-width: 1200px) {
+  .fret-lh-1 {
+    right: 11.225%; }
+
+  .fret-lh-2 {
+    right: 21.820%; }
+
+  .fret-lh-3 {
+    right: 31.821%; }
+
+  .fret-lh-4 {
+    right: 41.260%; }
+
+  .fret-lh-5 {
+    right: 50.169%; }
+
+  .fret-lh-6 {
+    right: 58.579%; }
+
+  .fret-lh-7 {
+    right: 66.516%; }
+
+  .fret-lh-8 {
+    right: 74.008%; }
+
+  .fret-lh-9 {
+    right: 81.079%; }
+
+  .fret-lh-10 {
+    right: 87.754%; }
+
+  .fret-lh-11 {
+    right: 94.054%; }
+
+  .fret-lh-12 {
+    right: 100%; }
+
+  .fret-lh-13,
+  .fret-lh-14,
+  .fret-lh-15,
+  .fret-lh-16,
+  .fret-lh-17,
+  .fret-lh-18,
+  .fret-lh-19,
+  .fret-lh-20,
+  .fret-lh-21,
+  .fret-lh-22,
+  .fret-lh-23,
+  .fret-lh-24 {
+    display: none; } }
 /* ----------- STRING POSITION VERTICAL STYLES ----------- */
 .string-1 {
   top: 1%; }
@@ -424,7 +630,7 @@ h1 {
   top: 86%; }
 
 /* ----------- FRETBOARD STYLES ----------- */
-.fretboard {
+.fretboard-rh, .fretboard-lh {
   position: relative;
   height: 175px;
   padding: 0;
@@ -433,13 +639,22 @@ h1 {
   background-color: #331a00;
   background: url("../images/fretboard-strings.svg") #331a00 repeat-x; }
 
-.fretboard .fret {
+.fretboard-rh .fret {
   border-left: 2px solid #D0D0D0;
   border-right: 1px solid #fff;
   border-top: 1px solid black;
   border-bottom: 1px solid black; }
   @media (min-width: 750px) {
-    .fretboard .fret {
+    .fretboard-rh .fret {
+      height: 175px; } }
+
+.fretboard-lh .fret {
+  border-left: 2px solid #D0D0D0;
+  border-right: 1px solid #fff;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black; }
+  @media (min-width: 750px) {
+    .fretboard-lh .fret {
       height: 175px; } }
 
 .position-marker {
@@ -463,11 +678,14 @@ h1 {
 .double-two {
   top: 59%; }
 
-.fretboard > .first {
+.fretboard-rh > .first {
   border-left: none; }
 
+.fretboard-lh > .last {
+  border-right: none; }
+
 /* ----------- NOTE MARKER STYLES ----------- */
-.note-marker {
+.note-marker, .note-marker-lh {
   position: absolute;
   border-radius: 50%;
   -moz-border-radius: 50%;
@@ -479,31 +697,38 @@ h1 {
   background: #fff;
   border: 1px solid #595959;
   color: #000;
-  transform: translateX(-105%);
-  -webkit-transform: translateX(-105%);
-  -ms-transform: translateX(-105%);
   box-sizing: content-box;
   -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
   -moz-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
   z-index: 9999; }
   @media (min-width: 1200px) and (max-width: 1500px) {
-    .note-marker {
+    .note-marker, .note-marker-lh {
       width: 16px;
       height: 16px;
       font-size: 11px; } }
 
+.note-marker {
+  transform: translateX(-105%);
+  -webkit-transform: translateX(-105%);
+  -ms-transform: translateX(-105%); }
+
+.note-marker-lh {
+  transform: translateX(105%);
+  -webkit-transform: translateX(105%);
+  -ms-transform: translateX(105%); }
+
 .scale-root-note {
   background: #b3e6ff; }
 
-.note-marker span {
+.note-marker span, .note-marker-lh span {
   display: table-cell;
   vertical-align: middle;
   height: 20px;
   width: 20px;
   text-align: center; }
   @media (min-width: 1200px) and (max-width: 1500px) {
-    .note-marker span {
+    .note-marker span, .note-marker-lh span {
       width: 16px;
       height: 16px; } }
 
