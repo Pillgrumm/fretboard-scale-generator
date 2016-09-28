@@ -1,9 +1,12 @@
 @media (max-width: 750px) {
+  .neck-container-lh {
+    display: none !important; }
+
   h1 {
     text-align: center;
-    margin: 30px 0 0 0; }
+    margin: 30px 0 0; }
 
-  .neck-container {
+  .neck-container-rh {
     height: 1350px;
     width: 280px;
     position: relative;
@@ -11,7 +14,8 @@
     margin: 0 auto;
     left: -20px; }
 
-  .strings {
+  .strings-lh,
+  .strings-rh {
     width: 240px;
     height: 40px;
     margin: 0;
@@ -19,7 +23,8 @@
     left: 40px;
     top: 0; }
 
-  .tuning {
+  .tuning-lh,
+  .tuning-rh {
     width: 240px;
     height: 40px;
     position: absolute;
@@ -44,33 +49,7 @@
     width: 23px;
     text-align: center; }
 
-  .nut-position {
-    position: absolute;
-    height: 50px;
-    width: 30px;
-    margin: 0;
-    text-align: center;
-    font-size: 12px;
-    top: 80px; }
-
-  .position-numbers {
-    position: absolute;
-    top: 130px;
-    text-align: center;
-    display: inline-block;
-    width: 30px; }
-
-  .position-numbers > div {
-    display: block;
-    width: 100%; }
-
-  .fret-number {
-    position: relative;
-    top: 50%;
-    margin-top: -25%;
-    font-size: 14px; }
-
-  .nut {
+  .nut-rh, .nut-lh {
     width: 240px;
     height: 50px;
     left: 40px;
@@ -80,13 +59,40 @@
     background-color: #fff;
     background-image: none; }
 
-  .fretboard-container {
+  .fretboard-container-rh, .fretboard-container-lh {
     left: 40px;
     top: 130px;
     height: 1350px;
     position: absolute;
     width: 240px;
     display: inline-block; }
+
+  .nut-position-lh,
+  .nut-position-rh {
+    position: absolute;
+    height: 50px;
+    width: 30px;
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    top: 80px; }
+
+  .position-numbers-rh, .position-numbers-lh {
+    position: absolute;
+    top: 130px;
+    text-align: center;
+    display: inline-block;
+    width: 30px; }
+
+  .position-numbers-rh > div, .position-numbers-lh > div {
+    display: block;
+    width: 100%; }
+
+  .fret-number {
+    position: relative;
+    top: 50%;
+    margin-top: -25%;
+    font-size: 14px; }
 
   /* ----------- FRETBOARD SPACING ----------- */
   .one {
@@ -257,7 +263,7 @@
     left: 88%; }
 
   /* ----------- FRETBOARD STYLES ----------- */
-  .fretboard {
+  .fretboard-rh, .fretboard-lh {
     position: absolute;
     height: 1350px;
     width: 240px;
@@ -267,7 +273,7 @@
     background-color: #331a00;
     background-image: none; }
 
-  .fretboard .fret {
+  .fretboard-rh .fret, .fretboard-lh .fret {
     border-bottom: 2px solid #D0D0D0;
     border-top: 1px solid #fff;
     border-left: 1px solid black;
@@ -297,7 +303,7 @@
     display: inline-block;
     margin-left: 138px; }
 
-  .fretboard > .first {
+  .fretboard-rh > .first, .fretboard-lh > .first {
     border-top: none; }
 
   /* ----------- NOTE MARKER STYLES ----------- */
