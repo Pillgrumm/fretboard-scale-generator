@@ -289,8 +289,6 @@
     .position-marker {
         background-color: #E6E2BE;
         border-radius: 50%;
-        -moz-border-radius: 50%;
-        -webkit-border-radius: 50%;
         height: 16px;
         width: 16px;
         margin-left: auto;
@@ -298,8 +296,6 @@
         position: relative;
         top: 50%;
         transform: translateY(-50%);
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
     }
     .double-one {
         display: inline-block;
@@ -316,8 +312,6 @@
     .note-marker {
         position: absolute;
         border-radius: 50%;
-        -moz-border-radius: 50%;
-        -webkit-border-radius: 50%;
         width: 20px;
         height: 20px;
         font-size: 12px;
@@ -326,11 +320,7 @@
         border: 1px solid #595959;
         color: #000;
         transform: translateY(-105%);
-        -webkit-transform: translateY(-105%);
-        -ms-transform: translateY(-105%);
         box-sizing: content-box;
-        -webkit-box-shadow: 0 3px 4px 0 rgba(0,0,0,0.45);
-        -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,0.45);
         box-shadow: 0 3px 4px 0 rgba(0,0,0,0.45);
         z-index: 9999;
     }
