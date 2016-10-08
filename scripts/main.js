@@ -1,5 +1,3 @@
-// "use strict";
-
 //-----------------GLOBAL VARIABLES-----------------//
 
 var notes = [
@@ -160,7 +158,7 @@ function arrayFlatToSharp(flatNoteArray, matchingSharpAndFlat) {
     // copy supplied array of notes
     convertedArray = flatNoteArray.slice(0);
     // loop through all notes
-    for (var string = 0; string < flatNoteArray.length; string++) {
+    for (var string = 0, arrayLength = flatNoteArray.length; string < arrayLength; string++) {
         // regex test for flats is true
         if (/([A-G])b/.test(flatNoteArray[string]) === true) {
             // convert note to sharp
@@ -178,7 +176,7 @@ function arraySharpToFlat(sharpNoteArray, matchingSharpAndFlat) {
     // copy supplied array of notes
     convertedArray = sharpNoteArray.slice(0);
     // loop through all notes
-    for (var string = 0; string < sharpNoteArray.length; string++) {
+    for (var string = 0, arrayLength = sharpNoteArray.length; string < arrayLength; string++) {
         // regex test for sharps is true
         if (/([A-G])#/.test(sharpNoteArray[string]) === true) {
             // convert note to flat
@@ -196,7 +194,7 @@ function arrayCorrectEnharmonic(enharmonicArray, matchingEnharmonic) {
     // copy supplied array of notes
     convertedArray = enharmonicArray.slice(0);
     // loop through all notes
-    for (var string = 0; string < enharmonicArray.length; string++) {
+    for (var string = 0, arrayLength = enharmonicArray.length; string < arrayLength; string++) {
         // regex test for enharmonics is true
         if (/(Fb|E#|B#|Cb)/.test(enharmonicArray[string]) === true) {
             // convert note to proper enharmonic equivalent
@@ -269,7 +267,7 @@ function singleStringFrets(scaleRootNote, stringRootNote, scalePattern) {
     // find fret number of key root note on string
     var noteAdd = workingNoteSet.indexOf(scaleRootNote.toString());
     // for every note in the scale pattern add noteAdd so the pattern begins on the key root note
-    for (var a = 0; a < workingScalePattern.length; a++) {
+    for (var a = 0, arrayLength = workingScalePattern.length; a < arrayLength; a++) {
         workingScalePattern[a] += noteAdd;
         // if scale pattern starting from key root goes over twelfth fret, subtract 12 frets
         if (workingScalePattern[a] >= 12) {
@@ -283,13 +281,13 @@ function singleStringFrets(scaleRootNote, stringRootNote, scalePattern) {
     // copy workingScalePattern for frets above twelve
     var patternAboveTwelve = workingScalePattern.slice(0);
     // for every fret add 12 frets to represent second octave
-    for (var b = 0; b < patternAboveTwelve.length; b++) {
+    for (var b = 0, arrayLength = patternAboveTwelve.length; b < arrayLength; b++) {
         patternAboveTwelve[b] += 12;
     }
     // add the frets above 12 to get the full fret numbers up to fret 23
     var fullFretNumbers = workingScalePattern.concat(patternAboveTwelve);
     // if we detect the 12th fret exists in the array push the 24th fret to the end of the array
-    for (var c = 0; c < fullFretNumbers.length; c++) {
+    for (var c = 0, arrayLength = fullFretNumbers.length; c < arrayLength; c++) {
         if (fullFretNumbers[c] === 12) {
             fullFretNumbers.push(24);
         }
@@ -307,7 +305,7 @@ function singleStringHtml(selectedKey, selectedScale, stringRootNote, stringNumb
     var fullFretNumbers = singleString.fullFretNumbers;
     var noteAdd = singleString.noteAdd;
     var workingNoteSet = singleString.workingNoteSet;
-    for (var fretCounter = 0; fretCounter < fullFretNumbers.length; fretCounter++) {
+    for (var fretCounter = 0, arrayLength = fullFretNumbers.length; fretCounter < arrayLength; fretCounter++) {
         var highlightRoot = '';
         if ((fullFretNumbers[fretCounter] === noteAdd) || (fullFretNumbers[fretCounter] === noteAdd + 12) || (fullFretNumbers[fretCounter] === noteAdd + 24)) {
             highlightRoot = 'scale-root-note';
@@ -327,7 +325,7 @@ function singleStringHtml(selectedKey, selectedScale, stringRootNote, stringNumb
 
 function allStringsHtml(selectedKey, selectedScale, selectedTuning, notes, boardOrientation) {
     var allStringsResult = '';
-    for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
+    for (var stringCounter = 0, arrayLength = selectedTuning.length; stringCounter < arrayLength; stringCounter++) {
         var stringName = ((selectedTuning[stringCounter]).toString());
         allStringsResult += singleStringHtml(selectedKey, selectedScale, stringName, (stringCounter + 1), boardOrientation);
     }
@@ -340,7 +338,7 @@ function displayCurrentTuning(selectedTuning, boardOrientation, isVertical) {
         selectedTuning = arraySharpToFlat(selectedTuning, matchingSharpAndFlat);
     }
     var tuningHtml = '';
-    for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
+    for (var stringCounter = 0, arrayLength = selectedTuning.length; stringCounter < arrayLength; stringCounter++) {
         tuningHtml += '<div class="tuning-note-marker string-' + (stringCounter + 1) + '"><span>' + (selectedTuning[stringCounter]) + '</span></div>';
     }
     return tuningHtml;
