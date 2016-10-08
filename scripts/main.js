@@ -202,7 +202,7 @@ function arrayCorrectEnharmonic(enharmonicArray, matchingEnharmonic) {
 function validateUserTuning() {
     var customTuningArray;
     // harvest custom user supplied tuning
-    var customInputTuning = $("input[name='userTuningInputValue']").val();
+    var customInputTuning = $("input[name='userTuningInputValue']").val().trim();
     // regex validation of user supplied tuning string fails
     if (/^([A-G](b|#)?){6}$/.test(customInputTuning) === false) {
         displayError('Please make sure the tuning follows these rules:<br>6 notes, no spaces.<br>Uppercase A-G.<br>b = flat.<br># = sharp.', 4000, 'tuningSelectError');
