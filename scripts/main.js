@@ -145,11 +145,10 @@ function getTuning() {
 // function to harvest current state of accidental switch
 function getAccidentalState() {
     if ($("#accidentalSwitch").val() === 'flat') {
-        var accidentalState = 'flat';
+        return 'flat';
     } else {
-        var accidentalState = 'sharp';
+        return 'sharp';
     }
-    return accidentalState;
 }
 
 // function to convert an array of notes which may contain flats to sharps where applicable
@@ -201,6 +200,7 @@ function arrayCorrectEnharmonic(enharmonicArray, matchingEnharmonic) {
 }
 
 function validateUserTuning() {
+    var customTuningArray;
     // harvest custom user supplied tuning
     var customInputTuning = $("input[name='userTuningInputValue']").val();
     // regex validation of user supplied tuning string fails
@@ -211,10 +211,10 @@ function validateUserTuning() {
     else {
         if (boardOrientation === 'leftHand' && isVertical) {
             // use regex to parse user tuning value into array and do not reverse for left hand
-            var customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g);
+            customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g);
         } else {
             // use regex to parse user tuning value into array and reverse for proper order
-            var customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
+            customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
         }
         // correct any user supplied enharmonic equivalents
         var correctedTuning = arrayCorrectEnharmonic(customTuningArray, matchingEnharmonic);
