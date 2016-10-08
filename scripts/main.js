@@ -71,14 +71,14 @@ function checkSize() {
     if ($(".fretboard-rh").css("height") === "1350px") {
         isVertical = true;
         if (boardOrientation === 'leftHand') {
-          $('.neck-container-lh').hide();
-          $('.neck-container-lh-vert').show();
+            $('.neck-container-lh').hide();
+            $('.neck-container-lh-vert').show();
         }
     } else {
         isVertical = false;
         if (boardOrientation === 'leftHand') {
-          $('.neck-container-lh-vert').hide();
-          $('.neck-container-lh').show();
+            $('.neck-container-lh-vert').hide();
+            $('.neck-container-lh').show();
         }
     }
 }
@@ -250,8 +250,8 @@ function singleStringFrets(scaleRootNote, stringRootNote, scalePattern) {
     var accidentalState = getAccidentalState();
     // checks for flat accidental state
     if (accidentalState === 'flat' && /([A-G])(b|#)/.test(scaleRootNote) === true) {
-            // converts scale root note to flat
-            scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
+        // converts scale root note to flat
+        scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
     }
     // get note names for each fret given the tuning of the string
     var workingNoteSet = getStringNoteNames(stringRootNote, notes);
@@ -311,7 +311,7 @@ function singleStringHtml(selectedKey, selectedScale, stringRootNote, stringNumb
             //singleStringResult += '<div class="note-marker string-' + stringNumber + ' fret-' + fullFretNumbers[fretCounter] + ' ' + highlightRoot + '"><span>' + workingNoteSet[fullFretNumbers[fretCounter]] + '</span></div>';
         }
     }
-  return singleStringResult;
+    return singleStringResult;
 }
 
 // ------------------------------------- //
@@ -338,22 +338,19 @@ function displayCurrentTuning(selectedTuning, boardOrientation, isVertical) {
 }
 
 function appendBoardHtml(outputTuning, boardOrientation, isVertical, allStringsOutput, allStringsOutputLH) {
-    // fill tuning HTML template with values from selected tuning
-    var tuningOutput = displayCurrentTuning(outputTuning, boardOrientation, isVertical);
+    var tuningOutput, hand;
     if (boardOrientation === 'rightHand') {
-        // append HTML of selected tuning to display current tuning
-        $('.tuning-rh').html(tuningOutput);
-        $('.notes-display-rh').html(allStringsOutput);
+        // fill tuning HTML template with values from selected tuning
+        var tuningOutput = displayCurrentTuning(outputTuning, boardOrientation, isVertical);
+        hand = 'rh';
     }
-    if (boardOrientation === 'leftHand') {
-        // append HTML of selected tuning to display current tuning
-        // CHANGED TO TUNING-LH
-        $('.tuning-lh').html(tuningOutput);
-        $('.notes-display-lh').html(allStringsOutput);
-        $('.tuning-lh-vert').html(tuningOutput);
-        $('.notes-display-lh-vert').html(allStringsOutputLH);
-
+    else {
+      tuningOutput = displayCurrentTuning(outputTuning, boardOrientation, isVertical);
+      hand = 'lh';
     }
+    // append HTML of selected tuning to display current tuning
+    $('.tuning-'+hand).html(tuningOutput);
+    $('.notes-display-'+hand).html(allStringsOutput);
 }
 
 function toggleCustomTuning(tuningValue) {
@@ -435,14 +432,13 @@ $('#showNotesOnFretboard').on('click', function() {
 // On click of "Left Hand" button
 $('#switchToLeft').on('click', function() {
     if (isVertical === true) {
-      $('.neck-container-rh').hide();
-      $('.neck-container-lh').hide();
-      $('.neck-container-lh-vert').show();
-    }
-    else {
-      $('.neck-container-rh').hide();
-      $('.neck-container-lh-vert').hide();
-      $('.neck-container-lh').show();
+        $('.neck-container-rh').hide();
+        $('.neck-container-lh').hide();
+        $('.neck-container-lh-vert').show();
+    } else {
+        $('.neck-container-rh').hide();
+        $('.neck-container-lh-vert').hide();
+        $('.neck-container-lh').show();
     }
     switchToLeftHand();
     eventListenerTrigger();
