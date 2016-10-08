@@ -6,7 +6,7 @@
     text-align: center;
     margin: 30px 0 0; }
 
-  .neck-container-rh {
+  .neck-container-rh, .neck-container-lh-vert {
     height: 1350px;
     width: 280px;
     position: relative;
@@ -14,7 +14,7 @@
     margin: 0 auto;
     left: -20px; }
 
-  .strings-lh,
+  .strings-lh-vert,
   .strings-rh {
     width: 240px;
     height: 40px;
@@ -23,7 +23,7 @@
     left: 40px;
     top: 0; }
 
-  .tuning-lh,
+  .tuning-lh-vert,
   .tuning-rh {
     width: 240px;
     height: 40px;
@@ -49,7 +49,7 @@
     width: 23px;
     text-align: center; }
 
-  .nut-rh, .nut-lh {
+  .nut-rh, .nut-lh-vert {
     width: 240px;
     height: 50px;
     left: 40px;
@@ -59,7 +59,7 @@
     background-color: #fff;
     background-image: none; }
 
-  .fretboard-container-rh, .fretboard-container-lh {
+  .fretboard-container-rh, .fretboard-container-lh-vert {
     left: 40px;
     top: 130px;
     height: 1350px;
@@ -67,7 +67,7 @@
     width: 240px;
     display: inline-block; }
 
-  .nut-position-lh,
+  .nut-position-lh-vert,
   .nut-position-rh {
     position: absolute;
     height: 50px;
@@ -77,14 +77,14 @@
     font-size: 12px;
     top: 80px; }
 
-  .position-numbers-rh, .position-numbers-lh {
+  .position-numbers-rh, .position-numbers-lh-vert {
     position: absolute;
     top: 130px;
     text-align: center;
     display: inline-block;
     width: 30px; }
 
-  .position-numbers-rh > div, .position-numbers-lh > div {
+  .position-numbers-rh > div, .position-numbers-lh-vert > div {
     display: block;
     width: 100%; }
 
@@ -263,7 +263,7 @@
     left: 88%; }
 
   /* ----------- FRETBOARD STYLES ----------- */
-  .fretboard-rh, .fretboard-lh {
+  .fretboard-rh, .fretboard-lh-vert {
     position: absolute;
     height: 1350px;
     width: 240px;
@@ -273,7 +273,7 @@
     background-color: #331a00;
     background-image: none; }
 
-  .fretboard-rh .fret, .fretboard-lh .fret {
+  .fretboard-rh .fret, .fretboard-lh-vert .fret {
     border-bottom: 2px solid #D0D0D0;
     border-top: 1px solid #fff;
     border-left: 1px solid black;
@@ -303,7 +303,7 @@
     display: inline-block;
     margin-left: 138px; }
 
-  .fretboard-rh > .first, .fretboard-lh > .first {
+  .fretboard-rh > .first, .fretboard-lh-vert > .first {
     border-top: none; }
 
   /* ----------- NOTE MARKER STYLES ----------- */

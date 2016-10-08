@@ -38,44 +38,51 @@ var boardOrientation = 'rightHand';
 
 var isVertical = '';
 
-scales = Array();
-scales['major'] = Array(0, 2, 4, 5, 7, 9, 11);
-scales['minor'] = Array(0, 2, 3, 5, 7, 8, 10);
-scales['major-pentatonic'] = Array(0, 2, 4, 7, 9);
-scales['minor-pentatonic'] = Array(0, 3, 5, 7, 10);
-scales['ionian'] = Array(0, 2, 4, 5, 7, 9, 11);
-scales['dorian'] = Array(0, 2, 3, 5, 7, 9, 10);
-scales['phrygian'] = Array(0, 1, 3, 5, 7, 8, 10);
-scales['lydian'] = Array(0, 2, 4, 6, 7, 9, 11);
-scales['mixolydian'] = Array(0, 2, 4, 5, 7, 9, 10);
-scales['aeolian'] = Array(0, 2, 3, 5, 7, 8, 10);
-scales['locrian'] = Array(0, 1, 3, 5, 6, 8, 10);
-scales['harmonic-minor'] = Array(0, 2, 3, 5, 7, 8, 11);
-scales['melodic-minor'] = Array(0, 2, 3, 5, 7, 9, 11);
-scales['whole-tone'] = Array(0, 2, 4, 6, 8, 10);
-scales['whole-half-diminished'] = Array(0, 2, 3, 5, 6, 8, 9, 11);
-scales['half-whole-diminished'] = Array(0, 1, 3, 4, 6, 7, 9, 10);
-scales['chromatic'] = Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+scales = [];
+scales['major'] = [0, 2, 4, 5, 7, 9, 11];
+scales['minor'] = [0, 2, 3, 5, 7, 8, 10];
+scales['major-pentatonic'] = [0, 2, 4, 7, 9];
+scales['minor-pentatonic'] = [0, 3, 5, 7, 10];
+scales['ionian'] = [0, 2, 4, 5, 7, 9, 11];
+scales['dorian'] = [0, 2, 3, 5, 7, 9, 10];
+scales['phrygian'] = [0, 1, 3, 5, 7, 8, 10];
+scales['lydian'] = [0, 2, 4, 6, 7, 9, 11];
+scales['mixolydian'] = [0, 2, 4, 5, 7, 9, 10];
+scales['aeolian'] = [0, 2, 3, 5, 7, 8, 10];
+scales['locrian'] = [0, 1, 3, 5, 6, 8, 10];
+scales['harmonic-minor'] = [0, 2, 3, 5, 7, 8, 11];
+scales['melodic-minor'] = [0, 2, 3, 5, 7, 9, 11];
+scales['whole-tone'] = [0, 2, 4, 6, 8, 10];
+scales['whole-half-diminished'] = [0, 2, 3, 5, 6, 8, 9, 11];
+scales['half-whole-diminished'] = [0, 1, 3, 4, 6, 7, 9, 10];
+scales['chromatic'] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-stringTuning = Array();
-stringTuning['standard'] = Array('E', 'B', 'G', 'D', 'A', 'E');
-stringTuning['half-step-down'] = Array('D#', 'A#', 'F#', 'C#', 'G#', 'D#');
-stringTuning['full-step-down'] = Array('D', 'A', 'F', 'C', 'G', 'D');
-stringTuning['drop-d'] = Array('E', 'B', 'G', 'D', 'A', 'D');
-stringTuning['dadgad'] = Array('D', 'A', 'G', 'D', 'A', 'D');
-stringTuning['open-g'] = Array('D', 'B', 'G', 'D', 'G', 'D');
-stringTuning['perfect-fourths'] = Array('F', 'C', 'G', 'D', 'A', 'E');
-stringTuning['major-thirds'] = Array('C', 'G#', 'E', 'C', 'G#', 'E');
+stringTuning = [];
+stringTuning['standard'] = ['E', 'B', 'G', 'D', 'A', 'E'];
+stringTuning['half-step-down'] = ['D#', 'A#', 'F#', 'C#', 'G#', 'D#'];
+stringTuning['full-step-down'] = ['D', 'A', 'F', 'C', 'G', 'D'];
+stringTuning['drop-d'] = ['E', 'B', 'G', 'D', 'A', 'D'];
+stringTuning['dadgad'] = ['D', 'A', 'G', 'D', 'A', 'D'];
+stringTuning['open-g'] = ['D', 'B', 'G', 'D', 'G', 'D'];
+stringTuning['perfect-fourths'] = ['F', 'C', 'G', 'D', 'A', 'E'];
+stringTuning['major-thirds'] = ['C', 'G#', 'E', 'C', 'G#', 'E'];
 
 //-----------------FUNCTION DEFINITIONS-----------------//
 
 function checkSize() {
     if ($(".fretboard-rh").css("height") === "1350px") {
         isVertical = true;
+        if (boardOrientation === 'leftHand') {
+          $('.neck-container-lh').hide();
+          $('.neck-container-lh-vert').show();
+        }
     } else {
         isVertical = false;
+        if (boardOrientation === 'leftHand') {
+          $('.neck-container-lh-vert').hide();
+          $('.neck-container-lh').show();
+        }
     }
-    //console.log(isVertical);
 }
 
 function switchToLeftHand() {
@@ -85,7 +92,6 @@ function switchToLeftHand() {
 function switchToRightHand() {
     boardOrientation = 'rightHand';
 }
-
 
 // function to convert a single flat note to a sharp
 function flatToSharp(flatNote, matchingSharpAndFlat) {
@@ -219,7 +225,6 @@ function validateUserTuning() {
             // use regex to parse user tuning value into array and reverse for proper order
             var customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
         }
-        console.log(customTuningArray);
         // correct any user supplied enharmonic equivalents
         var correctedTuning = arrayCorrectEnharmonic(customTuningArray, matchingEnharmonic);
         // define output tuning by converting tuning array to sharps
@@ -230,7 +235,8 @@ function validateUserTuning() {
 }
 
 // function to get string note names in order given a certain string tuning
-function getStringNoteNames(stringRootNote, notes, accidentalState) {
+function getStringNoteNames(stringRootNote, notes) {
+    var accidentalState = getAccidentalState();
     // copy the notes array
     var notesRearrange = notes.slice(0);
     // find where the string root appears in the copied notes array
@@ -251,7 +257,8 @@ function getStringNoteNames(stringRootNote, notes, accidentalState) {
     }
 }
 
-function createSingleStringHtml(scaleRootNote, stringRootNote, stringNumber, scalePattern, notes, accidentalState, boardOrientation) {
+function singleStringFrets(scaleRootNote, stringRootNote, scalePattern) {
+    var accidentalState = getAccidentalState();
     // checks for flat accidental state
     if (accidentalState === 'flat') {
         if (/([A-G])(b|#)/.test(scaleRootNote) === true) {
@@ -260,7 +267,7 @@ function createSingleStringHtml(scaleRootNote, stringRootNote, stringNumber, sca
         }
     }
     // get note names for each fret given the tuning of the string
-    var workingNoteSet = getStringNoteNames(stringRootNote, notes, accidentalState);
+    var workingNoteSet = getStringNoteNames(stringRootNote, notes);
     // copy scale pattern
     var workingScalePattern = scalePattern.slice(0);
     // find fret number of key root note on string
@@ -291,32 +298,48 @@ function createSingleStringHtml(scaleRootNote, stringRootNote, stringNumber, sca
             fullFretNumbers.push(24);
         }
     }
-    var singleStringHtml = '';
+    return {
+        fullFretNumbers: fullFretNumbers,
+        noteAdd: noteAdd,
+        workingNoteSet: workingNoteSet,
+    }
+}
+
+function singleStringHtml(selectedKey, selectedScale, stringRootNote, stringNumber, boardOrientation) {
+    var singleStringResult = '';
+    var singleString = singleStringFrets(selectedKey, stringRootNote, selectedScale);
+    var fullFretNumbers = singleString.fullFretNumbers;
+    var noteAdd = singleString.noteAdd;
+    var workingNoteSet = singleString.workingNoteSet;
     for (var fretCounter = 0; fretCounter < fullFretNumbers.length; fretCounter++) {
         var highlightRoot = '';
         if ((fullFretNumbers[fretCounter] === noteAdd) || (fullFretNumbers[fretCounter] === noteAdd + 12) || (fullFretNumbers[fretCounter] === noteAdd + 24)) {
             highlightRoot = 'scale-root-note';
         }
         if (boardOrientation === 'rightHand') {
-            singleStringHtml += '<div class="note-marker string-' + stringNumber + ' fret-' + fullFretNumbers[fretCounter] + ' ' + highlightRoot + '"><span>' + workingNoteSet[fullFretNumbers[fretCounter]] + '</span></div>';
+            singleStringResult += '<div class="note-marker string-' + stringNumber + ' fret-' + fullFretNumbers[fretCounter] + ' ' + highlightRoot + '"><span>' + workingNoteSet[fullFretNumbers[fretCounter]] + '</span></div>';
         }
         if (boardOrientation === 'leftHand') {
-            singleStringHtml += '<div class="note-marker-lh string-' + stringNumber + ' fret-lh-' + fullFretNumbers[fretCounter] + ' ' + highlightRoot + '"><span>' + workingNoteSet[fullFretNumbers[fretCounter]] + '</span></div>';
+            singleStringResult += '<div class="note-marker-lh string-' + stringNumber + ' fret-lh-' + fullFretNumbers[fretCounter] + ' ' + highlightRoot + '"><span>' + workingNoteSet[fullFretNumbers[fretCounter]] + '</span></div>';
+            //singleStringResult += '<div class="note-marker string-' + stringNumber + ' fret-' + fullFretNumbers[fretCounter] + ' ' + highlightRoot + '"><span>' + workingNoteSet[fullFretNumbers[fretCounter]] + '</span></div>';
         }
     }
-    return singleStringHtml;
+  return singleStringResult;
 }
 
-function createAllStringsHtml(selectedKey, selectedScale, selectedTuning, notes, accidentalState, boardOrientation, isVertical) {
+// ------------------------------------- //
+
+function allStringsHtml(selectedKey, selectedScale, selectedTuning, notes, boardOrientation) {
     var allStringsResult = '';
     for (var stringCounter = 0; stringCounter < selectedTuning.length; stringCounter++) {
         var stringName = ((selectedTuning[stringCounter]).toString());
-        allStringsResult += createSingleStringHtml(selectedKey, stringName, (stringCounter + 1), selectedScale, notes, accidentalState, boardOrientation);
+        allStringsResult += singleStringHtml(selectedKey, selectedScale, stringName, (stringCounter + 1), boardOrientation);
     }
     return allStringsResult;
 }
 
-function displayCurrentTuning(selectedTuning, accidentalState, boardOrientation, isVertical) {
+function displayCurrentTuning(selectedTuning, boardOrientation, isVertical) {
+    var accidentalState = getAccidentalState();
     if (accidentalState === 'flat') {
         selectedTuning = arraySharpToFlat(selectedTuning, matchingSharpAndFlat);
     }
@@ -327,21 +350,21 @@ function displayCurrentTuning(selectedTuning, accidentalState, boardOrientation,
     return tuningHtml;
 }
 
-function appendBoardHtml(outputTuning, accidentalState, boardOrientation, isVertical, allStringsOutput) {
+function appendBoardHtml(outputTuning, boardOrientation, isVertical, allStringsOutput, allStringsOutputLH) {
+    // fill tuning HTML template with values from selected tuning
+    var tuningOutput = displayCurrentTuning(outputTuning, boardOrientation, isVertical);
     if (boardOrientation === 'rightHand') {
-        // fill tuning HTML template with values from selected tuning
-        var tuningOutput = displayCurrentTuning(outputTuning, accidentalState, boardOrientation, isVertical);
         // append HTML of selected tuning to display current tuning
         $('.tuning-rh').html(tuningOutput);
         $('.notes-display-rh').html(allStringsOutput);
     }
     if (boardOrientation === 'leftHand') {
-        // fill tuning HTML template with values from selected tuning
-        var tuningOutput = displayCurrentTuning(outputTuning, accidentalState, boardOrientation, isVertical);
         // append HTML of selected tuning to display current tuning
         // CHANGED TO TUNING-LH
         $('.tuning-lh').html(tuningOutput);
         $('.notes-display-lh').html(allStringsOutput);
+        $('.tuning-lh-vert').html(tuningOutput);
+        $('.notes-display-lh-vert').html(allStringsOutputLH);
 
     }
 }
@@ -367,7 +390,6 @@ function displayError(message, fadeTime, classTarget) {
 function eventListenerTrigger() {
     // reset output to avoid cumulative build up of incorrect notes on fretboard
     var allStringsOutput = '';
-    var accidentalState = getAccidentalState();
     var selectedTuning = getTuning();
     var keyAndScale = getKeyAndScale();
     var selectedKey = keyAndScale.selectedKey;
@@ -376,20 +398,25 @@ function eventListenerTrigger() {
         // conditional check for whether a custom user supplied tuning is being used
         if (selectedTuning === 'custom') {
             var outputTuning = validateUserTuning();
+            var outputTuningLH = outputTuning.slice(0).reverse();
+            console.log('Right Hand Tuning:', outputTuning);
+            console.log('Left Hand Tuning:', outputTuningLH);
         }
         // if predefined tuning is selected
         else {
             var predefinedTuning = selectedTuning;
             // define output tuning by matching to existing tuning array
             var outputTuning = stringTuning[predefinedTuning];
+            var outputTuningLH = outputTuning.slice(0).reverse();
+            console.log('Right Hand Tuning:', outputTuning);
+            console.log('Left Hand Tuning:', outputTuningLH);
         }
-        // Run createSingleStringHtml for all 6 strings given user selected tuning, scale, and key
-        var allStringsOutput = createAllStringsHtml(selectedKey, scales[selectedScale], outputTuning, notes, accidentalState, boardOrientation, isVertical);
-        appendBoardHtml(outputTuning, accidentalState, boardOrientation, isVertical, allStringsOutput);
+        // Run singleStringHtml for all 6 strings given user selected tuning, scale, and key
+        var allStringsOutput = allStringsHtml(selectedKey, scales[selectedScale], outputTuning, notes, boardOrientation, isVertical);
+        var allStringsOutputLH = allStringsHtml(selectedKey, scales[selectedScale], outputTuningLH, notes, boardOrientation, isVertical);
+        appendBoardHtml(outputTuning, boardOrientation, isVertical, allStringsOutput, allStringsOutputLH);
     }
 }
-
-
 
 //-----------------CALLING FUNCTIONS-----------------//
 
@@ -420,8 +447,16 @@ $('#showNotesOnFretboard').on('click', function() {
 
 // On click of "Left Hand" button
 $('#switchToLeft').on('click', function() {
-    $('.neck-container-rh').hide();
-    $('.neck-container-lh').show();
+    if (isVertical === true) {
+      $('.neck-container-rh').hide();
+      $('.neck-container-lh').hide();
+      $('.neck-container-lh-vert').show();
+    }
+    else {
+      $('.neck-container-rh').hide();
+      $('.neck-container-lh-vert').hide();
+      $('.neck-container-lh').show();
+    }
     switchToLeftHand();
     eventListenerTrigger();
 });
@@ -429,6 +464,7 @@ $('#switchToLeft').on('click', function() {
 // On click of "Right Hand" button
 $('#switchToRight').on('click', function() {
     $('.neck-container-lh').hide();
+    $('.neck-container-lh-vert').hide();
     $('.neck-container-rh').show();
     switchToRightHand();
     eventListenerTrigger();
@@ -436,6 +472,7 @@ $('#switchToRight').on('click', function() {
 
 // hide the left hand neck container
 $('.neck-container-lh').hide();
+$('.neck-container-lh-vert').hide();
 
 // hides custom tuning select upon initial page load
 $(".custom-tuning-select").hide();
