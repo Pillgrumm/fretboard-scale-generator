@@ -139,8 +139,7 @@ function validateKeyAndScale(selectedKey, selectedScale) {
 
 function getTuning() {
     // harvest the user selected predefined tuning value
-    var tuningValue = $("#tuningSelect").val();
-    return tuningValue;
+    return $("#tuningSelect").val();
 }
 
 // function to harvest current state of accidental switch
@@ -156,15 +155,13 @@ function getAccidentalState() {
 // function to convert an array of notes which may contain flats to sharps where applicable
 function arrayFlatToSharp(flatNoteArray, matchingSharpAndFlat) {
     // copy supplied array of notes
-    convertedArray = flatNoteArray.slice(0);
+    var convertedArray = flatNoteArray.slice(0);
     // loop through all notes
     for (var string = 0, arrayLength = flatNoteArray.length; string < arrayLength; string++) {
         // regex test for flats is true
         if (/([A-G])b/.test(flatNoteArray[string]) === true) {
-            // convert note to sharp
-            convertedNote = flatToSharp(flatNoteArray[string], matchingSharpAndFlat);
-            // replace note in array with its converted equivalent
-            convertedArray[string] = convertedNote;
+            // convert note to sharp and replace note in array with its converted equivalent
+            convertedArray[string] = flatToSharp(flatNoteArray[string], matchingSharpAndFlat);
         }
     }
     // return complete array with all of the flat to sharp conversions in place
@@ -174,15 +171,13 @@ function arrayFlatToSharp(flatNoteArray, matchingSharpAndFlat) {
 // function to convert an array of notes which may contain sharps to flats where applicable
 function arraySharpToFlat(sharpNoteArray, matchingSharpAndFlat) {
     // copy supplied array of notes
-    convertedArray = sharpNoteArray.slice(0);
+    var convertedArray = sharpNoteArray.slice(0);
     // loop through all notes
     for (var string = 0, arrayLength = sharpNoteArray.length; string < arrayLength; string++) {
         // regex test for sharps is true
         if (/([A-G])#/.test(sharpNoteArray[string]) === true) {
-            // convert note to flat
-            convertedNote = sharpToFlat(sharpNoteArray[string], matchingSharpAndFlat);
-            // replace note in array with its converted equivalent
-            convertedArray[string] = convertedNote;
+            // convert note to flat and replace note in array with its converted equivalent
+            convertedArray[string] = sharpToFlat(sharpNoteArray[string], matchingSharpAndFlat);
         }
     }
     // return complete array with all of the sharp to flat conversions in place
@@ -192,15 +187,13 @@ function arraySharpToFlat(sharpNoteArray, matchingSharpAndFlat) {
 // function to convert an array of notes which may contain undesirable enharmonic equivalents where applicable
 function arrayCorrectEnharmonic(enharmonicArray, matchingEnharmonic) {
     // copy supplied array of notes
-    convertedArray = enharmonicArray.slice(0);
+    var convertedArray = enharmonicArray.slice(0);
     // loop through all notes
     for (var string = 0, arrayLength = enharmonicArray.length; string < arrayLength; string++) {
         // regex test for enharmonics is true
         if (/(Fb|E#|B#|Cb)/.test(enharmonicArray[string]) === true) {
-            // convert note to proper enharmonic equivalent
-            convertedNote = correctEnharmonic(enharmonicArray[string], matchingEnharmonic);
-            // replace note in array with its converted equivalent
-            convertedArray[string] = convertedNote;
+            // convert note to proper enharmonic equivalent and replace note in array with its converted equivalent
+            convertedArray[string] = correctEnharmonic(enharmonicArray[string], matchingEnharmonic);
         }
     }
     // return complete array with all of enharmonic conversions in place
