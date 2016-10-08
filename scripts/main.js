@@ -218,7 +218,7 @@ function validateUserTuning() {
     }
     // regex validation of user supplied tuning succeeds
     else {
-        if ((boardOrientation === 'leftHand') && (isVertical === true)) {
+        if (boardOrientation === 'leftHand' && isVertical) {
             // use regex to parse user tuning value into array and do not reverse for left hand
             var customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g);
         } else {
@@ -227,10 +227,8 @@ function validateUserTuning() {
         }
         // correct any user supplied enharmonic equivalents
         var correctedTuning = arrayCorrectEnharmonic(customTuningArray, matchingEnharmonic);
-        // define output tuning by converting tuning array to sharps
-        var outputTuning = (arrayFlatToSharp(correctedTuning, matchingSharpAndFlat));
-        // return output tuning
-        return outputTuning;
+        // return output tuning by converting tuning array to sharps
+        return arrayFlatToSharp(correctedTuning, matchingSharpAndFlat);
     }
 }
 
