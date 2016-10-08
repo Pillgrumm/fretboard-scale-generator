@@ -83,12 +83,13 @@ function checkSize() {
     }
 }
 
-function switchToLeftHand() {
+function switchHands(side) {
+  if (side === 'left') {
     boardOrientation = 'leftHand';
-}
-
-function switchToRightHand() {
+  }
+  else {
     boardOrientation = 'rightHand';
+  }
 }
 
 // function to convert a single flat note to a sharp
@@ -440,7 +441,7 @@ $('#switchToLeft').on('click', function() {
         $('.neck-container-lh-vert').hide();
         $('.neck-container-lh').show();
     }
-    switchToLeftHand();
+    switchHands('left');
     eventListenerTrigger();
 });
 
@@ -449,7 +450,7 @@ $('#switchToRight').on('click', function() {
     $('.neck-container-lh').hide();
     $('.neck-container-lh-vert').hide();
     $('.neck-container-rh').show();
-    switchToRightHand();
+    switchHands('right');
     eventListenerTrigger();
 });
 
