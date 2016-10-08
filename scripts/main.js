@@ -260,11 +260,9 @@ function getStringNoteNames(stringRootNote, notes) {
 function singleStringFrets(scaleRootNote, stringRootNote, scalePattern) {
     var accidentalState = getAccidentalState();
     // checks for flat accidental state
-    if (accidentalState === 'flat') {
-        if (/([A-G])(b|#)/.test(scaleRootNote) === true) {
+    if (accidentalState === 'flat' && /([A-G])(b|#)/.test(scaleRootNote) === true) {
             // converts scale root note to flat
             scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
-        }
     }
     // get note names for each fret given the tuning of the string
     var workingNoteSet = getStringNoteNames(stringRootNote, notes);
