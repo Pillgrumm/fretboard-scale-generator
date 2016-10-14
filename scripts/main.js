@@ -121,6 +121,7 @@ function getKeyAndScale() {
 }
 
 function validateKeyAndScale(selectedKey, selectedScale) {
+    var missingKeyOrScale;
     // conditional check that key and scale are not supplied
     if ((selectedKey === 'select') || (selectedScale === 'select')) {
         // conditional check that key is not supplied
@@ -131,9 +132,9 @@ function validateKeyAndScale(selectedKey, selectedScale) {
         if (selectedScale === 'select') {
             displayError('Please select a scale', 2000, 'scaleSelectError');
         }
-        var missingKeyOrScale = true;
+        missingKeyOrScale = true;
     } else {
-        var missingKeyOrScale = false;
+        missingKeyOrScale = false;
     }
     return missingKeyOrScale;
 }
