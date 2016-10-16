@@ -1,71 +1,68 @@
 //-----------------GLOBAL VARIABLES-----------------//
 var fretGen = {
-  notes: [
-      "C",
-      "C#",
-      "D",
-      "D#",
-      "E",
-      "F",
-      "F#",
-      "G",
-      "G#",
-      "A",
-      "A#",
-      "B"
-  ]
+    notes: [
+        "C",
+        "C#",
+        "D",
+        "D#",
+        "E",
+        "F",
+        "F#",
+        "G",
+        "G#",
+        "A",
+        "A#",
+        "B"
+    ],
+    matchingSharpAndFlat: [{
+        "C#": "Db",
+        "D#": "Eb",
+        "F#": "Gb",
+        "G#": "Ab",
+        "A#": "Bb",
+    }],
+    matchingEnharmonic: [{
+        "Fb": "E",
+        "E#": "F",
+        "Cb": "B",
+        "B#": "C"
+    }],
+    scales: {
+        'major': [0, 2, 4, 5, 7, 9, 11],
+        'minor': [0, 2, 3, 5, 7, 8, 10],
+        'major-pentatonic': [0, 2, 4, 7, 9],
+        'minor-pentatonic': [0, 3, 5, 7, 10],
+        'ionian': [0, 2, 4, 5, 7, 9, 11],
+        'dorian': [0, 2, 3, 5, 7, 9, 10],
+        'phrygian': [0, 1, 3, 5, 7, 8, 10],
+        'lydian': [0, 2, 4, 6, 7, 9, 11],
+        'mixolydian': [0, 2, 4, 5, 7, 9, 10],
+        'aeolian': [0, 2, 3, 5, 7, 8, 10],
+        'locrian': [0, 1, 3, 5, 6, 8, 10],
+        'harmonic-minor': [0, 2, 3, 5, 7, 8, 11],
+        'melodic-minor': [0, 2, 3, 5, 7, 9, 11],
+        'whole-tone': [0, 2, 4, 6, 8, 10],
+        'whole-half-diminished': [0, 2, 3, 5, 6, 8, 9, 11],
+        'half-whole-diminished': [0, 1, 3, 4, 6, 7, 9, 10],
+        'chromatic': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    },
+    stringTuning: {
+      'standard': ['E', 'B', 'G', 'D', 'A', 'E'],
+      'half-step-down': ['D#', 'A#', 'F#', 'C#', 'G#', 'D#'],
+      'full-step-down': ['D', 'A', 'F', 'C', 'G', 'D'],
+      'drop-d': ['E', 'B', 'G', 'D', 'A', 'D'],
+      'dadgad': ['D', 'A', 'G', 'D', 'A', 'D'],
+      'open-g': ['D', 'B', 'G', 'D', 'G', 'D'],
+      'perfect-fourths': ['F', 'C', 'G', 'D', 'A', 'E'],
+      'major-thirds': ['C', 'G#', 'E', 'C', 'G#', 'E'],
+    }
 };
-
-
-var matchingSharpAndFlat = [{
-    "C#": "Db",
-    "D#": "Eb",
-    "F#": "Gb",
-    "G#": "Ab",
-    "A#": "Bb",
-}];
-
-var matchingEnharmonic = [{
-    "Fb": "E",
-    "E#": "F",
-    "Cb": "B",
-    "B#": "C"
-}];
 
 var accidentalState = '';
 
 var boardOrientation = 'rightHand';
 
 var isVertical = '';
-
-scales = [];
-scales['major'] = [0, 2, 4, 5, 7, 9, 11];
-scales['minor'] = [0, 2, 3, 5, 7, 8, 10];
-scales['major-pentatonic'] = [0, 2, 4, 7, 9];
-scales['minor-pentatonic'] = [0, 3, 5, 7, 10];
-scales['ionian'] = [0, 2, 4, 5, 7, 9, 11];
-scales['dorian'] = [0, 2, 3, 5, 7, 9, 10];
-scales['phrygian'] = [0, 1, 3, 5, 7, 8, 10];
-scales['lydian'] = [0, 2, 4, 6, 7, 9, 11];
-scales['mixolydian'] = [0, 2, 4, 5, 7, 9, 10];
-scales['aeolian'] = [0, 2, 3, 5, 7, 8, 10];
-scales['locrian'] = [0, 1, 3, 5, 6, 8, 10];
-scales['harmonic-minor'] = [0, 2, 3, 5, 7, 8, 11];
-scales['melodic-minor'] = [0, 2, 3, 5, 7, 9, 11];
-scales['whole-tone'] = [0, 2, 4, 6, 8, 10];
-scales['whole-half-diminished'] = [0, 2, 3, 5, 6, 8, 9, 11];
-scales['half-whole-diminished'] = [0, 1, 3, 4, 6, 7, 9, 10];
-scales['chromatic'] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
-stringTuning = [];
-stringTuning['standard'] = ['E', 'B', 'G', 'D', 'A', 'E'];
-stringTuning['half-step-down'] = ['D#', 'A#', 'F#', 'C#', 'G#', 'D#'];
-stringTuning['full-step-down'] = ['D', 'A', 'F', 'C', 'G', 'D'];
-stringTuning['drop-d'] = ['E', 'B', 'G', 'D', 'A', 'D'];
-stringTuning['dadgad'] = ['D', 'A', 'G', 'D', 'A', 'D'];
-stringTuning['open-g'] = ['D', 'B', 'G', 'D', 'G', 'D'];
-stringTuning['perfect-fourths'] = ['F', 'C', 'G', 'D', 'A', 'E'];
-stringTuning['major-thirds'] = ['C', 'G#', 'E', 'C', 'G#', 'E'];
 
 //-----------------FUNCTION DEFINITIONS-----------------//
 
@@ -86,29 +83,28 @@ function checkSize() {
 }
 
 function switchHands(side) {
-  if (side === 'left') {
-    boardOrientation = 'leftHand';
-  }
-  else {
-    boardOrientation = 'rightHand';
-  }
+    if (side === 'left') {
+        boardOrientation = 'leftHand';
+    } else {
+        boardOrientation = 'rightHand';
+    }
 }
 
 // function to convert a single flat note to a sharp
-function flatToSharp(flatNote, matchingSharpAndFlat) {
-    return Object.keys(matchingSharpAndFlat[0]).find(function(key) {
-        return matchingSharpAndFlat[0][key] === flatNote;
+function flatToSharp(flatNote) {
+    return Object.keys(fretGen.matchingSharpAndFlat[0]).find(function(key) {
+        return fretGen.matchingSharpAndFlat[0][key] === flatNote;
     });
 }
 
 // function to convert a single sharp note to a flat
-function sharpToFlat(sharpNote, matchingSharpAndFlat) {
-    return matchingSharpAndFlat[0][sharpNote];
+function sharpToFlat(sharpNote) {
+    return fretGen.matchingSharpAndFlat[0][sharpNote];
 }
 
 // function to correct enharmonic equivalents
-function correctEnharmonic(accidentalNote, matchingEnharmonic) {
-    return matchingEnharmonic[0][accidentalNote];
+function correctEnharmonic(accidentalNote) {
+    return fretGen.matchingEnharmonic[0][accidentalNote];
 }
 
 // function to harvest key and scale inputs
@@ -156,23 +152,24 @@ function getAccidentalState() {
 }
 
 // function to convert an array of notes which may contain flats to sharps or vice versa where applicable
-function arrayAccidentalConvert(arrayToConvert, matchingSharpAndFlat, direction) {
+function arrayAccidentalConvert(arrayToConvert, direction) {
     // copy supplied array of notes
     var convertedArray = arrayToConvert.slice(0);
     // loop through all notes
     for (var string = 0, arrayLength = arrayToConvert.length; string < arrayLength; string++) {
-        // regex test for flats is true
+        // if converting to sharps
         if (direction === 'sharp') {
-          if (/([A-G])b/.test(arrayToConvert[string]) === true) {
-            // convert note to sharp and replace note in array with its converted equivalent
-            convertedArray[string] = flatToSharp(arrayToConvert[string], matchingSharpAndFlat);
-        }
-      }
-        else {
-          if (/([A-G])#/.test(arrayToConvert[string]) === true) {
-              // convert note to flat and replace note in array with its converted equivalent
-              convertedArray[string] = sharpToFlat(arrayToConvert[string], matchingSharpAndFlat);
-          }
+            // regex test for flats is true
+            if (/([A-G])b/.test(arrayToConvert[string]) === true) {
+                // convert note to sharp and replace note in array with its converted equivalent
+                convertedArray[string] = flatToSharp(arrayToConvert[string]);
+            }
+        } else {
+            // regex test for sharps is true
+            if (/([A-G])#/.test(arrayToConvert[string]) === true) {
+                // convert note to flat and replace note in array with its converted equivalent
+                convertedArray[string] = sharpToFlat(arrayToConvert[string]);
+            }
         }
     }
     // return complete array with all of the flat to sharp conversions in place
@@ -180,7 +177,7 @@ function arrayAccidentalConvert(arrayToConvert, matchingSharpAndFlat, direction)
 }
 
 // function to convert an array of notes which may contain undesirable enharmonic equivalents where applicable
-function arrayCorrectEnharmonic(enharmonicArray, matchingEnharmonic) {
+function arrayCorrectEnharmonic(enharmonicArray) {
     // copy supplied array of notes
     var convertedArray = enharmonicArray.slice(0);
     // loop through all notes
@@ -188,7 +185,7 @@ function arrayCorrectEnharmonic(enharmonicArray, matchingEnharmonic) {
         // regex test for enharmonics is true
         if (/(Fb|E#|B#|Cb)/.test(enharmonicArray[string]) === true) {
             // convert note to proper enharmonic equivalent and replace note in array with its converted equivalent
-            convertedArray[string] = correctEnharmonic(enharmonicArray[string], matchingEnharmonic);
+            convertedArray[string] = correctEnharmonic(enharmonicArray[string]);
         }
     }
     // return complete array with all of enharmonic conversions in place
@@ -213,9 +210,9 @@ function validateUserTuning() {
             customTuningArray = customInputTuning.match(/([A-G](b|#)?)/g).reverse();
         }
         // correct any user supplied enharmonic equivalents
-        var correctedTuning = arrayCorrectEnharmonic(customTuningArray, matchingEnharmonic);
+        var correctedTuning = arrayCorrectEnharmonic(customTuningArray);
         // return output tuning by converting tuning array to sharps
-        return arrayAccidentalConvert(correctedTuning, matchingSharpAndFlat, 'sharp');
+        return arrayAccidentalConvert(correctedTuning, 'sharp');
     }
 }
 
@@ -235,7 +232,7 @@ function getStringNoteNames(stringRootNote, notes) {
     // checks for flat accidental state
     if (accidentalState === 'flat') {
         // converts complete note set to flats where applicable, and returns the complete sequence of notes for the entire string
-        return arrayAccidentalConvert(completeNoteSet, matchingSharpAndFlat, 'flat');
+        return arrayAccidentalConvert(completeNoteSet, 'flat');
     } else {
         // return the completed sequence of notes for the entire string
         return completeNoteSet;
@@ -247,7 +244,7 @@ function singleStringFrets(scaleRootNote, stringRootNote, scalePattern) {
     // checks for flat accidental state
     if (accidentalState === 'flat' && /([A-G])(b|#)/.test(scaleRootNote) === true) {
         // converts scale root note to flat
-        scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
+        scaleRootNote = sharpToFlat(scaleRootNote);
     }
     // get note names for each fret given the tuning of the string
     var workingNoteSet = getStringNoteNames(stringRootNote, fretGen.notes);
@@ -324,7 +321,7 @@ function allStringsHtml(selectedKey, selectedScale, selectedTuning, notes, board
 function displayCurrentTuning(selectedTuning, boardOrientation, isVertical) {
     var accidentalState = getAccidentalState();
     if (accidentalState === 'flat') {
-        selectedTuning = arrayAccidentalConvert(selectedTuning, matchingSharpAndFlat, 'flat');
+        selectedTuning = arrayAccidentalConvert(selectedTuning, 'flat');
     }
     var tuningHtml = '';
     for (var stringCounter = 0, arrayLength = selectedTuning.length; stringCounter < arrayLength; stringCounter++) {
@@ -339,14 +336,13 @@ function appendBoardHtml(outputTuning, boardOrientation, isVertical, allStringsO
         // fill tuning HTML template with values from selected tuning
         var tuningOutput = displayCurrentTuning(outputTuning, boardOrientation, isVertical);
         hand = 'rh';
-    }
-    else {
-      tuningOutput = displayCurrentTuning(outputTuning, boardOrientation, isVertical);
-      hand = 'lh';
+    } else {
+        tuningOutput = displayCurrentTuning(outputTuning, boardOrientation, isVertical);
+        hand = 'lh';
     }
     // append HTML of selected tuning to display current tuning
-    $('.tuning-'+hand).html(tuningOutput);
-    $('.notes-display-'+hand).html(allStringsOutput);
+    $('.tuning-' + hand).html(tuningOutput);
+    $('.notes-display-' + hand).html(allStringsOutput);
 }
 
 function toggleCustomTuning(tuningValue) {
@@ -386,14 +382,14 @@ function eventListenerTrigger() {
         else {
             var predefinedTuning = selectedTuning;
             // define output tuning by matching to existing tuning array
-            var outputTuning = stringTuning[predefinedTuning];
+            var outputTuning = fretGen.stringTuning[predefinedTuning];
             var outputTuningLH = outputTuning.slice(0).reverse();
             console.log('Right Hand Tuning:', outputTuning);
             console.log('Left Hand Tuning:', outputTuningLH);
         }
         // Run singleStringHtml for all 6 strings given user selected tuning, scale, and key
-        var allStringsOutput = allStringsHtml(selectedKey, scales[selectedScale], outputTuning, fretGen.notes, boardOrientation, isVertical);
-        var allStringsOutputLH = allStringsHtml(selectedKey, scales[selectedScale], outputTuningLH, fretGen.notes, boardOrientation, isVertical);
+        var allStringsOutput = allStringsHtml(selectedKey, fretGen.scales[selectedScale], outputTuning, fretGen.notes, boardOrientation, isVertical);
+        var allStringsOutputLH = allStringsHtml(selectedKey, fretGen.scales[selectedScale], outputTuningLH, fretGen.notes, boardOrientation, isVertical);
         appendBoardHtml(outputTuning, boardOrientation, isVertical, allStringsOutput, allStringsOutputLH);
     }
 }
