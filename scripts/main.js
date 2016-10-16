@@ -1,19 +1,21 @@
 //-----------------GLOBAL VARIABLES-----------------//
+var fretGen = {
+  notes: [
+      "C",
+      "C#",
+      "D",
+      "D#",
+      "E",
+      "F",
+      "F#",
+      "G",
+      "G#",
+      "A",
+      "A#",
+      "B"
+  ]
+};
 
-var notes = [
-    "C",
-    "C#",
-    "D",
-    "D#",
-    "E",
-    "F",
-    "F#",
-    "G",
-    "G#",
-    "A",
-    "A#",
-    "B"
-];
 
 var matchingSharpAndFlat = [{
     "C#": "Db",
@@ -153,35 +155,27 @@ function getAccidentalState() {
     }
 }
 
-// function to convert an array of notes which may contain flats to sharps where applicable
-function arrayFlatToSharp(flatNoteArray, matchingSharpAndFlat) {
+// function to convert an array of notes which may contain flats to sharps or vice versa where applicable
+function arrayAccidentalConvert(arrayToConvert, matchingSharpAndFlat, direction) {
     // copy supplied array of notes
-    var convertedArray = flatNoteArray.slice(0);
+    var convertedArray = arrayToConvert.slice(0);
     // loop through all notes
-    for (var string = 0, arrayLength = flatNoteArray.length; string < arrayLength; string++) {
+    for (var string = 0, arrayLength = arrayToConvert.length; string < arrayLength; string++) {
         // regex test for flats is true
-        if (/([A-G])b/.test(flatNoteArray[string]) === true) {
+        if (direction === 'sharp') {
+          if (/([A-G])b/.test(arrayToConvert[string]) === true) {
             // convert note to sharp and replace note in array with its converted equivalent
-            convertedArray[string] = flatToSharp(flatNoteArray[string], matchingSharpAndFlat);
+            convertedArray[string] = flatToSharp(arrayToConvert[string], matchingSharpAndFlat);
+        }
+      }
+        else {
+          if (/([A-G])#/.test(arrayToConvert[string]) === true) {
+              // convert note to flat and replace note in array with its converted equivalent
+              convertedArray[string] = sharpToFlat(arrayToConvert[string], matchingSharpAndFlat);
+          }
         }
     }
     // return complete array with all of the flat to sharp conversions in place
-    return convertedArray;
-}
-
-// function to convert an array of notes which may contain sharps to flats where applicable
-function arraySharpToFlat(sharpNoteArray, matchingSharpAndFlat) {
-    // copy supplied array of notes
-    var convertedArray = sharpNoteArray.slice(0);
-    // loop through all notes
-    for (var string = 0, arrayLength = sharpNoteArray.length; string < arrayLength; string++) {
-        // regex test for sharps is true
-        if (/([A-G])#/.test(sharpNoteArray[string]) === true) {
-            // convert note to flat and replace note in array with its converted equivalent
-            convertedArray[string] = sharpToFlat(sharpNoteArray[string], matchingSharpAndFlat);
-        }
-    }
-    // return complete array with all of the sharp to flat conversions in place
     return convertedArray;
 }
 
@@ -221,7 +215,7 @@ function validateUserTuning() {
         // correct any user supplied enharmonic equivalents
         var correctedTuning = arrayCorrectEnharmonic(customTuningArray, matchingEnharmonic);
         // return output tuning by converting tuning array to sharps
-        return arrayFlatToSharp(correctedTuning, matchingSharpAndFlat);
+        return arrayAccidentalConvert(correctedTuning, matchingSharpAndFlat, 'sharp');
     }
 }
 
@@ -241,7 +235,7 @@ function getStringNoteNames(stringRootNote, notes) {
     // checks for flat accidental state
     if (accidentalState === 'flat') {
         // converts complete note set to flats where applicable, and returns the complete sequence of notes for the entire string
-        return arraySharpToFlat(completeNoteSet, matchingSharpAndFlat);
+        return arrayAccidentalConvert(completeNoteSet, matchingSharpAndFlat, 'flat');
     } else {
         // return the completed sequence of notes for the entire string
         return completeNoteSet;
@@ -256,7 +250,7 @@ function singleStringFrets(scaleRootNote, stringRootNote, scalePattern) {
         scaleRootNote = sharpToFlat(scaleRootNote, matchingSharpAndFlat);
     }
     // get note names for each fret given the tuning of the string
-    var workingNoteSet = getStringNoteNames(stringRootNote, notes);
+    var workingNoteSet = getStringNoteNames(stringRootNote, fretGen.notes);
     // copy scale pattern
     var workingScalePattern = scalePattern.slice(0);
     // find fret number of key root note on string
@@ -330,7 +324,7 @@ function allStringsHtml(selectedKey, selectedScale, selectedTuning, notes, board
 function displayCurrentTuning(selectedTuning, boardOrientation, isVertical) {
     var accidentalState = getAccidentalState();
     if (accidentalState === 'flat') {
-        selectedTuning = arraySharpToFlat(selectedTuning, matchingSharpAndFlat);
+        selectedTuning = arrayAccidentalConvert(selectedTuning, matchingSharpAndFlat, 'flat');
     }
     var tuningHtml = '';
     for (var stringCounter = 0, arrayLength = selectedTuning.length; stringCounter < arrayLength; stringCounter++) {
@@ -385,7 +379,7 @@ function eventListenerTrigger() {
         if (selectedTuning === 'custom') {
             var outputTuning = validateUserTuning();
             var outputTuningLH = outputTuning.slice(0).reverse();
-            console.log('Right Hand Tuning:', outputTuning);
+            ('Right Hand Tuning:', outputTuning);
             console.log('Left Hand Tuning:', outputTuningLH);
         }
         // if predefined tuning is selected
@@ -398,8 +392,8 @@ function eventListenerTrigger() {
             console.log('Left Hand Tuning:', outputTuningLH);
         }
         // Run singleStringHtml for all 6 strings given user selected tuning, scale, and key
-        var allStringsOutput = allStringsHtml(selectedKey, scales[selectedScale], outputTuning, notes, boardOrientation, isVertical);
-        var allStringsOutputLH = allStringsHtml(selectedKey, scales[selectedScale], outputTuningLH, notes, boardOrientation, isVertical);
+        var allStringsOutput = allStringsHtml(selectedKey, scales[selectedScale], outputTuning, fretGen.notes, boardOrientation, isVertical);
+        var allStringsOutputLH = allStringsHtml(selectedKey, scales[selectedScale], outputTuningLH, fretGen.notes, boardOrientation, isVertical);
         appendBoardHtml(outputTuning, boardOrientation, isVertical, allStringsOutput, allStringsOutputLH);
     }
 }
